@@ -31,7 +31,7 @@
             <font>
                 <Font size="12.0" />
             </font></CheckBox>
-        <Hyperlink layoutX="411.0" layoutY="293.0" text="Forgot Passwprd?">
+        <Hyperlink layoutX="381.0" layoutY="293.0" onAction="#signupBtn" text="Don''t have an account? Sign Up">
             <font>
                 <Font size="10.0" />
             </font>

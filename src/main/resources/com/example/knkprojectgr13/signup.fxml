@@ -24,7 +24,7 @@
             <Font name="Raleway Black" size="29.0" />
          </font>
       </Text>
-      <Hyperlink layoutX="381.0" layoutY="293.0" text="Already have an account? Sign In">
+      <Hyperlink layoutX="381.0" layoutY="293.0" onAction="#loginBtn" text="Already have an account? Sign In">
          <font>
             <Font size="10.0" />
          </font>
