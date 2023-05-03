@@ -3,6 +3,9 @@ module com.example.knkprojectgr13 {
     requires javafx.fxml;
 
 
-    opens com.example.knkprojectgr13 to javafx.fxml;
-    exports com.example.knkprojectgr13;
+
+    exports application;
+    opens application to javafx.fxml;
+    exports application.controllers;
+    opens application.controllers to javafx.fxml;
 }

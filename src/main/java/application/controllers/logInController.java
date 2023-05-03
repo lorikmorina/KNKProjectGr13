@@ -1,4 +1,4 @@
-package com.example.knkprojectgr13;
+package application.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ public class logInController {
     }
     @FXML
     void signupBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("signup.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/signup.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
