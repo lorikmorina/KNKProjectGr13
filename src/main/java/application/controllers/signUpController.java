@@ -1,5 +1,7 @@
 package application.controllers;
 
+import application.models.User;
+import application.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class signUpController {
     @FXML
@@ -30,7 +33,21 @@ public class signUpController {
     private TextField txtPersonalNr;
 
     @FXML
-    private void btnLoginClick(ActionEvent event) {
+    private void signUpBtn(ActionEvent event) {
+        String fullName = this.txtFullName.getText();
+        String email = this.txtEmail.getText();
+        String personalNr = this.txtPersonalNr.getText();
+        String password = this.txtPassword.getText();
+
+        try{
+            User user = UserService.signUp(
+                    fullName, email, personalNr, password
+            );
+        }catch (SQLException sqlException){
+
+        }
+
+        System.out.printf("Email: %s, Password: %s", email, password);
 
     }
     @FXML
