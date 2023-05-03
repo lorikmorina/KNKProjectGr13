@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.homeController">
+   <children>
+      <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+      <TextField fx:id="txtFullName" layoutX="328.0" layoutY="44.0" prefHeight="28.0" prefWidth="685.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button fx:id="loginBtn" layoutX="1000.0" layoutY="42.0" mnemonicParsing="false" onAction="#btnLoginClick" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #0589ff;" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" />
+         </graphic></Button>
+      <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="25.0" layoutY="40.0" scaleX="3.0" scaleY="3.0" />
+      <Text fill="WHITE" layoutX="56.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Çerdhe Xixëllonjat" textAlignment="CENTER">
+         <font>
+            <Font name="Raleway Black" size="15.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="200.0" layoutY="181.0" prefHeight="132.0" prefWidth="172.0" visible="false" />
+      <Hyperlink layoutX="55.0" layoutY="720.0" text="Log Out" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Hyperlink>
+      <Label layoutX="50.0" layoutY="92.0" text="Lorik Morina" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="55.0" layoutY="225.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="55.0" layoutY="297.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Manage" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="55.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
