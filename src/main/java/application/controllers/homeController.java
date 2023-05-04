@@ -25,6 +25,22 @@ public class homeController {
     void btnLoginClick(ActionEvent event) {
 
     }
+    @FXML
+    private void handleManageButton(ActionEvent event) {
+        try {
+            // Load the manage FXML file
+            Parent manageRoot = FXMLLoader.load(getClass().getResource("/views/manage.fxml"));
 
+            // Create a new scene with the loaded FXML file
+            Scene manageScene = new Scene(manageRoot, 600, 400);
 
+            // Get the primary stage from the button
+            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            // Set the new scene as the primary stage's scene
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
