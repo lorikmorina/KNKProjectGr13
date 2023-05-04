@@ -10,11 +10,10 @@ import application.repository.interfaces.BaseInterface;
 import application.repository.interfaces.UserRepositoryInterface;
 import application.database.ConnectionUtil;
 import application.models.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,5 +105,7 @@ public class UserRepository implements UserRepositoryInterface {
 //
 //        return UserRepository.get("id", user.getId());
 //    }
+
+
 }
 

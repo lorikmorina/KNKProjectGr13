@@ -1,6 +1,5 @@
 package application.controllers;
 
-import application.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,16 +15,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class homeController {
-    private User loggedInUser;
-
-//    public homeController(User user) {
-//        this.loggedInUser = user;
-//    }
-
     @FXML
     private Button loginBtn;
-    @FXML
-    private Label nameLabel;
 
     @FXML
     private TextField txtFullName;
@@ -34,13 +25,6 @@ public class homeController {
     void btnLoginClick(ActionEvent event) {
 
     }
-    public void setUser(User user ) {
-        this.loggedInUser = user;
-        nameLabel.setText(loggedInUser.getFullName());
-    }
-//    public void initialize() {
-//        nameLabel.setText(loggedInUser.getFullName()+ "m");
-//    }
 
 
 }

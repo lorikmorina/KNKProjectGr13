@@ -18,6 +18,14 @@ public class User {
         this.salt = salt;
     }
 
+    public User(int id, String fullName, String email, String personalNr) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.personalNr = personalNr;
+    }
+
+
     public int getId() {
         return id;
     }

@@ -39,7 +39,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="55.0" layoutY="297.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Manage" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="manageButton" layoutX="55.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleManageButton" style="-fx-background-color: transparent;" text="Manage" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

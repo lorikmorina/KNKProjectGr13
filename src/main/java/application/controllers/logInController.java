@@ -55,7 +55,7 @@ public class logInController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent root = loader.load();
             homeController homeController = loader.getController();
-            homeController.setUser(user);
+            // homeController.setUser(user);
             System.out.println("test");
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
