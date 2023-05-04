@@ -4,10 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -18,11 +16,7 @@
 <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.homeController">
    <children>
       <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
-      <TextField fx:id="txtFullName" layoutX="328.0" layoutY="44.0" prefHeight="28.0" prefWidth="685.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <Button fx:id="loginBtn" layoutX="1000.0" layoutY="42.0" mnemonicParsing="false" onAction="#btnLoginClick" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #0589ff;" textFill="WHITE">
-         <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" />
-         </graphic></Button>
+      <TextField fx:id="txtFullName" layoutX="256.0" layoutY="228.0" prefHeight="38.0" prefWidth="876.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
       <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="25.0" layoutY="40.0" scaleX="3.0" scaleY="3.0" />
       <Text fill="WHITE" layoutX="56.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Çerdhe Xixëllonjat" textAlignment="CENTER">
          <font>
@@ -55,42 +49,25 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <MenuBar layoutX="307.0" layoutY="194.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <MenuButton contentDisplay="RIGHT" layoutX="366.0" layoutY="252.0" mnemonicParsing="false" text="MenuButton">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
-      <MenuButton layoutX="356.0" layoutY="362.0" mnemonicParsing="false" text="MenuButton">
-         <items>
-            <MenuItem mnemonicParsing="false" text="Action 1" />
-            <MenuItem mnemonicParsing="false" text="Action 2" />
-         </items>
-      </MenuButton>
-      <MenuButton layoutX="361.0" layoutY="301.0" mnemonicParsing="false" text="MenuButton">
-         <items>
-            <MenuItem mnemonicParsing="false" text="Action 1" />
-            <MenuItem mnemonicParsing="false" text="Action 2" />
-         </items>
-      </MenuButton>
+      <TableView layoutX="256.0" layoutY="278.0" prefHeight="467.0" prefWidth="876.0">
+        <columns>
+          <TableColumn prefWidth="101.0" text="ID" />
+          <TableColumn prefWidth="92.0" text="Child's Name" />
+            <TableColumn prefWidth="120.0" text="Parent/Guardian" />
+            <TableColumn prefWidth="55.0" text="Age" />
+            <TableColumn prefWidth="102.0" text="Teacher" />
+            <TableColumn prefWidth="119.0" text="Classroom nr" />
+            <TableColumn prefWidth="149.0" text="Contact info" />
+            <TableColumn prefWidth="137.0" text="Allergies" />
+        </columns>
+      </TableView>
+      <Pane layoutX="200.0" layoutY="59.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: #63a7e8;">
+         <children>
+            <Text fill="WHITE" layoutX="34.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOME" wrappingWidth="106.0390625">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+         </children></Pane>
    </children>
 </Pane>
