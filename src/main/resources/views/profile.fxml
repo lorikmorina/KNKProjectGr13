@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="799.0" prefWidth="1138.0" style="-fx-fontweight: bold;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.profileController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="800.0" layoutX="-3.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63a7e8" height="112.0" layoutX="197.0" layoutY="55.0" stroke="TRANSPARENT" strokeType="INSIDE" width="940.0" />
+      <Text boundsType="VISUAL" fill="WHITE" layoutX="264.0" layoutY="122.0" strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="PROFILE" wrappingWidth="169.6328125">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Text boundsType="VISUAL" fill="WHITE" layoutX="13.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Çerdhe Xixëllonjat">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="17.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Class Schedule" textFill="#e8e8e8">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="57.0" layoutY="184.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Home" textFill="#e8e8e8">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="54.0" layoutY="250.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Profile" textFill="#e8e8e8">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <FontAwesomeIconView layoutX="248.0" layoutY="337.0" size="150" wrappingWidth="162.0" />
+      <Text layoutX="458.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Name:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="459.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Last name:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="458.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personal Nr.:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="453.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nr. of children enrolled:" wrappingWidth="128.57666015625">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Label layoutX="609.0" layoutY="193.0" prefHeight="17.0" prefWidth="150.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="610.0" layoutY="256.0" prefHeight="17.0" prefWidth="150.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="611.0" layoutY="321.0" prefHeight="17.0" prefWidth="150.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="614.0" layoutY="384.0" prefHeight="17.0" prefWidth="150.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <PieChart layoutX="706.0" layoutY="193.0" prefHeight="307.0" prefWidth="379.0" title="Attendance" />
+   </children>
+</Pane>
