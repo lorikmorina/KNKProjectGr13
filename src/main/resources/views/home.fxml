@@ -29,7 +29,7 @@
             <Font size="20.0" />
          </font>
       </Hyperlink>
-      <Label layoutX="50.0" layoutY="92.0" text="Lorik Morina" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="nameLabel" layoutX="50.0" layoutY="92.0" text="" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

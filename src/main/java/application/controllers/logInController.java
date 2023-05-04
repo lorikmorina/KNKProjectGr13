@@ -44,7 +44,19 @@ public class logInController {
                 return;
             }
             System.out.println("User is correct!");
-            Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
+//            Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
+//
+//            Scene scene = new Scene(root);
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            stage.setScene(scene);
+//            stage.show();
+
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
+            Parent root = loader.load();
+            homeController homeController = loader.getController();
+            homeController.setUser(user);
+            System.out.println("test");
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
