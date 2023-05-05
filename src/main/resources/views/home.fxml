@@ -16,7 +16,7 @@
 <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.homeController">
    <children>
       <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
-      <TextField fx:id="txtFullName" layoutX="256.0" layoutY="228.0" prefHeight="38.0" prefWidth="876.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="searchField" layoutX="256.0" layoutY="228.0" prefHeight="38.0" prefWidth="876.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
       <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="25.0" layoutY="40.0" scaleX="3.0" scaleY="3.0" />
       <Text fill="WHITE" layoutX="56.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Çerdhe Xixëllonjat" textAlignment="CENTER">
          <font>
@@ -49,7 +49,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TableView layoutX="256.0" layoutY="278.0" prefHeight="467.0" prefWidth="876.0">
+      <TableView fx:id="userTable" layoutX="256.0" layoutY="278.0" prefHeight="467.0" prefWidth="876.0">
         <columns>
           <TableColumn prefWidth="101.0" text="ID" />
           <TableColumn prefWidth="92.0" text="Child's Name" />

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import application.service.PasswordHasher;
 import java.sql.*;
@@ -46,8 +47,10 @@ public class manageController {
     private PasswordField passwordManage;
     @FXML
     private Label userManage;
+    @FXML
+    private TextField searchField;
+
     public void initialize() {
-        // Set the cell value factories for each column
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -91,6 +94,8 @@ public class manageController {
                 hideManageView();
             });
         });
+        dynamicSearch();
+
     }
 
     private ObservableList<User> getUsers() {
@@ -157,7 +162,6 @@ public class manageController {
             } else {
                 userManage.setText("Failed to add user");
             }
-
             stmt.close();
             connection.close();
             getUsers();
@@ -181,6 +185,13 @@ public class manageController {
         userManage.setVisible(false);
         deleteID.setVisible(false);
     }
-
-
+    private void dynamicSearch(){
+        ObservableList<User> users = getUsers();
+        userTable.setItems(users);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            ObservableList<User> filteredUsers = users.filtered(user ->
+                    user.getFullName().toLowerCase().contains(newValue.toLowerCase()));
+            userTable.setItems(filteredUsers);
+        });
+    }
 }
