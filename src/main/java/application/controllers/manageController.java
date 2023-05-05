@@ -2,14 +2,24 @@ package application.controllers;
 
 import application.models.User;
 import application.database.ConnectionUtil;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import application.service.PasswordHasher;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.sql.*;
 
 public class manageController {
@@ -49,7 +59,8 @@ public class manageController {
     private Label userManage;
     @FXML
     private TextField searchField;
-
+    @FXML
+    private Button homeBtn;
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
@@ -68,7 +79,6 @@ public class manageController {
             deleteID.setOnAction(event3 ->{
                 String id = idManage.getText();
                 deleteUser(id);
-                userManage.setVisible(true);
             });
             gobackButton.setOnAction(event1 ->{
                 hideManageView();
@@ -88,14 +98,12 @@ public class manageController {
                 String personalNr = personalnrManage.getText();
                 String password = passwordManage.getText();
                 addUser(fullname, email, personalNr, password);
-                userManage.setVisible(true);
             });
             gobackButton.setOnAction(event1 ->{
                 hideManageView();
             });
         });
         dynamicSearch();
-
     }
 
     private ObservableList<User> getUsers() {
@@ -130,8 +138,12 @@ public class manageController {
             int rowsDeleted = stmt.executeUpdate();
             if (rowsDeleted > 0) {
                 userManage.setText("User deleted successfully");
+                timeLabel(userManage);
+                ObservableList<User> userList = getUsers(); // get updated list of users from database
+                userTable.setItems(FXCollections.observableArrayList(userList));
             } else {
                 userManage.setText("No user found with ID: " + id);
+                timeLabel(userManage);
             }
             stmt.close();
             connection.close();
@@ -159,8 +171,16 @@ public class manageController {
 
             if (rowsInserted > 0) {
                 userManage.setText("User added successfully");
+                timeLabel(userManage);
+                fullnameManage.clear();
+                emailManage.clear();
+                personalnrManage.clear();
+                passwordManage.clear();
+                ObservableList<User> userList = getUsers(); // get updated list of users from database
+                userTable.setItems(FXCollections.observableArrayList(userList));
             } else {
                 userManage.setText("Failed to add user");
+                timeLabel(userManage);
             }
             stmt.close();
             connection.close();
@@ -175,6 +195,7 @@ public class manageController {
         gobackButton.setVisible(true);
         deleteButton.setVisible(false);
         addButton.setVisible(false);
+        idManage.setVisible(true);
     }
     private void hideManageView() {
         vBoxManage.setVisible(false);
@@ -184,6 +205,7 @@ public class manageController {
         gobackButton.setVisible(false);
         userManage.setVisible(false);
         deleteID.setVisible(false);
+        passwordManage.setVisible(false);
     }
     private void dynamicSearch(){
         ObservableList<User> users = getUsers();
@@ -193,5 +215,29 @@ public class manageController {
                     user.getFullName().toLowerCase().contains(newValue.toLowerCase()));
             userTable.setItems(filteredUsers);
         });
+    }
+    private void timeLabel(Label label) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, event -> {
+                    // Show the label
+                    label.setVisible(true);
+                }),
+                new KeyFrame(Duration.seconds(2), event -> {
+                    // Hide the label after 2 seconds
+                    label.setVisible(false);
+                })
+        );
+        timeline.play();
+    }
+    @FXML
+    private void goHome(ActionEvent event){
+        try {
+            Parent manageRoot = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
+            Scene manageScene = new Scene(manageRoot, 600, 400);
+            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
