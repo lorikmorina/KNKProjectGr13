@@ -33,7 +33,7 @@ public class signUpController {
     private TextField txtPersonalNr;
 
     @FXML
-    private void signUpBtn(ActionEvent event) {
+    private void signUpBtn(ActionEvent event) throws IOException {
         String fullName = this.txtFullName.getText();
         String email = this.txtEmail.getText();
         String personalNr = this.txtPersonalNr.getText();
@@ -48,6 +48,11 @@ public class signUpController {
         }
 
         System.out.printf("Email: %s, Password: %s", email, password);
+        Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
 
     }
     @FXML
