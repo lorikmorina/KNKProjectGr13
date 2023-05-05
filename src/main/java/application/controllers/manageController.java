@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.service.PasswordHasher;
 import application.models.User;
 import application.database.ConnectionUtil;
 import javafx.animation.KeyFrame;
@@ -14,12 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import application.service.PasswordHasher;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.sql.*;
 
 public class manageController {
@@ -28,39 +26,17 @@ public class manageController {
     @FXML
     private TableColumn<User, Integer> idColumn;
     @FXML
-    private TableColumn<User, String> fullNameColumn;
-    @FXML
-    private TableColumn<User, String> emailColumn;
-    @FXML
-    private TableColumn<User, String> personalNrColumn;
+    private TableColumn<User, String> fullNameColumn,emailColumn,personalNrColumn;
     @FXML
     private VBox vBoxManage;
     @FXML
-    private Button deleteButton;
+    private TextField personalnrManage,idManage, fullnameManage, emailManage,searchField ;
     @FXML
-    private TextField emailManage;
-    @FXML
-    private TextField fullnameManage;
-    @FXML
-    private TextField personalnrManage;
-    @FXML
-    private TextField idManage;
-    @FXML
-    private Button deleteID;
-    @FXML
-    private Button addButton;
-    @FXML
-    private Button gobackButton;
-    @FXML
-    private Button addButtonManage;
+    private Button deleteID,addButton,gobackButton,addButtonManage,deleteButton ;
     @FXML
     private PasswordField passwordManage;
     @FXML
     private Label userManage;
-    @FXML
-    private TextField searchField;
-    @FXML
-    private Button homeBtn;
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
@@ -82,6 +58,7 @@ public class manageController {
             });
             gobackButton.setOnAction(event1 ->{
                 hideManageView();
+                clearManage();
             });
         });
         addButton.setOnAction(event ->{
@@ -101,11 +78,11 @@ public class manageController {
             });
             gobackButton.setOnAction(event1 ->{
                 hideManageView();
+                clearManage();
             });
         });
         dynamicSearch();
     }
-
     private ObservableList<User> getUsers() {
         ObservableList<User> users = FXCollections.observableArrayList();
         Connection connection = null;
@@ -139,6 +116,7 @@ public class manageController {
             if (rowsDeleted > 0) {
                 userManage.setText("User deleted successfully");
                 timeLabel(userManage);
+                clearManage();
                 ObservableList<User> userList = getUsers(); // get updated list of users from database
                 userTable.setItems(FXCollections.observableArrayList(userList));
             } else {
@@ -153,6 +131,11 @@ public class manageController {
         }
     }
     private void addUser(String fullName, String email, String personalNr, String password) {
+        if (fullName.isEmpty() || email.isEmpty() || personalNr.isEmpty() || password.isEmpty()) {
+            userManage.setText("Please fill in all fields");
+            timeLabel(userManage);
+            return;
+        }
         Connection connection = null;
         try {
             String salt = PasswordHasher.generateSalt();
@@ -172,10 +155,8 @@ public class manageController {
             if (rowsInserted > 0) {
                 userManage.setText("User added successfully");
                 timeLabel(userManage);
-                fullnameManage.clear();
-                emailManage.clear();
-                personalnrManage.clear();
-                passwordManage.clear();
+                clearManage();
+                hideManageView();
                 ObservableList<User> userList = getUsers(); // get updated list of users from database
                 userTable.setItems(FXCollections.observableArrayList(userList));
             } else {
@@ -207,6 +188,13 @@ public class manageController {
         deleteID.setVisible(false);
         passwordManage.setVisible(false);
     }
+    private void clearManage(){
+        fullnameManage.clear();
+        emailManage.clear();
+        personalnrManage.clear();
+        passwordManage.clear();
+        idManage.clear();
+    }
     private void dynamicSearch(){
         ObservableList<User> users = getUsers();
         userTable.setItems(users);
@@ -233,7 +221,7 @@ public class manageController {
     private void goHome(ActionEvent event){
         try {
             Parent manageRoot = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
-            Scene manageScene = new Scene(manageRoot, 600, 400);
+            Scene manageScene = new Scene(manageRoot);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {

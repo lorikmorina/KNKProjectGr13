@@ -45,7 +45,7 @@ public class homeController {
     private void handleManageButton(ActionEvent event) {
         try {
             Parent manageRoot = FXMLLoader.load(getClass().getResource("/views/manage.fxml"));
-            Scene manageScene = new Scene(manageRoot, 600, 400);
+            Scene manageScene = new Scene(manageRoot);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
