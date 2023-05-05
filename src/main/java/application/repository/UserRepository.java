@@ -62,7 +62,6 @@ public class UserRepository implements UserRepositoryInterface {
             }
         }
     }
-
 //    public static List<User> getByFilter(UserFilter filters, Pagination pagination) throws SQLException{
 //        List<User> users = new ArrayList<User>();
 //        String sql = "SELECT * FROM users WHERE 1=1";
