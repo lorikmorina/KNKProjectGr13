@@ -8,20 +8,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import application.controllers.manageController;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class homeController {
 
-    private User loggedInUser;
 
 //    public homeController(User user) {
 //        this.loggedInUser = user;
 //    }
+    private User loggedInUser;
 
     @FXML
     private Button loginBtn;
@@ -44,8 +41,14 @@ public class homeController {
     @FXML
     private void handleManageButton(ActionEvent event) {
         try {
-            Parent manageRoot = FXMLLoader.load(getClass().getResource("/views/manage.fxml"));
-            Scene manageScene = new Scene(manageRoot);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/manage.fxml"));
+            Parent root = loader.load();
+            if(loggedInUser != null) {
+                manageController manageC = loader.getController();
+                manageC.initialize(loggedInUser);
+            }
+            Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {

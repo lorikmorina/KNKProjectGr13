@@ -82,14 +82,6 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="parentIdField" promptText="Parent ID">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </TextField>
                   <TextField fx:id="ageField" promptText="Age">
                      <font>
                         <Font size="17.0" />

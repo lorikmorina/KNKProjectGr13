@@ -24,6 +24,11 @@ import java.sql.*;
 import static java.sql.Types.NULL;
 
 public class manageController {
+    private User manageLoggedInUser;
+    private int userId;
+
+    @FXML
+    private Label nameLabel;
     @FXML
     private TableView<Child> userTable;
     @FXML
@@ -39,7 +44,18 @@ public class manageController {
 
     @FXML
     private Label userManage;
-    public void initialize() {
+    public void setUser(User user ) {
+        this.manageLoggedInUser = user;
+        this.userId = user.getId();
+        nameLabel.setText(manageLoggedInUser.getFullName());
+    }
+    public void setId(int id ) {
+
+        this.userId =id;
+        System.out.println(userId);
+    }
+    public void initialize(User manageLoggedInUser) {
+        this.manageLoggedInUser = manageLoggedInUser;
         idColumn.setCellValueFactory(new PropertyValueFactory<>("child_id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("childsName"));
         parentId.setCellValueFactory(new PropertyValueFactory<>("parent_id"));
@@ -53,7 +69,6 @@ public class manageController {
         deleteButton.setOnAction(event -> {
             showManageView();
             childsNameField.setVisible(false);
-            parentIdField.setVisible(false);
             ageField.setVisible(false);
             teacherField.setVisible(false);
             classroomNrField.setVisible(false);
@@ -77,7 +92,6 @@ public class manageController {
             idField.setVisible(false);
             addButtonManage.setVisible(true);
             childsNameField.setVisible(true);
-            parentIdField.setVisible(true);
             ageField.setVisible(true);
             teacherField.setVisible(true);
             classroomNrField.setVisible(true);
@@ -86,14 +100,13 @@ public class manageController {
 
             addButtonManage.setOnAction(event1->{
                 String childsName = childsNameField.getText();
-                int parentId = Integer.parseInt(parentIdField.getText()) ;
                 int age = Integer.parseInt(ageField.getText());
                 String teacher = teacherField.getText();
                 int classroomNr = Integer.parseInt(classroomNrField.getText());
                 String contactInfo = contactInfoField.getText();
                 String medicalInfo = medicalInfoField.getText();
 
-                addUser(childsName, parentId, age, teacher, classroomNr, contactInfo, medicalInfo);
+                addUser(childsName, age, teacher, classroomNr, contactInfo, medicalInfo);
             });
             gobackButton.setOnAction(event1 ->{
                 hideManageView();
@@ -102,13 +115,19 @@ public class manageController {
         });
         dynamicSearch();
     }
+
+
     private ObservableList<Child> getUsers() {
         ObservableList<Child> children = FXCollections.observableArrayList();
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM `children`");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM `children` WHERE parent_id = ?");
+            stmt.setInt(1, manageLoggedInUser.getId());
+
+
+            ResultSet resultSet = stmt.executeQuery();
+
             while (resultSet.next()) {
                 int id = resultSet.getInt("child_id");
                 String fullName = resultSet.getString("childsName");
@@ -121,7 +140,7 @@ public class manageController {
                 Child child = new Child(id, fullName, parentId, age,teacher,classroomNr, contactInfo, medicalInfo);
                 children.add(child);
             }
-            statement.close();
+            stmt.close();
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,7 +172,7 @@ public class manageController {
             e.printStackTrace();
         }
     }
-    private void addUser(String childsName, int parent_id, int child_age, String teacher, int classroomNr, String contactInfo, String medicalInfo) {
+    private void addUser(String childsName, int child_age, String teacher, int classroomNr, String contactInfo, String medicalInfo) {
         if (childsName.isEmpty() || teacher.isEmpty() || contactInfo.isEmpty()) {
             userManage.setText("Please fill in all fields");
             timeLabel(userManage);
@@ -166,7 +185,7 @@ public class manageController {
                     "INSERT INTO children (childsName, parent_id, age, teacher, classroomNr, contactInfo, medicalInfo) VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
             stmt.setString(1, childsName);
-            stmt.setInt(2, parent_id);
+            stmt.setInt(2, manageLoggedInUser.getId());
             stmt.setInt(3, child_age);
             stmt.setString(4, teacher);
             stmt.setInt(5, classroomNr);
@@ -212,7 +231,6 @@ public class manageController {
     }
     private void clearManage(){
         childsNameField.clear();
-        parentIdField.clear();
         ageField.clear();
         teacherField.clear();
         classroomNrField.clear();

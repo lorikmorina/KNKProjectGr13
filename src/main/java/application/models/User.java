@@ -27,7 +27,7 @@ public class User {
 
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getFullName() {
