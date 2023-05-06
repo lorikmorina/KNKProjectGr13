@@ -82,6 +82,7 @@ public class manageController {
                 deleteUser(id);
             });
             gobackButton.setOnAction(event1 ->{
+                idField.setVisible(false);
                 hideManageView();
                 clearManage();
             });

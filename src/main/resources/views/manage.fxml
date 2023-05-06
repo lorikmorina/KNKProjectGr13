@@ -69,11 +69,6 @@
             </AnchorPane>
             <VBox fx:id="vBoxManage" layoutX="196.0" layoutY="309.0" prefHeight="209.0" prefWidth="367.0" visible="false">
                <children>
-                  <TextField fx:id="idField" promptText="ID" visible="false">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </TextField>
                   <TextField fx:id="childsNameField" promptText="Child Name">
                      <font>
                         <Font size="17.0" />
@@ -154,6 +149,11 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <TextField fx:id="idField" layoutX="196.0" layoutY="320.0" prefHeight="38.0" prefWidth="367.0" promptText="ID" visible="false">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <FontAwesomeIconView glyphName="SEARCH" layoutX="991.0" layoutY="62.0" />
