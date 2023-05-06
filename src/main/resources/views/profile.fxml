@@ -23,17 +23,17 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button layoutX="17.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Class Schedule" textFill="WHITE">
+      <Button layoutX="17.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Class Schedule" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="homeBttn" layoutX="57.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleHomeButton" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Home" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="homeBttn" blendMode="ADD" layoutX="57.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleHomeButton" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="54.0" layoutY="250.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Profile" textFill="WHITE">
+      <Button layoutX="54.0" layoutY="250.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Profile" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

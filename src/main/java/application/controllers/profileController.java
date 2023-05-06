@@ -64,8 +64,13 @@ public class profileController {
     @FXML
     private void handleHomeButton(ActionEvent event){
         try {
-            Parent manageRoot = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
-            Scene manageScene = new Scene(manageRoot);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
+            Parent root = loader.load();
+            if(loggedInUser != null) {
+                homeController homeC = loader.getController();
+                homeC.setUser(loggedInUser);
+            }
+            Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
