@@ -7,6 +7,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -15,6 +16,8 @@
    <children>
       <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="315.0" />
       <TextField fx:id="txtFullName" layoutX="373.0" layoutY="49.0" promptText=" Full Name" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="txtEmail" layoutX="373.0" layoutY="103.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="txtPersonalNr" layoutX="373.0" layoutY="150.0" promptText="Personal Nr." style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
       <PasswordField fx:id="txtPassword" layoutX="373.0" layoutY="201.0" promptText="Password" style="-fx-background-color: none; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
       <Button fx:id="loginBtn" layoutX="415.0" layoutY="261.0" mnemonicParsing="false" onAction="#signUpBtn" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #0589ff;" text="Sign Up" textFill="WHITE" />
       <FontAwesomeIconView fill="#0589ff" glyphName="KEY" layoutX="347.0" layoutY="219.0" />
@@ -30,7 +33,6 @@
          </font>
       </Hyperlink>
       <Canvas height="200.0" layoutX="58.0" layoutY="211.0" width="200.0" />
-      <TextField fx:id="txtEmail" layoutX="373.0" layoutY="103.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <TextField fx:id="txtPersonalNr" layoutX="373.0" layoutY="150.0" promptText="Personal Nr." style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+      <VBox layoutX="323.0" layoutY="48.0" prefHeight="200.0" prefWidth="100.0" />
    </children>
 </Pane>

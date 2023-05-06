@@ -30,6 +30,8 @@ public class logInController {
     @FXML
     private Label welcomeText;
     @FXML
+    private Label labelLogin;
+    @FXML
     private TextField txtEmail;
     @FXML
     private PasswordField txtPassword;
@@ -40,7 +42,7 @@ public class logInController {
         try{
             User user = this.userService.login(email, password);
             if(user == null){
-                System.out.println("Username or password is incorrect!");
+                labelLogin.setText("Email or password is incorrect!");
                 return;
             }
             System.out.println("User is correct!");
@@ -66,7 +68,6 @@ public class logInController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
     @FXML
     void signupBtn(ActionEvent event) throws IOException {
