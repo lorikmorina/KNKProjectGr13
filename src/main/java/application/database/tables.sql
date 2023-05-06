@@ -9,3 +9,18 @@ CREATE TABLE parents (
                          PRIMARY KEY (id)
 );
 Select * from parents;
+
+CREATE TABLE children (
+                          child_id INT NOT NULL AUTO_INCREMENT,
+                          childsName VARCHAR(50) NOT NULL,
+                          parent_id int NOT NULL,
+                          age int NOT NULL,
+                          teacher VARCHAR(50) NOT NULL,
+                          classroomNr int,
+                          contactInfo VARCHAR(20),
+                          medicalInfo VARCHAR(256),
+                          PRIMARY KEY (child_id),
+                          foreign key(parent_id) references parents(id)
+);
+
+Select * from children;
