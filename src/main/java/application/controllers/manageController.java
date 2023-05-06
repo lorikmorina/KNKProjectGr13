@@ -40,14 +40,14 @@ public class manageController {
     @FXML
     private TextField childsNameField,parentIdField, ageField, teacherField,classroomNrField, contactInfoField, medicalInfoField, searchField, idField ;
     @FXML
-    private Button deleteID,addButton,gobackButton,addButtonManage,deleteButton ;
+    private Button deleteID,addButton,gobackButton,addButtonManage,deleteButton, logoutBtn ;
 
     @FXML
     private Label userManage;
     public void setUser(User user ) {
         this.manageLoggedInUser = user;
         this.userId = user.getId();
-        nameLabel.setText(manageLoggedInUser.getFullName());
+
     }
     public void setId(int id ) {
 
@@ -56,6 +56,7 @@ public class manageController {
     }
     public void initialize(User manageLoggedInUser) {
         this.manageLoggedInUser = manageLoggedInUser;
+        nameLabel.setText(manageLoggedInUser.getFullName());
         idColumn.setCellValueFactory(new PropertyValueFactory<>("child_id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("childsName"));
         parentId.setCellValueFactory(new PropertyValueFactory<>("parent_id"));
@@ -264,8 +265,23 @@ public class manageController {
     @FXML
     private void goHome(ActionEvent event){
         try {
-            Parent manageRoot = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
-            Scene manageScene = new Scene(manageRoot);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
+            Parent root = loader.load();
+            homeController homeController = loader.getController();
+            homeController.setUser(manageLoggedInUser);
+            Scene manageScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void logOutBtn(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
+            Parent root = loader.load();
+            Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {

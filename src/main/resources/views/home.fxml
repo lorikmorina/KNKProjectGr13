@@ -2,7 +2,6 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -24,11 +23,6 @@
          </font>
       </Text>
       <AnchorPane layoutX="200.0" layoutY="181.0" prefHeight="132.0" prefWidth="172.0" visible="false" />
-      <Hyperlink layoutX="55.0" layoutY="720.0" text="Log Out" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Hyperlink>
       <Label fx:id="nameLabel" layoutX="50.0" layoutY="92.0" text="" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
@@ -69,5 +63,10 @@
                </font>
             </Text>
          </children></Pane>
+      <Button fx:id="logoutBtn" layoutX="57.0" layoutY="706.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: transparent;" text="Logout" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

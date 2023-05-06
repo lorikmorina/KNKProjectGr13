@@ -21,7 +21,7 @@ public class homeController {
     private User loggedInUser;
 
     @FXML
-    private Button loginBtn;
+    private Button loginBtn, logoutBtn;
     @FXML
     private Label nameLabel;
     @FXML
@@ -48,6 +48,18 @@ public class homeController {
                 manageController manageC = loader.getController();
                 manageC.initialize(loggedInUser);
             }
+            Scene manageScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void logOutBtn(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
+            Parent root = loader.load();
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
