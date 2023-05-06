@@ -38,7 +38,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <FontAwesomeIconView layoutX="248.0" layoutY="337.0" size="150" wrappingWidth="162.0" />
+      <FontAwesomeIconView glyphName="USER" layoutX="248.0" layoutY="337.0" size="150" textAlignment="CENTER" wrappingWidth="162.0" />
       <Text layoutX="500.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Full Name:" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />

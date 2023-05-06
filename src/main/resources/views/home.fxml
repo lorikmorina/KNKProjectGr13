@@ -38,7 +38,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="55.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="profileBtn" layoutX="55.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: transparent;" text="Profile" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

@@ -21,7 +21,7 @@ public class homeController {
     private User loggedInUser;
 
     @FXML
-    private Button loginBtn, logoutBtn;
+    private Button loginBtn, logoutBtn, profileBtn;
     @FXML
     private Label nameLabel;
     @FXML
