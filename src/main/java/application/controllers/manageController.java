@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.models.Child;
 import application.service.PasswordHasher;
 import application.models.User;
 import application.database.ConnectionUtil;
@@ -20,40 +21,49 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.sql.*;
 
+import static java.sql.Types.NULL;
+
 public class manageController {
     @FXML
-    private TableView<User> userTable;
+    private TableView<Child> userTable;
     @FXML
-    private TableColumn<User, Integer> idColumn;
+    private TableColumn<Child, Integer> idColumn, parentId, age, classroomNr;
     @FXML
-    private TableColumn<User, String> fullNameColumn,emailColumn,personalNrColumn;
+    private TableColumn<Child, String> fullNameColumn,teacher,contactInfo, medicalInfo;
     @FXML
     private VBox vBoxManage;
     @FXML
-    private TextField personalnrManage,idManage, fullnameManage, emailManage,searchField ;
+    private TextField childsNameField,parentIdField, ageField, teacherField,classroomNrField, contactInfoField, medicalInfoField, searchField, idField ;
     @FXML
     private Button deleteID,addButton,gobackButton,addButtonManage,deleteButton ;
-    @FXML
-    private PasswordField passwordManage;
+
     @FXML
     private Label userManage;
     public void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        personalNrColumn.setCellValueFactory(new PropertyValueFactory<>("personalNr"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("child_id"));
+        fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("childsName"));
+        parentId.setCellValueFactory(new PropertyValueFactory<>("parent_id"));
+        age.setCellValueFactory(new PropertyValueFactory<>("child_age"));
+        teacher.setCellValueFactory(new PropertyValueFactory<>("teacher"));
+        classroomNr.setCellValueFactory(new PropertyValueFactory<>("classNr"));
+        contactInfo.setCellValueFactory(new PropertyValueFactory<>("contactInfo"));
+        medicalInfo.setCellValueFactory(new PropertyValueFactory<>("medicalInfo"));
         userTable.setItems(getUsers());
 
         deleteButton.setOnAction(event -> {
             showManageView();
-            personalnrManage.setVisible(false);
-            fullnameManage.setVisible(false);
-            emailManage.setVisible(false);
+            childsNameField.setVisible(false);
+            parentIdField.setVisible(false);
+            ageField.setVisible(false);
+            teacherField.setVisible(false);
+            classroomNrField.setVisible(false);
+            contactInfoField.setVisible(false);
+            medicalInfoField.setVisible(false);
             deleteButton.setVisible(false);
             userManage.setVisible(false);
             deleteID.setVisible(true);
             deleteID.setOnAction(event3 ->{
-                String id = idManage.getText();
+                String id = idField.getText();
                 deleteUser(id);
             });
             gobackButton.setOnAction(event1 ->{
@@ -62,19 +72,28 @@ public class manageController {
             });
         });
         addButton.setOnAction(event ->{
+            //childsNameField,parentIdField, ageField, teacherField,classroomNrField, contactInfoField, medicalInfoField
             showManageView();
+            idField.setVisible(false);
             addButtonManage.setVisible(true);
-            idManage.setVisible(false);
-            passwordManage.setVisible(true);
-            personalnrManage.setVisible(true);
-            fullnameManage.setVisible(true);
-            emailManage.setVisible(true);
+            childsNameField.setVisible(true);
+            parentIdField.setVisible(true);
+            ageField.setVisible(true);
+            teacherField.setVisible(true);
+            classroomNrField.setVisible(true);
+            contactInfoField.setVisible(true);
+            medicalInfoField.setVisible(true);
+
             addButtonManage.setOnAction(event1->{
-                String fullname = fullnameManage.getText();
-                String email = emailManage.getText();
-                String personalNr = personalnrManage.getText();
-                String password = passwordManage.getText();
-                addUser(fullname, email, personalNr, password);
+                String childsName = childsNameField.getText();
+                int parentId = Integer.parseInt(parentIdField.getText()) ;
+                int age = Integer.parseInt(ageField.getText());
+                String teacher = teacherField.getText();
+                int classroomNr = Integer.parseInt(classroomNrField.getText());
+                String contactInfo = contactInfoField.getText();
+                String medicalInfo = medicalInfoField.getText();
+
+                addUser(childsName, parentId, age, teacher, classroomNr, contactInfo, medicalInfo);
             });
             gobackButton.setOnAction(event1 ->{
                 hideManageView();
@@ -83,33 +102,37 @@ public class manageController {
         });
         dynamicSearch();
     }
-    private ObservableList<User> getUsers() {
-        ObservableList<User> users = FXCollections.observableArrayList();
+    private ObservableList<Child> getUsers() {
+        ObservableList<Child> children = FXCollections.observableArrayList();
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM `parents`");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM `children`");
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String fullName = resultSet.getString("fullname");
-                String email = resultSet.getString("email");
-                String personalNr = resultSet.getString("personalNr");
-                User user = new User(id, fullName, email, personalNr);
-                users.add(user);
+                int id = resultSet.getInt("child_id");
+                String fullName = resultSet.getString("childsName");
+                int parentId = resultSet.getInt("parent_id");
+                int age = resultSet.getInt("age");
+                String teacher = resultSet.getString("teacher");
+                int classroomNr = resultSet.getInt("classroomNr");
+                String contactInfo = resultSet.getString("contactInfo");
+                String medicalInfo = resultSet.getString("medicalInfo");
+                Child child = new Child(id, fullName, parentId, age,teacher,classroomNr, contactInfo, medicalInfo);
+                children.add(child);
             }
             statement.close();
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return users;
+        return children;
     }
     private void deleteUser(String id){
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM parents WHERE id = ?");
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM children WHERE child_id = ?");
             stmt.setString(1, id);
 
             int rowsDeleted = stmt.executeUpdate();
@@ -117,8 +140,8 @@ public class manageController {
                 userManage.setText("User deleted successfully");
                 timeLabel(userManage);
                 clearManage();
-                ObservableList<User> userList = getUsers(); // get updated list of users from database
-                userTable.setItems(FXCollections.observableArrayList(userList));
+                ObservableList<Child> childList = getUsers(); // get updated list of children from database
+                userTable.setItems(FXCollections.observableArrayList(childList));
             } else {
                 userManage.setText("No user found with ID: " + id);
                 timeLabel(userManage);
@@ -130,25 +153,25 @@ public class manageController {
             e.printStackTrace();
         }
     }
-    private void addUser(String fullName, String email, String personalNr, String password) {
-        if (fullName.isEmpty() || email.isEmpty() || personalNr.isEmpty() || password.isEmpty()) {
+    private void addUser(String childsName, int parent_id, int child_age, String teacher, int classroomNr, String contactInfo, String medicalInfo) {
+        if (childsName.isEmpty() || teacher.isEmpty() || contactInfo.isEmpty()) {
             userManage.setText("Please fill in all fields");
             timeLabel(userManage);
             return;
         }
         Connection connection = null;
         try {
-            String salt = PasswordHasher.generateSalt();
-            String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
             connection = ConnectionUtil.getConnection();
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO parents (fullname, email, personalNr, salted_hash, salt) VALUES (?, ?, ?, ?, ?)"
+                    "INSERT INTO children (childsName, parent_id, age, teacher, classroomNr, contactInfo, medicalInfo) VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
-            stmt.setString(1, fullName);
-            stmt.setString(2, email);
-            stmt.setString(3, personalNr);
-            stmt.setString(4, saltedHash);
-            stmt.setString(5, salt);
+            stmt.setString(1, childsName);
+            stmt.setInt(2, parent_id);
+            stmt.setInt(3, child_age);
+            stmt.setString(4, teacher);
+            stmt.setInt(5, classroomNr);
+            stmt.setString(6, contactInfo);
+            stmt.setString(7, medicalInfo);
 
             int rowsInserted = stmt.executeUpdate();
 
@@ -157,8 +180,8 @@ public class manageController {
                 timeLabel(userManage);
                 clearManage();
                 hideManageView();
-                ObservableList<User> userList = getUsers(); // get updated list of users from database
-                userTable.setItems(FXCollections.observableArrayList(userList));
+                ObservableList<Child> childList = getUsers(); // get updated list of users from database
+                userTable.setItems(FXCollections.observableArrayList(childList));
             } else {
                 userManage.setText("Failed to add user");
                 timeLabel(userManage);
@@ -176,7 +199,7 @@ public class manageController {
         gobackButton.setVisible(true);
         deleteButton.setVisible(false);
         addButton.setVisible(false);
-        idManage.setVisible(true);
+        idField.setVisible(true);
     }
     private void hideManageView() {
         vBoxManage.setVisible(false);
@@ -186,21 +209,23 @@ public class manageController {
         gobackButton.setVisible(false);
         userManage.setVisible(false);
         deleteID.setVisible(false);
-        passwordManage.setVisible(false);
     }
     private void clearManage(){
-        fullnameManage.clear();
-        emailManage.clear();
-        personalnrManage.clear();
-        passwordManage.clear();
-        idManage.clear();
+        childsNameField.clear();
+        parentIdField.clear();
+        ageField.clear();
+        teacherField.clear();
+        classroomNrField.clear();
+        contactInfoField.clear();
+        medicalInfoField.clear();
+        idField.clear();
     }
     private void dynamicSearch(){
-        ObservableList<User> users = getUsers();
-        userTable.setItems(users);
+        ObservableList<Child> childrens = getUsers();
+        userTable.setItems(childrens);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            ObservableList<User> filteredUsers = users.filtered(user ->
-                    user.getFullName().toLowerCase().contains(newValue.toLowerCase()));
+            ObservableList<Child> filteredUsers = childrens.filtered(child ->
+                    child.getChildsName().toLowerCase().contains(newValue.toLowerCase()));
             userTable.setItems(filteredUsers);
         });
     }

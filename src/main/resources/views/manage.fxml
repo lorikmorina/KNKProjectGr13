@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -57,16 +56,25 @@
                   <TableView fx:id="userTable" layoutX="15.0" layoutY="21.0" prefHeight="279.0" prefWidth="982.0">
                     <columns>
                       <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="fullNameColumn" prefWidth="202.0" text="FullName" />
-                        <TableColumn fx:id="emailColumn" prefWidth="258.33331298828125" text="Email" />
-                        <TableColumn fx:id="personalNrColumn" minWidth="9.3333740234375" prefWidth="326.0" text="Personal Number" />
+                      <TableColumn fx:id="fullNameColumn" prefWidth="202.0" text="Full Name" />
+                        <TableColumn fx:id="parentId" prefWidth="74.5" text="Parent ID" />
+                        <TableColumn fx:id="age" minWidth="9.3333740234375" prefWidth="74.0" text="Age" />
+                        <TableColumn fx:id="teacher" minWidth="9.3333740234375" prefWidth="222.0" text="Teacher" />
+                        <TableColumn fx:id="classroomNr" minWidth="9.3333740234375" prefWidth="105.0" text="Classroom Nr." />
+                        <TableColumn fx:id="contactInfo" minWidth="9.3333740234375" prefWidth="88.0" text="Contact Info" />
+                        <TableColumn fx:id="medicalInfo" minWidth="9.3333740234375" prefWidth="178.0" text="Medical Info" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
             <VBox fx:id="vBoxManage" layoutX="196.0" layoutY="309.0" prefHeight="209.0" prefWidth="367.0" visible="false">
                <children>
-                  <TextField fx:id="idManage" promptText="ID">
+                  <TextField fx:id="idField" promptText="ID" visible="false">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="childsNameField" promptText="Child Name">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -74,7 +82,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="personalnrManage" prefHeight="38.0" prefWidth="192.0" promptText="Personal Number">
+                  <TextField fx:id="parentIdField" promptText="Parent ID">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -82,7 +90,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="fullnameManage" prefHeight="38.0" prefWidth="192.0" promptText="FullName">
+                  <TextField fx:id="ageField" promptText="Age">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -90,7 +98,31 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="emailManage" prefHeight="38.0" prefWidth="192.0" promptText="Email">
+                  <TextField fx:id="teacherField" promptText="Teacher">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="classroomNrField" promptText="Classroom Nr">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="contactInfoField" promptText="Contact Info">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="medicalInfoField" promptText="Medical Info">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -125,7 +157,6 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <PasswordField fx:id="passwordManage" layoutX="196.0" layoutY="317.0" prefHeight="38.0" prefWidth="367.0" promptText="Password" visible="false" />
             <Label fx:id="userManage" layoutX="576.0" layoutY="414.0" prefHeight="30.0" prefWidth="301.0" style="-fx-background-color: transparent;" textFill="RED">
                <font>
                   <Font size="20.0" />
