@@ -18,9 +18,9 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <Text boundsType="VISUAL" fill="WHITE" layoutX="16.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Çerdhe Xixëllonjat">
+      <Text boundsType="VISUAL" fill="WHITE" layoutX="33.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Çerdhe Xixëllonjat">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </Text>
       <Button layoutX="17.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Class Schedule" textFill="WHITE">
@@ -75,6 +75,22 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="10.0" layoutY="38.0" size="22" />
+      <Button fx:id="editButton" layoutX="65.0" layoutY="368.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Edit" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="47.0" layoutY="723.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="514.0" layoutY="380.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #63a7e8;" text="Change Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 
 </Pane>
