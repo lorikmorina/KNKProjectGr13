@@ -1,6 +1,8 @@
 package application.controllers;
 
+import application.database.ConnectionUtil;
 import application.models.User;
+import application.service.PasswordHasher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +14,13 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class profileController {
 
@@ -29,12 +37,16 @@ public class profileController {
     private PieChart pieChart;
 
     @FXML
-    private Label userName;
+    private Label userName,showLabel;
 
     private User loggedInUser;
 
     @FXML
     private Button editButton;
+    @FXML
+    private Button showValues,changePassword,cancel;
+    @FXML
+    private TextField OldPassword, NewPassword;
 
 
     public void initialize() {
@@ -47,6 +59,33 @@ public class profileController {
 
         pieChart.setLegendVisible(true);
         pieChart.setTitle("Attendance");
+
+        showValues.setOnAction(event ->{
+            showValues.setVisible(false);
+            changePassword.setVisible(true);
+            OldPassword.setVisible(true);
+            NewPassword.setVisible(true);
+            cancel.setVisible(true);
+            cancel.setOnAction(event2 ->{
+                showValues.setVisible(true);
+                changePassword.setVisible(false);
+                OldPassword.setVisible(false);
+                NewPassword.setVisible(false);
+                cancel.setVisible(false);
+            });
+            changePassword.setOnAction(event1 ->{
+                String oldpass = OldPassword.getText();
+                String newpass = NewPassword.getText();
+                showLabel.setVisible(true);
+                if(oldpass == null || newpass==null){
+                    return;
+                }else if (oldpass == newpass){
+                    return;
+                }
+                int id = loggedInUser.getId();
+                setChangePassword(id, oldpass,newpass);
+            });
+        });
     }
 
     public void setUser(User user) {
@@ -81,4 +120,38 @@ public class profileController {
             e.printStackTrace();
         }
     }
+    private void setChangePassword(int id, String oldPass, String newPass) {
+        Connection conn = null;
+        try {
+            conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT salt, salted_hash FROM parents WHERE id = ?");
+            PreparedStatement updateStmt = conn.prepareStatement("UPDATE parents SET salt = ?, salted_hash = ? WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (!rs.next()) {
+                showLabel.setText("User not found");
+                return;
+            }
+            String saltedHash = rs.getString("salted_hash");
+            String salt = rs.getString("salt");
+            if (!PasswordHasher.compareSaltedHash(oldPass, salt, saltedHash)) {
+                showLabel.setText("Old password is incorrect");
+                return;
+            }
+            String newSalt = PasswordHasher.generateSalt();
+            String newSaltedHash = PasswordHasher.generateSaltedHash(newPass, newSalt);
+            updateStmt.setString(1, newSalt);
+            updateStmt.setString(2, newSaltedHash);
+            updateStmt.setInt(3, id);
+            int rowsUpdated = updateStmt.executeUpdate();
+            if (rowsUpdated != 1) {
+                showLabel.setText("Error updating password");
+                return;
+            }
+            showLabel.setText("Password changed successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
