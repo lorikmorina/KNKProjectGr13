@@ -164,6 +164,11 @@ public class profileController {
                 return;
             }
             showLabel.setText("Password changed successfully");
+            showValues.setVisible(true);
+            changePassword.setVisible(false);
+            OldPassword.setVisible(false);
+            NewPassword.setVisible(false);
+            cancel.setVisible(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
