@@ -68,5 +68,10 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Button fx:id="teacherManageBtn" layoutX="14.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleTeacherManageButton" style="-fx-background-color: transparent;" text="Teacher Manage" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

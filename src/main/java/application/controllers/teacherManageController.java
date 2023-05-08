@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.database.ConnectionUtil;
 import application.models.Teacher;
+import application.service.PasswordHasher;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -78,6 +79,9 @@ public class teacherManageController {
     private TextField teachersNameField;
 
     @FXML
+    private TextField passText;
+
+    @FXML
     private Label userManage;
 
     @FXML
@@ -104,11 +108,9 @@ public class teacherManageController {
         this.manageLoggedInUser = manageLoggedInUser;
         nameLabel.setText(manageLoggedInUser.getFullName());
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+        fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         emailId.setCellValueFactory(new PropertyValueFactory<>("email"));
         personalNrColumn.setCellValueFactory(new PropertyValueFactory<>("personalNr"));
-
-
         userTable.setItems(getUsers());
 
         deleteButton.setOnAction(event -> {
@@ -119,6 +121,7 @@ public class teacherManageController {
             deleteButton.setVisible(false);
             userManage.setVisible(false);
             deleteID.setVisible(true);
+            passText.setVisible(false);
             deleteID.setOnAction(event3 ->{
                 String id = idField.getText();
                 deleteUser(id);
@@ -137,13 +140,15 @@ public class teacherManageController {
             teachersNameField.setVisible(true);
             emailField.setVisible(true);
             personalNumber.setVisible(true);
+            passText.setVisible(true);
 
             addButtonManage.setOnAction(event1->{
                 String teachersName = teachersNameField.getText();
                 String email = emailField.getText();
                 String personalNr = personalNumber.getText();
+                String setPassword = passText.getText();
 
-                addUser(teachersName, email, personalNr);
+                addUser(teachersName, email, personalNr,setPassword);
             });
             gobackButton.setOnAction(event1 ->{
                 hideManageView();
@@ -159,8 +164,7 @@ public class teacherManageController {
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM `teachers` WHERE id = ?");
-            stmt.setInt(1, manageLoggedInUser.getId());
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM `teachers`");
 
 
             ResultSet resultSet = stmt.executeQuery();
@@ -170,6 +174,7 @@ public class teacherManageController {
                 String fullName = resultSet.getString("fullname");
                 String email = resultSet.getString("email");
                 String personalNr = resultSet.getString("personalNr");
+
 
                 Teacher teacher = new Teacher(id, fullName, email, personalNr);
                 teachers.add(teacher);
@@ -206,8 +211,8 @@ public class teacherManageController {
             e.printStackTrace();
         }
     }
-    private void addUser(String fullname, String email, String personalNr) {
-        if (fullname.isEmpty() || email.isEmpty() || personalNr.isEmpty()) {
+    private void addUser(String fullname, String email, String personalNr, String setPassword) {
+        if (fullname.isEmpty() || email.isEmpty() || personalNr.isEmpty() || setPassword.isEmpty()) {
             userManage.setText("Please fill in all fields");
             timeLabel(userManage);
             return;
@@ -216,12 +221,15 @@ public class teacherManageController {
         try {
             connection = ConnectionUtil.getConnection();
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO teachers (fullname, email, personalNr) VALUES (?, ?, ?)"
+                    "INSERT INTO teachers (fullname, email, personalNr,salted_hash, salt) VALUES (?, ?, ?,?,?)"
             );
+            String salt = PasswordHasher.generateSalt();
+            String saltedHash = PasswordHasher.generateSaltedHash(setPassword, salt);
             stmt.setString(1, fullname);
-            stmt.setInt(2, manageLoggedInUser.getId());
-            stmt.setString(3, email);
-            stmt.setString(4, personalNr);
+            stmt.setString(2, email);
+            stmt.setString(3, personalNr);
+            stmt.setString(4, saltedHash);
+            stmt.setString(5, salt);
 
             int rowsInserted = stmt.executeUpdate();
 
@@ -264,13 +272,14 @@ public class teacherManageController {
         teachersNameField.clear();
         emailField.clear();
         personalNumber.clear();
+        passText.clear();
     }
     private void dynamicSearch(){
         ObservableList<Teacher> teachers = getUsers();
         userTable.setItems(teachers);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            ObservableList<Teacher> filteredUsers = teachers.filtered(child ->
-                    child.getFullName().toLowerCase().contains(newValue.toLowerCase()));
+            ObservableList<Teacher> filteredUsers = teachers.filtered(teacher ->
+                    teacher.getFullName().toLowerCase().contains(newValue.toLowerCase()));
             userTable.setItems(filteredUsers);
         });
     }
@@ -293,7 +302,7 @@ public class teacherManageController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent root = loader.load();
             homeController homeController = loader.getController();
-           // homeController.setSession(teacherManageController.getFullName());
+            //homeController.setSession(teacherManageController.getFullName());
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);

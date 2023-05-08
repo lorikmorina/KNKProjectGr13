@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.models.Admin;
+import application.models.Teacher;
 import application.models.User;
 import application.service.UserSession;
 import javafx.event.ActionEvent;
@@ -33,6 +34,10 @@ public class homeController {
 
     @FXML
     private Button profileButton;
+
+    @FXML
+    private Button teacherManageBtn;
+
 
     @FXML
     void btnLoginClick(ActionEvent event) {
@@ -94,6 +99,25 @@ public class homeController {
             if(loggedInUser != null) {
                 profileController profileC = loader.getController();
                 profileC.setUser(loggedInUser);
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleTeacherManageButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teacherManage.fxml"));
+            Parent root = loader.load();
+            if(loggedInUser != null) {
+                teacherManageController teacherM = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                teacherM.initialize(new Teacher(loggedInUser.getId(),loggedInUser.getFullName(), loggedInUser.getEmail(), loggedInUser.getPersonalNr()));
+
             }
             Scene profileScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
