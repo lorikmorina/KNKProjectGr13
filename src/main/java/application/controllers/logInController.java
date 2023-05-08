@@ -1,7 +1,10 @@
 package application.controllers;
 
+import application.models.Admin;
 import application.models.User;
+import application.service.AdminService;
 import application.service.UserService;
+import application.service.interfaces.AdminServiceInterface;
 import application.service.interfaces.UserServiceInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,12 +23,14 @@ import java.sql.SQLException;
 public class logInController {
 
     private UserServiceInterface userService;
+    private AdminServiceInterface adminService;
 //    ....
 
 
     public logInController() {
         System.out.println("Controller");
         this.userService = new UserService();
+        this.adminService = new AdminService();
     }
     @FXML
     private Label welcomeText;
@@ -40,10 +45,24 @@ public class logInController {
         String email = this.txtEmail.getText();
         String password = this.txtPassword.getText();
         try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
+            Parent root = loader.load();
             User user = this.userService.login(email, password);
             if(user == null){
-                labelLogin.setText("Email or password is incorrect!");
-                return;
+                Admin admin = this.adminService.login(email, password);
+                if (admin == null) {
+                    labelLogin.setText("Email or password is incorrect!");
+                    return;
+                } else  {
+                    homeController homeController = loader.getController();
+                    homeController.setAdmin(admin);
+                }
+
+
+            } else {
+
+                homeController homeController = loader.getController();
+                homeController.setUser(user);
             }
             System.out.println("User is correct!");
 //            Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
@@ -54,10 +73,7 @@ public class logInController {
 //            stage.show();
 
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
-            Parent root = loader.load();
-            homeController homeController = loader.getController();
-            homeController.setUser(user);
+
             System.out.println("test");
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

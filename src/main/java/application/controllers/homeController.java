@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.models.Admin;
 import application.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ public class homeController {
 //        this.loggedInUser = user;
 //    }
     private User loggedInUser;
+    private Admin loggedInAdmin;
 
     @FXML
     private Button loginBtn, logoutBtn, profileBtn;
@@ -37,6 +39,11 @@ public class homeController {
     public void setUser(User user ) {
         this.loggedInUser = user;
         nameLabel.setText(loggedInUser.getFullName());
+    }
+
+    public void setAdmin(Admin admin ) {
+        this.loggedInAdmin = admin;
+        nameLabel.setText(loggedInAdmin.getFullName());
     }
     //    public void initialize() {
 //        nameLabel.setText(loggedInUser.getFullName()+ "m");
