@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.database.ConnectionUtil;
+import application.models.Teacher;
 import application.models.User;
 import application.service.PasswordHasher;
 import javafx.collections.FXCollections;
@@ -37,19 +38,17 @@ public class profileController {
     private PieChart pieChart;
 
     @FXML
-    private Label userName,showLabel;
+    private Label userName, showLabel;
 
     private User loggedInUser;
 
     @FXML
-    private Button editButton;
-    @FXML
-    private Button showValues,changePassword,cancel;
+    private Button showValues, changePassword, cancel;
     @FXML
     private TextField OldPassword, NewPassword;
 
     @FXML
-    private Button logoutBtn;
+    private Button logoutBtn, manageButton, teacherManageBtn;
 
 
     public void initialize() {
@@ -63,30 +62,30 @@ public class profileController {
         pieChart.setLegendVisible(true);
         pieChart.setTitle("Attendance");
 
-        showValues.setOnAction(event ->{
+        showValues.setOnAction(event -> {
             showValues.setVisible(false);
             changePassword.setVisible(true);
             OldPassword.setVisible(true);
             NewPassword.setVisible(true);
             cancel.setVisible(true);
-            cancel.setOnAction(event2 ->{
+            cancel.setOnAction(event2 -> {
                 showValues.setVisible(true);
                 changePassword.setVisible(false);
                 OldPassword.setVisible(false);
                 NewPassword.setVisible(false);
                 cancel.setVisible(false);
             });
-            changePassword.setOnAction(event1 ->{
+            changePassword.setOnAction(event1 -> {
                 String oldpass = OldPassword.getText();
                 String newpass = NewPassword.getText();
                 showLabel.setVisible(true);
-                if(oldpass == null || newpass==null){
+                if (oldpass == null || newpass == null) {
                     return;
-                }else if (oldpass == newpass){
+                } else if (oldpass == newpass) {
                     return;
                 }
                 int id = loggedInUser.getId();
-                setChangePassword(id, oldpass,newpass);
+                setChangePassword(id, oldpass, newpass);
             });
         });
     }
@@ -107,34 +106,74 @@ public class profileController {
         );
 
     }
+
     @FXML
-    private void handleHomeButton(ActionEvent event){
+    private void handleHomeButton(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent root = loader.load();
-            if(loggedInUser != null) {
+            if (loggedInUser != null) {
                 homeController homeC = loader.getController();
                 homeC.setUser(loggedInUser);
             }
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
             Parent root = loader.load();
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleManageButton(ActionEvent event) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/manage.fxml"));
+            Parent root = loader.load();
+            if (loggedInUser != null) {
+                manageController manageC = loader.getController();
+                manageC.initialize(loggedInUser);
+            }
+            Scene manageScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleTeacherManageButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teacherManage.fxml"));
+            Parent root = loader.load();
+            if (loggedInUser != null) {
+                teacherManageController teacherM = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                teacherM.initialize(new Teacher(loggedInUser.getId(), loggedInUser.getFullName(), loggedInUser.getEmail(), loggedInUser.getPersonalNr()));
+
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setChangePassword(int id, String oldPass, String newPass) {
         Connection conn = null;
         try {

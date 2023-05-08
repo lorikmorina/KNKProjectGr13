@@ -50,7 +50,7 @@ public class teacherManageController {
     private TableColumn<Teacher, String> fullNameColumn;
 
     @FXML
-    private Button gobackButton;
+    private Button gobackButton, profileBtn;
 
     @FXML
     private Button homeBtn;
@@ -297,6 +297,34 @@ public class teacherManageController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void handleProfileButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/profile.fxml"));
+            Parent root = loader.load();
+            profileController profileController = loader.getController();
+            //homeController.setSession(teacherManageController.getFullName());
+            Scene manageScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+@FXML
+private void handleManageButton(ActionEvent event) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/manage.fxml"));
+        Parent root = loader.load();
+        manageController manageController = loader.getController();
+        //homeController.setSession(teacherManageController.getFullName());
+        Scene manageScene = new Scene(root);
+        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        primaryStage.setScene(manageScene);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {

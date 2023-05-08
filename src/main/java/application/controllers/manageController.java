@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.models.Child;
+import application.models.Teacher;
 import application.service.PasswordHasher;
 import application.models.User;
 import application.database.ConnectionUtil;
@@ -19,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.sql.*;
 
 import static java.sql.Types.NULL;
@@ -34,26 +36,29 @@ public class manageController {
     @FXML
     private TableColumn<Child, Integer> idColumn, parentId, age, classroomNr;
     @FXML
-    private TableColumn<Child, String> fullNameColumn,teacher,contactInfo, medicalInfo;
+    private TableColumn<Child, String> fullNameColumn, teacher, contactInfo, medicalInfo;
     @FXML
     private VBox vBoxManage;
     @FXML
-    private TextField childsNameField,parentIdField, ageField, teacherField,classroomNrField, contactInfoField, medicalInfoField, searchField, idField ;
+    private TextField childsNameField, parentIdField, ageField, teacherField, classroomNrField, contactInfoField, medicalInfoField, searchField, idField;
     @FXML
-    private Button deleteID,addButton,gobackButton,addButtonManage,deleteButton, logoutBtn ;
+    private Button deleteID, addButton, gobackButton, addButtonManage, deleteButton, logoutBtn, profileBtn, teacherManageBtn;
 
     @FXML
     private Label userManage;
-    public void setUser(User user ) {
+
+    public void setUser(User user) {
         this.manageLoggedInUser = user;
         this.userId = user.getId();
 
     }
-    public void setId(int id ) {
 
-        this.userId =id;
+    public void setId(int id) {
+
+        this.userId = id;
         System.out.println(userId);
     }
+
     public void initialize(User manageLoggedInUser) {
         this.manageLoggedInUser = manageLoggedInUser;
         nameLabel.setText(manageLoggedInUser.getFullName());
@@ -78,17 +83,17 @@ public class manageController {
             deleteButton.setVisible(false);
             userManage.setVisible(false);
             deleteID.setVisible(true);
-            deleteID.setOnAction(event3 ->{
+            deleteID.setOnAction(event3 -> {
                 String id = idField.getText();
                 deleteUser(id);
             });
-            gobackButton.setOnAction(event1 ->{
+            gobackButton.setOnAction(event1 -> {
                 idField.setVisible(false);
                 hideManageView();
                 clearManage();
             });
         });
-        addButton.setOnAction(event ->{
+        addButton.setOnAction(event -> {
             //childsNameField,parentIdField, ageField, teacherField,classroomNrField, contactInfoField, medicalInfoField
             showManageView();
             idField.setVisible(false);
@@ -100,7 +105,7 @@ public class manageController {
             contactInfoField.setVisible(true);
             medicalInfoField.setVisible(true);
 
-            addButtonManage.setOnAction(event1->{
+            addButtonManage.setOnAction(event1 -> {
                 String childsName = childsNameField.getText();
                 int age = Integer.parseInt(ageField.getText());
                 String teacher = teacherField.getText();
@@ -110,7 +115,7 @@ public class manageController {
 
                 addUser(childsName, age, teacher, classroomNr, contactInfo, medicalInfo);
             });
-            gobackButton.setOnAction(event1 ->{
+            gobackButton.setOnAction(event1 -> {
                 hideManageView();
                 clearManage();
             });
@@ -139,7 +144,7 @@ public class manageController {
                 int classroomNr = resultSet.getInt("classroomNr");
                 String contactInfo = resultSet.getString("contactInfo");
                 String medicalInfo = resultSet.getString("medicalInfo");
-                Child child = new Child(id, fullName, parentId, age,teacher,classroomNr, contactInfo, medicalInfo);
+                Child child = new Child(id, fullName, parentId, age, teacher, classroomNr, contactInfo, medicalInfo);
                 children.add(child);
             }
             stmt.close();
@@ -149,7 +154,8 @@ public class manageController {
         }
         return children;
     }
-    private void deleteUser(String id){
+
+    private void deleteUser(String id) {
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
@@ -174,6 +180,7 @@ public class manageController {
             e.printStackTrace();
         }
     }
+
     private void addUser(String childsName, int child_age, String teacher, int classroomNr, String contactInfo, String medicalInfo) {
         if (childsName.isEmpty() || teacher.isEmpty() || contactInfo.isEmpty()) {
             userManage.setText("Please fill in all fields");
@@ -214,6 +221,7 @@ public class manageController {
             e.printStackTrace();
         }
     }
+
     private void showManageView() {
         vBoxManage.setVisible(true);
         userManage.setVisible(false);
@@ -222,6 +230,7 @@ public class manageController {
         addButton.setVisible(false);
         idField.setVisible(true);
     }
+
     private void hideManageView() {
         vBoxManage.setVisible(false);
         addButtonManage.setVisible(false);
@@ -231,7 +240,8 @@ public class manageController {
         userManage.setVisible(false);
         deleteID.setVisible(false);
     }
-    private void clearManage(){
+
+    private void clearManage() {
         childsNameField.clear();
         ageField.clear();
         teacherField.clear();
@@ -240,7 +250,8 @@ public class manageController {
         medicalInfoField.clear();
         idField.clear();
     }
-    private void dynamicSearch(){
+
+    private void dynamicSearch() {
         ObservableList<Child> childrens = getUsers();
         userTable.setItems(childrens);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -249,6 +260,7 @@ public class manageController {
             userTable.setItems(filteredUsers);
         });
     }
+
     private void timeLabel(Label label) {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, event -> {
@@ -262,27 +274,66 @@ public class manageController {
         );
         timeline.play();
     }
+
     @FXML
-    private void goHome(ActionEvent event){
+    private void goHome(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent root = loader.load();
             homeController homeController = loader.getController();
             homeController.setUser(manageLoggedInUser);
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleTeacherManageButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teacherManage.fxml"));
+            Parent root;
+            root = loader.load();
+            if (manageLoggedInUser != null) {
+                teacherManageController teacherM = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                teacherM.initialize(new Teacher(manageLoggedInUser.getId(), manageLoggedInUser.getFullName(), manageLoggedInUser.getEmail(), manageLoggedInUser.getPersonalNr()));
+
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleProfileButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/profile.fxml"));
+            Parent root = loader.load();
+            if (manageLoggedInUser != null) {
+                profileController profileC = loader.getController();
+                profileC.setUser(manageLoggedInUser);
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
             Parent root = loader.load();
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
