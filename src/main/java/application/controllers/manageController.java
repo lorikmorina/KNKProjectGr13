@@ -46,6 +46,12 @@ public class manageController {
 
     @FXML
     private Label userManage;
+    @FXML
+    private Button scheduleBtn;
+    @FXML
+    private Button manageButton;
+    @FXML
+    private Button classScheduleBtn;
 
 
 
@@ -54,6 +60,32 @@ public class manageController {
     public void initialize(UserSession session) {
         this.session = session;
         nameLabel.setText(session.getFullName());
+
+        if(session.getAccessLevel() == 3){
+            teacherManageBtn.setVisible(false);
+            teacherManageBtn.setManaged(false);
+            scheduleBtn.setVisible(false);
+            scheduleBtn.setManaged(false);
+            classScheduleBtn.setVisible(false);
+            classScheduleBtn.setManaged(false);
+        } else if (session.getAccessLevel() == 2) {
+            manageButton.setVisible(false);
+            manageButton.setManaged(false);
+            teacherManageBtn.setVisible(false);
+            teacherManageBtn.setManaged(false);
+            classScheduleBtn.setVisible(false);
+            classScheduleBtn.setManaged(false);
+        } else if(session.getAccessLevel() == 1) {
+            manageButton.setVisible(false);
+            manageButton.setManaged(false);
+            scheduleBtn.setVisible(false);
+            scheduleBtn.setManaged(false);
+            classScheduleBtn.setVisible(false);
+            classScheduleBtn.setManaged(false);
+        } else {
+            System.out.println("There is a problem in session passing");
+        }
+
         idColumn.setCellValueFactory(new PropertyValueFactory<>("child_id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("childsName"));
         parentId.setCellValueFactory(new PropertyValueFactory<>("parent_id"));

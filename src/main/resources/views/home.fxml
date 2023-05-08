@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -28,21 +29,40 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="55.0" layoutY="225.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="manageButton" layoutX="44.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleManageButton" style="-fx-background-color: transparent;" text="Manage" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="profileBtn" layoutX="53.0" layoutY="278.0" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: transparent;" text="Profile" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
+      <VBox layoutY="220.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="manageButton" mnemonicParsing="false" onAction="#handleManageButton" style="-fx-background-color: transparent;" text="Manage" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="profileBtn" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: transparent;" text="Profile" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="teacherManageBtn" mnemonicParsing="false" onAction="#handleTeacherManageButton" style="-fx-background-color: transparent;" text="Teacher Manage" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="scheduleBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="classScheduleBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Class Schedule" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
       <TableView fx:id="userTable" layoutX="256.0" layoutY="278.0" prefHeight="467.0" prefWidth="876.0">
         <columns>
           <TableColumn prefWidth="101.0" text="ID" />
@@ -64,21 +84,6 @@
             </Text>
          </children></Pane>
       <Button fx:id="logoutBtn" layoutX="57.0" layoutY="706.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: transparent;" text="Logout" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="teacherManageBtn" layoutX="8.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleTeacherManageButton" style="-fx-background-color: transparent;" text="Teacher Manage" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="39.0" layoutY="431.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="17.0" layoutY="483.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Class Schedule" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

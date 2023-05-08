@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -24,21 +25,6 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="17.0" layoutY="478.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Class Schedule" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="homeBttn" blendMode="ADD" layoutX="57.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleHomeButton" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="54.0" layoutY="250.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Profile" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
       <FontAwesomeIconView glyphName="USER" layoutX="248.0" layoutY="337.0" size="150" textAlignment="CENTER" wrappingWidth="162.0" />
       <Text layoutX="500.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Full Name:" textAlignment="RIGHT">
          <font>
@@ -112,21 +98,40 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="42.0" layoutY="424.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="manageButton" layoutX="48.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleManageButton" style="-fx-background-color: transparent;" text="Manage" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="teacherManageBtn" layoutX="16.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleTeacherManageButton" style="-fx-background-color: transparent;" text="Teacher Manage" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
+      <VBox layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleHomeButton" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="manageButton" mnemonicParsing="false" onAction="#handleManageButton" style="-fx-background-color: transparent;" text="Manage" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="profileBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Profile" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="teacherManageBtn" mnemonicParsing="false" onAction="#handleTeacherManageButton" style="-fx-background-color: transparent;" text="Teacher Manage" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="scheduleBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="classScheduleBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Class Schedule" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 
 </Pane>

@@ -1,11 +1,14 @@
 package application.controllers;
 
 import application.models.Admin;
+import application.models.Teacher;
 import application.models.User;
 import application.service.AdminService;
+import application.service.TeacherService;
 import application.service.UserService;
 import application.service.UserSession;
 import application.service.interfaces.AdminServiceInterface;
+import application.service.interfaces.TeacherServiceInterface;
 import application.service.interfaces.UserServiceInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +28,7 @@ public class logInController {
 
     private UserServiceInterface userService;
     private AdminServiceInterface adminService;
+    private TeacherServiceInterface teacherService;
 //    ....
 
 
@@ -32,6 +36,7 @@ public class logInController {
         System.out.println("Controller");
         this.userService = new UserService();
         this.adminService = new AdminService();
+        this.teacherService = new TeacherService();
     }
     @FXML
     private Label welcomeText;
@@ -50,13 +55,21 @@ public class logInController {
             Parent root = loader.load();
             User user = this.userService.login(email, password);
             if(user == null){
-                Admin admin = this.adminService.login(email, password);
-                if (admin == null) {
-                    labelLogin.setText("Email or password is incorrect!");
-                    return;
+                Teacher teacher = this.teacherService.login(email, password);
+                if (teacher == null) {
+                    Admin admin = this.adminService.login(email, password);
+                    if (admin == null) {
+                        labelLogin.setText("Email or password is incorrect!");
+                        return;
+                    } else  {
+                        homeController homeController = loader.getController();
+                        UserSession session = new UserSession(admin.getId(), admin.getFullName(), admin.getEmail(), admin.getPersonalNr(), 1);
+                        homeController.initialize(session);
+                    }
+
                 } else  {
                     homeController homeController = loader.getController();
-                    UserSession session = new UserSession(admin.getId(), admin.getFullName(), admin.getEmail(), admin.getPersonalNr(), 1);
+                    UserSession session = new UserSession(teacher.getId(), teacher.getFullName(), teacher.getEmail(), teacher.getPersonalNr(), 2);
                     homeController.initialize(session);
                 }
 
@@ -64,7 +77,7 @@ public class logInController {
             } else {
 
                 homeController homeController = loader.getController();
-                UserSession session = new UserSession(user.getId(), user.getFullName(), user.getEmail(), user.getPersonalNr(), 1);
+                UserSession session = new UserSession(user.getId(), user.getFullName(), user.getEmail(), user.getPersonalNr(), 3);
                 homeController.initialize(session);
             }
             System.out.println("User is correct!");
