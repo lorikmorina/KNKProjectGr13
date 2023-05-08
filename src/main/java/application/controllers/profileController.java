@@ -48,6 +48,9 @@ public class profileController {
     @FXML
     private TextField OldPassword, NewPassword;
 
+    @FXML
+    private Button logoutBtn;
+
 
     public void initialize() {
         // add some data to the pie chart
@@ -113,6 +116,18 @@ public class profileController {
                 homeController homeC = loader.getController();
                 homeC.setUser(loggedInUser);
             }
+            Scene manageScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void logOutBtn(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
+            Parent root = loader.load();
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);

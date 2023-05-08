@@ -82,7 +82,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="47.0" layoutY="723.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
+      <Button fx:id="logOutBtn" layoutX="47.0" layoutY="723.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
