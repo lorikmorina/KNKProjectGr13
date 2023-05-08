@@ -56,16 +56,16 @@ public class logInController {
                     return;
                 } else  {
                     homeController homeController = loader.getController();
-                    homeController.setAdmin(admin);
-                    UserSession session = new UserSession(admin.getFullName(), admin.getId(), 1);
-                    homeController.setSession(session);
+                    UserSession session = new UserSession(admin.getId(), admin.getFullName(), admin.getEmail(), admin.getPersonalNr(), 1);
+                    homeController.initialize(session);
                 }
 
 
             } else {
 
                 homeController homeController = loader.getController();
-                homeController.setUser(user);
+                UserSession session = new UserSession(user.getId(), user.getFullName(), user.getEmail(), user.getPersonalNr(), 1);
+                homeController.initialize(session);
             }
             System.out.println("User is correct!");
 //            Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));

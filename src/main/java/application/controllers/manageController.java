@@ -5,6 +5,7 @@ import application.models.Teacher;
 import application.service.PasswordHasher;
 import application.models.User;
 import application.database.ConnectionUtil;
+import application.service.UserSession;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -26,8 +27,7 @@ import java.sql.*;
 import static java.sql.Types.NULL;
 
 public class manageController {
-    private User manageLoggedInUser;
-    private int userId;
+    private UserSession session;
 
     @FXML
     private Label nameLabel;
@@ -47,21 +47,13 @@ public class manageController {
     @FXML
     private Label userManage;
 
-    public void setUser(User user) {
-        this.manageLoggedInUser = user;
-        this.userId = user.getId();
 
-    }
 
-    public void setId(int id) {
 
-        this.userId = id;
-        System.out.println(userId);
-    }
 
-    public void initialize(User manageLoggedInUser) {
-        this.manageLoggedInUser = manageLoggedInUser;
-        nameLabel.setText(manageLoggedInUser.getFullName());
+    public void initialize(UserSession session) {
+        this.session = session;
+        nameLabel.setText(session.getFullName());
         idColumn.setCellValueFactory(new PropertyValueFactory<>("child_id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("childsName"));
         parentId.setCellValueFactory(new PropertyValueFactory<>("parent_id"));
@@ -130,7 +122,7 @@ public class manageController {
         try {
             connection = ConnectionUtil.getConnection();
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM `children` WHERE parent_id = ?");
-            stmt.setInt(1, manageLoggedInUser.getId());
+            stmt.setInt(1, session.getId());
 
 
             ResultSet resultSet = stmt.executeQuery();
@@ -194,7 +186,7 @@ public class manageController {
                     "INSERT INTO children (childsName, parent_id, age, teacher, classroomNr, contactInfo, medicalInfo) VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
             stmt.setString(1, childsName);
-            stmt.setInt(2, manageLoggedInUser.getId());
+            stmt.setInt(2, session.getId());
             stmt.setInt(3, child_age);
             stmt.setString(4, teacher);
             stmt.setInt(5, classroomNr);
@@ -281,7 +273,7 @@ public class manageController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent root = loader.load();
             homeController homeController = loader.getController();
-            homeController.setUser(manageLoggedInUser);
+            homeController.initialize(session);
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
@@ -296,10 +288,10 @@ public class manageController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teacherManage.fxml"));
             Parent root;
             root = loader.load();
-            if (manageLoggedInUser != null) {
+            if (session != null) {
                 teacherManageController teacherM = loader.getController();
                 // teacherManageController.setUser(loggedInUser);
-                teacherM.initialize(new Teacher(manageLoggedInUser.getId(), manageLoggedInUser.getFullName(), manageLoggedInUser.getEmail(), manageLoggedInUser.getPersonalNr()));
+                teacherM.initialize(session);
 
             }
             Scene profileScene = new Scene(root);
@@ -315,9 +307,9 @@ public class manageController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/profile.fxml"));
             Parent root = loader.load();
-            if (manageLoggedInUser != null) {
+            if (session != null) {
                 profileController profileC = loader.getController();
-                profileC.setUser(manageLoggedInUser);
+                profileC.initialize(session);
             }
             Scene profileScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

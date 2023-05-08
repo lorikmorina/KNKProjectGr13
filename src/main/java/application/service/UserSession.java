@@ -1,42 +1,52 @@
 package application.service;
 public class UserSession {
-
-
-    private String userName;
-    private int userId;
+    private int id;
+    private String fullName;
+    private String email;
+    private String personalNr;
     private int accessLevel;
 
-    public UserSession(String userName, int userId, int accessLvl) {
-        this.userName = userName;
-        this.userId = userId;
+    public UserSession(int id, String fullName, String email, String personalNr, int accessLvl) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.personalNr = personalNr;
         this.accessLevel = accessLvl;
     }
 
 
-
-
-    public String getUserName() {
-        return userName;
+    public int getId() {
+        return id;
     }
-    public int getUserId() {
-        return userId;
+
+    public String getFullName() {
+        return fullName;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPersonalNr() {
+        return personalNr;
+    }
+
     public int getAccessLevel() {
         return accessLevel;
     }
 
-
-
     public void cleanUserSession() {
-        userName = "";// or null
-        userId = 0;
+        id = 0;// or null
+        fullName = "";
+        email = "";
+        personalNr = "";
         accessLevel = 0;
     }
 
     @Override
     public String toString() {
         return "UserSession{" +
-                "userName='" + userName + '\'' +
+                "userName='" + fullName + '\'' +
                 "employeeId = '" + accessLevel + '\'' +
                 '}';
     }

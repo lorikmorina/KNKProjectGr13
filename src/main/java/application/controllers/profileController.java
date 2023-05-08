@@ -1,9 +1,14 @@
 package application.controllers;
 
 import application.database.ConnectionUtil;
+import application.models.Admin;
 import application.models.Teacher;
 import application.models.User;
+import application.repository.AdminRepository;
+import application.repository.TeacherRepository;
+import application.repository.UserRepository;
 import application.service.PasswordHasher;
+import application.service.UserSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +27,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class profileController {
 
@@ -40,7 +46,7 @@ public class profileController {
     @FXML
     private Label userName, showLabel;
 
-    private User loggedInUser;
+    private UserSession session;
 
     @FXML
     private Button showValues, changePassword, cancel;
@@ -49,9 +55,18 @@ public class profileController {
 
     @FXML
     private Button logoutBtn, manageButton, teacherManageBtn;
+     private Admin admin;
+     private Teacher teacher;
+
+    public void initialize(UserSession session) throws SQLException {
+             this.session = session;
+            myName.setText(session.getFullName());
+            myPersonalNr.setText(session.getPersonalNr());
+            userName.setText(session.getFullName());
+
+        // set all the labels using the User object
 
 
-    public void initialize() {
         // add some data to the pie chart
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Absent", 20),
@@ -84,37 +99,22 @@ public class profileController {
                 } else if (oldpass == newpass) {
                     return;
                 }
-                int id = loggedInUser.getId();
+                int id = session.getId();
                 setChangePassword(id, oldpass, newpass);
             });
         });
     }
 
-    public void setUser(User user) {
-        this.loggedInUser = user;
 
-        // set all the labels using the User object
-        myName.setText(loggedInUser.getFullName());
-        myPersonalNr.setText(loggedInUser.getPersonalNr());
-        userName.setText(loggedInUser.getFullName());
-
-
-        // add some data to the pie chart
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Absent", 20),
-                new PieChart.Data("Present", 50)
-        );
-
-    }
 
     @FXML
     private void handleHomeButton(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent root = loader.load();
-            if (loggedInUser != null) {
+            if (session != null) {
                 homeController homeC = loader.getController();
-                homeC.setUser(loggedInUser);
+                homeC.initialize(session);
             }
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -143,9 +143,9 @@ public class profileController {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/manage.fxml"));
             Parent root = loader.load();
-            if (loggedInUser != null) {
+            if (session != null) {
                 manageController manageC = loader.getController();
-                manageC.initialize(loggedInUser);
+                manageC.initialize(session);
             }
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -160,10 +160,10 @@ public class profileController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teacherManage.fxml"));
             Parent root = loader.load();
-            if (loggedInUser != null) {
+            if (session != null) {
                 teacherManageController teacherM = loader.getController();
                 // teacherManageController.setUser(loggedInUser);
-                teacherM.initialize(new Teacher(loggedInUser.getId(), loggedInUser.getFullName(), loggedInUser.getEmail(), loggedInUser.getPersonalNr()));
+                teacherM.initialize(session);
 
             }
             Scene profileScene = new Scene(root);

@@ -59,6 +59,26 @@ public class AdminRepository implements AdminRepositoryInterface {
             }
         }
     }
+
+    public static Admin getByID(int ID) throws SQLException {
+        String sql = "SELECT * FROM admins WHERE id=?";
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, ID);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String fullName = resultSet.getString("fullName");
+                String email = resultSet.getString("email");
+                String personalNr = resultSet.getString("personalNr");
+                String saltedHash = resultSet.getString("salted_hash");
+                String salt = resultSet.getString("salt");
+                return new Admin(id,fullName, email,personalNr , saltedHash, salt);
+            } else {
+                return null;
+            }
+        }
+    }
 //    public static List<User> getByFilter(UserFilter filters, Pagination pagination) throws SQLException{
 //        List<User> users = new ArrayList<User>();
 //        String sql = "SELECT * FROM users WHERE 1=1";

@@ -4,6 +4,7 @@ import application.database.ConnectionUtil;
 import application.models.Teacher;
 import application.service.PasswordHasher;
 import application.service.TeacherService;
+import application.service.UserSession;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -90,24 +91,16 @@ public class teacherManageController {
 
     @FXML
     private VBox vBoxManage;
-    private Teacher manageLoggedInUser;
-    private int userId;
+    private UserSession session;
+
 
 
    
-    public void setUser(Teacher user ) {
-        this.manageLoggedInUser = user;
-        this.userId = user.getId();
 
-    }
-    public void setId(int id ) {
 
-        this.userId =id;
-        System.out.println(userId);
-    }
-    public void initialize(Teacher manageLoggedInUser) {
-        this.manageLoggedInUser = manageLoggedInUser;
-        nameLabel.setText(manageLoggedInUser.getFullName());
+    public void initialize(UserSession session) {
+        this.session = session;
+        nameLabel.setText(session.getFullName());
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         emailId.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -289,7 +282,7 @@ public class teacherManageController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent root = loader.load();
             homeController homeController = loader.getController();
-            //homeController.setSession(teacherManageController.getFullName());
+            homeController.initialize(session);
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
@@ -303,7 +296,7 @@ public class teacherManageController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/profile.fxml"));
             Parent root = loader.load();
             profileController profileController = loader.getController();
-            //homeController.setSession(teacherManageController.getFullName());
+            profileController.initialize(session);
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
@@ -317,7 +310,7 @@ private void handleManageButton(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/manage.fxml"));
         Parent root = loader.load();
         manageController manageController = loader.getController();
-        //homeController.setSession(teacherManageController.getFullName());
+        manageController.initialize(session);
         Scene manageScene = new Scene(root);
         Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(manageScene);
