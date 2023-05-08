@@ -3,6 +3,7 @@ package application.controllers;
 import application.database.ConnectionUtil;
 import application.models.Teacher;
 import application.service.PasswordHasher;
+import application.service.TeacherService;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -217,23 +218,11 @@ public class teacherManageController {
             timeLabel(userManage);
             return;
         }
-        Connection connection = null;
         try {
-            connection = ConnectionUtil.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO teachers (fullname, email, personalNr,salted_hash, salt) VALUES (?, ?, ?,?,?)"
-            );
-            String salt = PasswordHasher.generateSalt();
-            String saltedHash = PasswordHasher.generateSaltedHash(setPassword, salt);
-            stmt.setString(1, fullname);
-            stmt.setString(2, email);
-            stmt.setString(3, personalNr);
-            stmt.setString(4, saltedHash);
-            stmt.setString(5, salt);
+            Teacher teacherInserted = TeacherService.signUp(fullname,email,personalNr,setPassword);
 
-            int rowsInserted = stmt.executeUpdate();
 
-            if (rowsInserted > 0) {
+            if (teacherInserted != null) {
                 userManage.setText("User added successfully");
                 timeLabel(userManage);
                 clearManage();
@@ -244,9 +233,7 @@ public class teacherManageController {
                 userManage.setText("Failed to add user");
                 timeLabel(userManage);
             }
-            stmt.close();
-            connection.close();
-            getUsers();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
