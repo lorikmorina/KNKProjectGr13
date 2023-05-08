@@ -4,6 +4,7 @@ import application.models.Admin;
 import application.models.User;
 import application.service.AdminService;
 import application.service.UserService;
+import application.service.UserSession;
 import application.service.interfaces.AdminServiceInterface;
 import application.service.interfaces.UserServiceInterface;
 import javafx.event.ActionEvent;
@@ -56,6 +57,8 @@ public class logInController {
                 } else  {
                     homeController homeController = loader.getController();
                     homeController.setAdmin(admin);
+                    UserSession session = new UserSession(admin.getFullName(), admin.getId(), 1);
+                    homeController.setSession(session);
                 }
 
 

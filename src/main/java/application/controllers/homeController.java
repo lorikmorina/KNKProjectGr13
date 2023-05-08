@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.models.Admin;
 import application.models.User;
+import application.service.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ public class homeController {
 //        this.loggedInUser = user;
 //    }
     private User loggedInUser;
+    private UserSession session;
     private Admin loggedInAdmin;
 
     @FXML
@@ -38,8 +40,14 @@ public class homeController {
     }
     public void setUser(User user ) {
         this.loggedInUser = user;
-        nameLabel.setText(loggedInUser.getFullName());
+       // nameLabel.setText(loggedInUser.getFullName());
     }
+    public void setSession(UserSession session ) {
+        this.session = session;
+        nameLabel.setText(session.getUserName());
+
+    }
+
 
     public void setAdmin(Admin admin ) {
         this.loggedInAdmin = admin;
