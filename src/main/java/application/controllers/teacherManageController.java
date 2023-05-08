@@ -90,6 +90,14 @@ public class teacherManageController {
     private TableView<Teacher> userTable;
 
     @FXML
+    private Button scheduleBtn;
+    @FXML
+    private Button manageButton;
+    @FXML
+    private Button classScheduleBtn;
+    @FXML
+    private Button teacherManageBtn;
+    @FXML
     private VBox vBoxManage;
     private UserSession session;
 
@@ -101,6 +109,32 @@ public class teacherManageController {
     public void initialize(UserSession session) {
         this.session = session;
         nameLabel.setText(session.getFullName());
+
+        if(session.getAccessLevel() == 3){
+            teacherManageBtn.setVisible(false);
+            teacherManageBtn.setManaged(false);
+            scheduleBtn.setVisible(false);
+            scheduleBtn.setManaged(false);
+            classScheduleBtn.setVisible(false);
+            classScheduleBtn.setManaged(false);
+        } else if (session.getAccessLevel() == 2) {
+            manageButton.setVisible(false);
+            manageButton.setManaged(false);
+            teacherManageBtn.setVisible(false);
+            teacherManageBtn.setManaged(false);
+            classScheduleBtn.setVisible(false);
+            classScheduleBtn.setManaged(false);
+        } else if(session.getAccessLevel() == 1) {
+            manageButton.setVisible(false);
+            manageButton.setManaged(false);
+            scheduleBtn.setVisible(false);
+            scheduleBtn.setManaged(false);
+            classScheduleBtn.setVisible(false);
+            classScheduleBtn.setManaged(false);
+        } else {
+            System.out.println("There is a problem in session passing");
+        }
+
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         emailId.setCellValueFactory(new PropertyValueFactory<>("email"));
