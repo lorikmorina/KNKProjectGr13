@@ -48,3 +48,16 @@ create table admins (
 );
 
 select * from admins;
+
+create table schedules (
+                           id INT NOT NULL AUTO_INCREMENT,
+                           day VARCHAR(20) NOT NULL,
+                           startTime varchar(6) NOT NULL,
+                           endTime VARCHAR(6) NOT NULL,
+                           teacher int NOT NULL,
+                           classroomNr int NOT NULL,
+                           PRIMARY KEY (id),
+                           foreign key(teacher) references teachers(id)
+);
+
+select * from schedules;
