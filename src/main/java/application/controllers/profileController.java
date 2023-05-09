@@ -72,6 +72,7 @@ public class profileController {
             myName.setText(session.getFullName());
             myPersonalNr.setText(session.getPersonalNr());
             userName.setText(session.getFullName());
+            nrChildren.setText(Integer.toString(session.getNrChildren(session.getId())));
         if(session.getAccessLevel() == 3){
             teacherManageBtn.setVisible(false);
             teacherManageBtn.setManaged(false);
@@ -135,7 +136,11 @@ public class profileController {
                 setChangePassword(id, oldpass, newpass);
             });
         });
+
     }
+
+
+
 
 
 
@@ -244,5 +249,6 @@ public class profileController {
             e.printStackTrace();
         }
     }
+
 }
 

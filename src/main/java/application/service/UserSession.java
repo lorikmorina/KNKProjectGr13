@@ -1,10 +1,20 @@
 package application.service;
+
+import application.database.ConnectionUtil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class UserSession {
     private int id;
     private String fullName;
     private String email;
     private String personalNr;
     private int accessLevel;
+
+    private int nrChildren;
 
     public UserSession(int id, String fullName, String email, String personalNr, int accessLvl) {
         this.id = id;
@@ -51,4 +61,26 @@ public class UserSession {
                 "employeeId = '" + accessLevel + '\'' +
                 '}';
     }
+
+    public int getNrChildren(int parent_id) throws SQLException {
+        Connection connection = null;
+        int nrChildren = 0;
+        try {
+            connection = ConnectionUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM children WHERE parent_id = ?"
+            );
+            stmt.setInt(1, parent_id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                nrChildren = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            connection.close();
+        }
+        return nrChildren;
+    }
+
 }
