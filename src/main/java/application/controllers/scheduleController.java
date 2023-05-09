@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.database.ConnectionUtil;
+import application.models.Child;
 import application.models.Schedule;
 import application.models.Teacher;
 import application.models.dto.CreateScheduleDto;
@@ -26,10 +27,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class scheduleController {
 
@@ -192,8 +192,32 @@ public class scheduleController {
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM `schedules`");
+            PreparedStatement stmt;
+            if(session.getAccessLevel() == 2) {
+                 stmt = connection.prepareStatement("SELECT * FROM `schedules` WHERE teacher = ?");
+                stmt.setInt(1, session.getId());
 
+            } else if (session.getAccessLevel() == 3) {
+                ArrayList<Child> children = getChildrenFromParent(session.getId());
+                int[] classroomNumbers = children.stream().mapToInt(Child::getClassNr).toArray();
+                StringBuilder sb = new StringBuilder();
+                sb.append("SELECT * FROM `schedules` WHERE classroomNr IN (");
+                for (int i = 0; i < classroomNumbers.length; i++) {
+                    if (i > 0) {
+                        sb.append(",");
+                    }
+                    sb.append("?");
+                }
+                sb.append(")");
+
+                 stmt = connection.prepareStatement(sb.toString());
+                for (int i = 0; i < classroomNumbers.length; i++) {
+                    stmt.setInt(i + 1, classroomNumbers[i]);
+                }
+            } else {
+                stmt = connection.prepareStatement("");
+                stmt.setInt(1, session.getId());
+            }
 
             ResultSet resultSet = stmt.executeQuery();
 
@@ -215,6 +239,34 @@ public class scheduleController {
             e.printStackTrace();
         }
         return schedules;
+    }
+    private ArrayList<Child> getChildrenFromParent(int parent_id) {
+        ArrayList<Child> children = new ArrayList<Child>();
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+            PreparedStatement stmt2 = connection.prepareStatement("SELECT * FROM `children` WHERE parent_id = ?");
+            stmt2.setInt(1, session.getId());
+            ResultSet resultSet = stmt2.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("child_id");
+                String childsName = resultSet.getString("childsName");
+                int age = resultSet.getInt("age");
+                String teacher = resultSet.getString("teacher");
+                int classroomNr = resultSet.getInt("classroomNr");
+                String contactInfo = resultSet.getString("contactInfo");
+                String medicalInfo = resultSet.getString("medicalInfo");
+
+
+                Child child = new Child(id, childsName,parent_id,  age, teacher, classroomNr, contactInfo, medicalInfo);
+                children.add(child);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return children;
     }
     private void deleteSchedule(String id){
         Connection connection = null;
