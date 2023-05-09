@@ -51,7 +51,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="scheduleBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="scheduleBtn" mnemonicParsing="false" onAction="#handleScheduleButton" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
