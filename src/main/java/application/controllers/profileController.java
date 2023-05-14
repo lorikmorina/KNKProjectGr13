@@ -124,25 +124,27 @@ public class profileController {
                 cancel.setVisible(false);
             });
             changePassword.setOnAction(event1 -> {
+                showLabel.setVisible(true);
                 String oldpass = OldPassword.getText();
                 String newpass = NewPassword.getText();
-                showLabel.setVisible(true);
                 if (oldpass == null || newpass == null) {
                     return;
                 } else if (oldpass == newpass) {
                     return;
                 }
+                int access = UserSession.getAccessLevel();
                 int id = session.getId();
-                setChangePassword(id, oldpass, newpass);
+                if(access == 1){
+                    setChangePassword(id, oldpass, newpass,"admins");
+                }else if (access == 2){
+                    setChangePassword(id, oldpass, newpass,"teachers");
+                }else if (access == 3){
+                    setChangePassword(id, oldpass, newpass,"parents");
+                }
             });
         });
 
     }
-
-
-
-
-
 
     @FXML
     private void handleHomeButton(ActionEvent event) {
@@ -211,12 +213,12 @@ public class profileController {
         }
     }
 
-    private void setChangePassword(int id, String oldPass, String newPass) {
+    private void setChangePassword(int id, String oldPass, String newPass, String access) {
         Connection conn = null;
         try {
             conn = ConnectionUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT salt, salted_hash FROM parents WHERE id = ?");
-            PreparedStatement updateStmt = conn.prepareStatement("UPDATE parents SET salt = ?, salted_hash = ? WHERE id = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT salt, salted_hash FROM "+access+" WHERE id = ?");
+            PreparedStatement updateStmt = conn.prepareStatement("UPDATE "+access+" SET salt = ?, salted_hash = ? WHERE id = ?");
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (!rs.next()) {

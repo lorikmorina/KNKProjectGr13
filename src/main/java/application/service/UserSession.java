@@ -12,7 +12,7 @@ public class UserSession {
     private String fullName;
     private String email;
     private String personalNr;
-    private int accessLevel;
+    private static int accessLevel;
 
     private int nrChildren;
 
@@ -41,7 +41,7 @@ public class UserSession {
         return personalNr;
     }
 
-    public int getAccessLevel() {
+    public static int getAccessLevel() {
         return accessLevel;
     }
 
