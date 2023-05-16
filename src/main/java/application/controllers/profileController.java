@@ -67,24 +67,25 @@ public class profileController implements Initializable {
 
     @FXML
     private Button logoutBtn;
-     private Admin admin;
-     private Teacher teacher;
-     @FXML
-     private Button homeManage,profileBtn;
-     @FXML
-     private Text profileLabel,fullName,personalNr,numberOfChildren;;
-     @FXML
-     private RadioButton alButton;
-     @FXML
-     private RadioButton enButton;
+    private Admin admin;
+    private Teacher teacher;
+    @FXML
+    private Button homeManage, profileBtn;
+    @FXML
+    private Text profileLabel, fullName, personalNr, numberOfChildren;
+    ;
+    @FXML
+    private RadioButton alButton;
+    @FXML
+    private RadioButton enButton;
 
 
-    public  void changeLanguage() {
+    public void changeLanguage() {
         ToggleGroup languageToggleGroup = new ToggleGroup();
         alButton.setToggleGroup(languageToggleGroup);
         enButton.setToggleGroup(languageToggleGroup);
         languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
-            if(newToggle == alButton) {
+            if (newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
                 fullName.setText(bundle.getString("fullname.profilelabel"));
@@ -103,8 +104,7 @@ public class profileController implements Initializable {
                 profileLabel.setText(bundle.getString("profile.profilelabel"));
 
 
-
-            }else if(newToggle == enButton)  {
+            } else if (newToggle == enButton) {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
                 fullName.setText(bundle.getString("fullname.profilelabel"));
@@ -121,20 +121,18 @@ public class profileController implements Initializable {
                 logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
                 numberOfChildren.setText(bundle.getString("numofchildren.profilelabel"));
                 profileLabel.setText(bundle.getString("profile.profilelabel"));
-
-
             }
-
         });
         languageToggleGroup.selectToggle(alButton);
     }
+
     public void initialize(UserSession session) throws SQLException {
-             this.session = session;
-            myName.setText(session.getFullName());
-            myPersonalNr.setText(session.getPersonalNr());
-            userName.setText(session.getFullName());
-            nrChildren.setText(Integer.toString(session.getNrChildren(session.getId())));
-        if(session.getAccessLevel() == 3){
+        this.session = session;
+        myName.setText(session.getFullName());
+        myPersonalNr.setText(session.getPersonalNr());
+        userName.setText(session.getFullName());
+        nrChildren.setText(Integer.toString(session.getNrChildren(session.getId())));
+        if (session.getAccessLevel() == 3) {
             teacherManageBtn.setVisible(false);
             teacherManageBtn.setManaged(false);
             scheduleBtn.setVisible(false);
@@ -148,13 +146,22 @@ public class profileController implements Initializable {
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
-        } else if(session.getAccessLevel() == 1) {
+            nrChildren.setVisible(false);
+            nrChildren.setManaged(false);
+            numberOfChildren.setVisible(false);
+            numberOfChildren.setManaged(false);
+        } else if (session.getAccessLevel() == 1) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
             scheduleBtn.setVisible(false);
             scheduleBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
+            nrChildren.setVisible(false);
+            nrChildren.setManaged(false);
+            numberOfChildren.setVisible(false);
+            numberOfChildren.setManaged(false);
+
         } else {
             System.out.println("There is a problem in session passing");
         }
@@ -195,12 +202,12 @@ public class profileController implements Initializable {
                 }
                 int access = UserSession.getAccessLevel();
                 int id = session.getId();
-                if(access == 1){
-                    setChangePassword(id, oldpass, newpass,"admins");
-                }else if (access == 2){
-                    setChangePassword(id, oldpass, newpass,"teachers");
-                }else if (access == 3){
-                    setChangePassword(id, oldpass, newpass,"parents");
+                if (access == 1) {
+                    setChangePassword(id, oldpass, newpass, "admins");
+                } else if (access == 2) {
+                    setChangePassword(id, oldpass, newpass, "teachers");
+                } else if (access == 3) {
+                    setChangePassword(id, oldpass, newpass, "parents");
                 }
             });
         });
@@ -278,8 +285,8 @@ public class profileController implements Initializable {
         Connection conn = null;
         try {
             conn = ConnectionUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT salt, salted_hash FROM "+access+" WHERE id = ?");
-            PreparedStatement updateStmt = conn.prepareStatement("UPDATE "+access+" SET salt = ?, salted_hash = ? WHERE id = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT salt, salted_hash FROM " + access + " WHERE id = ?");
+            PreparedStatement updateStmt = conn.prepareStatement("UPDATE " + access + " SET salt = ?, salted_hash = ? WHERE id = ?");
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (!rs.next()) {
@@ -312,6 +319,7 @@ public class profileController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeLanguage();

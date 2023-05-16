@@ -24,7 +24,7 @@ import java.sql.SQLException;
 public class homeController {
 
 
-//    public homeController(User user) {
+    //    public homeController(User user) {
 //        this.loggedInUser = user;
 //    }
     private UserSession session;
@@ -56,14 +56,14 @@ public class homeController {
 
     }
 
-    public void initialize(UserSession session ) throws SQLException {
+    public void initialize(UserSession session) throws SQLException {
         this.session = session;
         nameLabel.setText(session.getFullName());
         childrenEnrolled.setText(Integer.toString(getChildren()));
         parentsRegistered.setText(Integer.toString(getNrParents()));
         teachersEmployed.setText(Integer.toString(getNrTeachers()));
 
-        if(session.getAccessLevel() == 3){
+        if (session.getAccessLevel() == 3) {
             teacherManageBtn.setVisible(false);
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
@@ -75,7 +75,7 @@ public class homeController {
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
-        } else if(session.getAccessLevel() == 1) {
+        } else if (session.getAccessLevel() == 1) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
             scheduleBtn.setVisible(false);
@@ -158,24 +158,25 @@ public class homeController {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/manage.fxml"));
             Parent root = loader.load();
-            if(session != null) {
+            if (session != null) {
                 manageController manageC = loader.getController();
                 manageC.initialize(session);
             }
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
             Parent root = loader.load();
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
@@ -187,7 +188,7 @@ public class homeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/profile.fxml"));
             Parent root = loader.load();
-            if(session != null) {
+            if (session != null) {
                 profileController profileC = loader.getController();
                 profileC.initialize(session);
             }
@@ -204,7 +205,7 @@ public class homeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teacherManage.fxml"));
             Parent root = loader.load();
-            if(session != null) {
+            if (session != null) {
                 teacherManageController teacherM = loader.getController();
                 // teacherManageController.setUser(loggedInUser);
                 teacherM.initialize(session);
@@ -223,7 +224,7 @@ public class homeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/schedule.fxml"));
             Parent root = loader.load();
-            if(session != null) {
+            if (session != null) {
                 scheduleController scheduleC = loader.getController();
                 // teacherManageController.setUser(loggedInUser);
                 scheduleC.initialize(session);
