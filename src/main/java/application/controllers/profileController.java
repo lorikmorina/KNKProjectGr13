@@ -14,22 +14,25 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class profileController {
+public class profileController implements Initializable {
 
     @FXML
     private Label myName;
@@ -66,7 +69,65 @@ public class profileController {
     private Button logoutBtn;
      private Admin admin;
      private Teacher teacher;
+     @FXML
+     private Button homeManage,profileBtn;
+     @FXML
+     private Text profileLabel,fullName,personalNr,numberOfChildren;;
+     @FXML
+     private RadioButton alButton;
+     @FXML
+     private RadioButton enButton;
 
+
+    public  void changeLanguage() {
+        ToggleGroup languageToggleGroup = new ToggleGroup();
+        alButton.setToggleGroup(languageToggleGroup);
+        enButton.setToggleGroup(languageToggleGroup);
+        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if(newToggle == alButton) {
+                Locale currentLocale = new Locale("sq", "AL");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                fullName.setText(bundle.getString("fullname.profilelabel"));
+                personalNr.setText(bundle.getString("personalnum.profilelabel"));
+                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel "));
+                showValues.setText(bundle.getString("changepassword.button"));
+                //MenuBar
+                homeManage.setText(bundle.getString("home.manageteacherlabel"));
+                manageButton.setText(bundle.getString("manage.manageteacherlabel"));
+                profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
+                teacherManageBtn.setText(bundle.getString("teacher.manage.manageteacherlabel"));
+                scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
+                logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
+                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel"));
+                profileLabel.setText(bundle.getString("profile.profilelabel"));
+
+
+
+            }else if(newToggle == enButton)  {
+                Locale currentLocale = new Locale("en", "US");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                fullName.setText(bundle.getString("fullname.profilelabel"));
+                personalNr.setText(bundle.getString("personalnum.profilelabel"));
+                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel "));
+                showValues.setText(bundle.getString("changepassword.button"));
+                //MenuBar
+                homeManage.setText(bundle.getString("home.manageteacherlabel"));
+                manageButton.setText(bundle.getString("manage.manageteacherlabel"));
+                profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
+                teacherManageBtn.setText(bundle.getString("teacher.manage.manageteacherlabel"));
+                scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
+                logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
+                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel"));
+                profileLabel.setText(bundle.getString("profile.profilelabel"));
+
+
+            }
+
+        });
+        languageToggleGroup.selectToggle(alButton);
+    }
     public void initialize(UserSession session) throws SQLException {
              this.session = session;
             myName.setText(session.getFullName());
@@ -250,6 +311,10 @@ public class profileController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        changeLanguage();
     }
 
 }

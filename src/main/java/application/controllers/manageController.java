@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,11 +23,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.net.URL;
 import java.sql.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static java.sql.Types.NULL;
 
-public class manageController {
+public class manageController implements Initializable {
     private UserSession session;
 
     @FXML
@@ -52,8 +56,74 @@ public class manageController {
     private Button manageButton;
     @FXML
     private Button classScheduleBtn;
+    @FXML
+    private RadioButton alButton;
+    @FXML
+    private RadioButton enButton;
+    @FXML
+    private Button homeManage;
 
 
+
+    public  void changeLanguage() {
+        ToggleGroup languageToggleGroup = new ToggleGroup();
+        alButton.setToggleGroup(languageToggleGroup);
+        enButton.setToggleGroup(languageToggleGroup);
+        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if(newToggle == alButton) {
+                Locale currentLocale = new Locale("sq", "AL");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                searchField.setPromptText(bundle.getString("search.placeholder"));
+                fullNameColumn.setText(bundle.getString("fullname.name.managelabel.text"));
+                parentId.setText(bundle.getString("parentid.managelabel.text"));
+                age.setText(bundle.getString("Age.managelabel.text"));
+                teacher.setText(bundle.getString("teacher.managelabel.text"));
+                classroomNr.setText(bundle.getString("classroomnr.managelabel.text"));
+                contactInfo.setText(bundle.getString("contactinfo.managelabel"));
+                medicalInfo.setText(bundle.getString("medicalinfo.managelabel"));
+                deleteButton.setText(bundle.getString("delete.menagebutton"));
+                addButton.setText(bundle.getString("add.managebutton"));
+                idColumn.setText(bundle.getString("id.managelabel.text"));
+                //MenuBar
+                homeManage.setText(bundle.getString("home.manageteacherlabel"));
+                manageButton.setText(bundle.getString("manage.manageteacherlabel"));
+                profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
+                teacherManageBtn.setText(bundle.getString("teacher.manage.manageteacherlabel"));
+                scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
+                logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
+
+
+
+            }else if(newToggle == enButton)  {
+                Locale currentLocale = new Locale("en", "US");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                searchField.setPromptText(bundle.getString("search.placeholder"));
+                fullNameColumn.setText(bundle.getString("fullname.name.managelabel.text"));
+                parentId.setText(bundle.getString("parentid.managelabel.text"));
+                age.setText(bundle.getString("Age.managelabel.text"));
+                teacher.setText(bundle.getString("teacher.managelabel.text"));
+                classroomNr.setText(bundle.getString("classroomnr.managelabel.text"));
+                contactInfo.setText(bundle.getString("contactinfo.managelabel"));
+                medicalInfo.setText(bundle.getString("medicalinfo.managelabel"));
+                deleteButton.setText(bundle.getString("delete.menagebutton"));
+                addButton.setText(bundle.getString("add.managebutton"));
+                idColumn.setText(bundle.getString("id.managelabel.text"));
+                //MenuBar
+                homeManage.setText(bundle.getString("home.manageteacherlabel"));
+                manageButton.setText(bundle.getString("manage.manageteacherlabel"));
+                profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
+                teacherManageBtn.setText(bundle.getString("teacher.manage.manageteacherlabel"));
+                scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
+                logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
+
+
+            }
+
+        });
+        languageToggleGroup.selectToggle(alButton);
+    }
 
 
 
@@ -362,5 +432,9 @@ public class manageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        changeLanguage();
     }
 }
