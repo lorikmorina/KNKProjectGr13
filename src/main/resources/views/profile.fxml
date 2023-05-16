@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -15,7 +16,7 @@
    <children>
       <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" layoutX="-3.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63a7e8" height="112.0" layoutX="197.0" layoutY="55.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1084.0" />
-      <Text boundsType="VISUAL" fill="WHITE" layoutX="264.0" layoutY="122.0" strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="PROFILE" wrappingWidth="169.6328125">
+      <Text fx:id="profileLabel" boundsType="VISUAL" fill="WHITE" layoutX="264.0" layoutY="122.0" strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="PROFILE" wrappingWidth="169.6328125">
          <font>
             <Font size="36.0" />
          </font>
@@ -26,17 +27,17 @@
          </font>
       </Text>
       <FontAwesomeIconView glyphName="USER" layoutX="248.0" layoutY="337.0" size="150" textAlignment="CENTER" wrappingWidth="162.0" />
-      <Text layoutX="500.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Full Name:" textAlignment="RIGHT">
+      <Text fx:id="fullName" layoutX="500.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Full Name:" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="440.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personal Number:" textAlignment="RIGHT">
+      <Text fx:id="personalNr" layoutX="440.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personal Number:" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="441.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nr. of your children enrolled:" textAlignment="RIGHT" wrappingWidth="150.0">
+      <Text fx:id="numberOfChildren" layoutX="441.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nr. of your children enrolled:" textAlignment="RIGHT" wrappingWidth="150.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -132,6 +133,8 @@
             </Button>
          </children>
       </VBox>
+      <RadioButton fx:id="alButton" layoutX="55.0" layoutY="767.0" mnemonicParsing="false" text="AL" />
+      <RadioButton fx:id="enButton" layoutX="103.0" layoutY="767.0" mnemonicParsing="false" text="EN" />
    </children>
 
 </Pane>

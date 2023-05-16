@@ -17,7 +17,7 @@
 <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.logInController">
     <children>
         <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="315.0" />
-        <TextField fx:id="txtEmail" layoutX="373.0" layoutY="145.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+        <TextField fx:id="txtEmail" layoutX="373.0" layoutY="145.0" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
         <PasswordField fx:id="txtPassword" layoutX="373.0" layoutY="201.0" promptText="Password" style="-fx-background-color: none; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
         <Button fx:id="loginBtn" layoutX="415.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnLoginClick" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #0589ff;" text="Login" textFill="WHITE" />
         <FontAwesomeIconView fill="#0589ff" glyphName="USERS" layoutX="446.0" layoutY="105.0" scaleX="3.0" scaleY="3.0" />
@@ -29,11 +29,11 @@
                 <Font name="Raleway Black" size="29.0" />
             </font>
         </Text>
-        <CheckBox layoutX="371.0" layoutY="237.0" mnemonicParsing="false" text="Remember me">
+        <CheckBox fx:id="rememberMe" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" text="Remember me">
             <font>
                 <Font size="12.0" />
             </font></CheckBox>
-        <Hyperlink layoutX="381.0" layoutY="293.0" onAction="#signupBtn" text="Don''t have an account? Sign Up">
+        <Hyperlink fx:id="dontHaveAcc" layoutX="381.0" layoutY="293.0" onAction="#signupBtn" text="Don''t have an account? Sign Up">
             <font>
                 <Font size="10.0" />
             </font>
