@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.database.ConnectionUtil;
 import application.models.Admin;
 import application.models.Teacher;
 import application.models.User;
@@ -15,6 +16,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class homeController {
 
 
@@ -22,6 +28,9 @@ public class homeController {
 //        this.loggedInUser = user;
 //    }
     private UserSession session;
+
+    @FXML
+    private Label childrenEnrolled, parentsRegistered, teachersEmployed;
 
     @FXML
     private Button loginBtn, logoutBtn, profileBtn;
@@ -47,9 +56,13 @@ public class homeController {
 
     }
 
-    public void initialize(UserSession session ) {
+    public void initialize(UserSession session ) throws SQLException {
         this.session = session;
         nameLabel.setText(session.getFullName());
+        childrenEnrolled.setText(Integer.toString(getChildren()));
+        parentsRegistered.setText(Integer.toString(getNrParents()));
+        teachersEmployed.setText(Integer.toString(getNrTeachers()));
+
         if(session.getAccessLevel() == 3){
             teacherManageBtn.setVisible(false);
             teacherManageBtn.setManaged(false);
@@ -74,7 +87,69 @@ public class homeController {
         }
     }
 
+    private int getChildren() throws SQLException {
+        Connection connection = null;
+        int childrenEnrolled = 0;
+        try {
+            connection = ConnectionUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM children"
+            );
 
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                childrenEnrolled = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            connection.close();
+        }
+        return childrenEnrolled;
+    }
+
+    private int getNrTeachers() throws SQLException {
+        Connection connection = null;
+        int teachersEmployed = 0;
+        try {
+            connection = ConnectionUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM teachers"
+            );
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                teachersEmployed = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            connection.close();
+        }
+        return teachersEmployed;
+
+    }
+
+    public int getNrParents() throws SQLException {
+        Connection connection = null;
+        int parentsRegistered = 0;
+        try {
+            connection = ConnectionUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM parents"
+            );
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                parentsRegistered = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            connection.close();
+        }
+        return parentsRegistered;
+    }
 
 
     @FXML
