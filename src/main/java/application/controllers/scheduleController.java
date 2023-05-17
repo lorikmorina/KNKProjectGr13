@@ -218,6 +218,10 @@ public class scheduleController {
                 stmt = connection.prepareStatement("");
                 stmt.setInt(1, session.getId());
             }
+            addButton.setVisible(false);
+            deleteButton.setVisible(false);
+            addButton.setManaged(false);
+            deleteButton.setManaged(false);
 
             ResultSet resultSet = stmt.executeQuery();
 

@@ -137,8 +137,7 @@ public class profileController implements Initializable {
         if(session.getAccessLevel() == 3){
             teacherManageBtn.setVisible(false);
             teacherManageBtn.setManaged(false);
-            scheduleBtn.setVisible(false);
-            scheduleBtn.setManaged(false);
+
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
         } else if (session.getAccessLevel() == 2) {
