@@ -72,11 +72,12 @@ public class profileController implements Initializable {
      @FXML
      private Button homeManage,profileBtn;
      @FXML
-     private Text profileLabel,fullName,personalNr,numberOfChildren;;
+     private Text profileLabel,fullName,personalNr,numberOfChildren;
      @FXML
      private RadioButton alButton;
      @FXML
      private RadioButton enButton;
+
 
 
     public  void changeLanguage() {
@@ -87,11 +88,22 @@ public class profileController implements Initializable {
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
-                fullName.setText(bundle.getString("fullname.profilelabel"));
-                personalNr.setText(bundle.getString("personalnum.profilelabel"));
-                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel "));
+                fullName.setText(bundle.getString("fullname.profileLabel"));
+                personalNr.setText(bundle.getString("personalnum.profileLabel"));
+                numberOfChildren.setText(bundle.getString("numofchildren.profileLabel"));
                 showValues.setText(bundle.getString("changepassword.button"));
+                OldPassword.setPromptText(bundle.getString("oldPassword.profiletext"));
+                NewPassword.setPromptText(bundle.getString("newPassword.profiletext"));
+                cancel.setText(bundle.getString("cancel.profiletext"));
+                pieChart.setTitle(bundle.getString("attendance.profiletext"));
+                profileLabel.setText(bundle.getString("profile.profileLabel"));
+
                 //MenuBar
+//                profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
+//                scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
+//                classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
+//                logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
+//                profileLabel.setText(bundle.getString("profile.profileLabel"));
                 homeManage.setText(bundle.getString("home.manageteacherlabel"));
                 manageButton.setText(bundle.getString("manage.manageteacherlabel"));
                 profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
@@ -99,34 +111,28 @@ public class profileController implements Initializable {
                 scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
                 classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
                 logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
-                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel"));
-                profileLabel.setText(bundle.getString("profile.profilelabel"));
 
 
 
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
-                fullName.setText(bundle.getString("fullname.profilelabel"));
-                personalNr.setText(bundle.getString("personalnum.profilelabel"));
-                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel "));
+                fullName.setText(bundle.getString("fullname.profileLabel"));
+                personalNr.setText(bundle.getString("personalnum.profileLabel"));
+                numberOfChildren.setText(bundle.getString("numofchildren.profileLabel"));
                 showValues.setText(bundle.getString("changepassword.button"));
                 //MenuBar
-                homeManage.setText(bundle.getString("home.manageteacherlabel"));
-                manageButton.setText(bundle.getString("manage.manageteacherlabel"));
                 profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
-                teacherManageBtn.setText(bundle.getString("teacher.manage.manageteacherlabel"));
                 scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
                 classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
                 logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
-                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel"));
-                profileLabel.setText(bundle.getString("profile.profilelabel"));
+                profileLabel.setText(bundle.getString("profile.profileLabel"));
 
 
             }
 
         });
-        languageToggleGroup.selectToggle(alButton);
+        languageToggleGroup.selectToggle(enButton);
     }
     public void initialize(UserSession session) throws SQLException {
              this.session = session;

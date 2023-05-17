@@ -84,6 +84,8 @@ public class manageController implements Initializable {
                 deleteButton.setText(bundle.getString("delete.menagebutton"));
                 addButton.setText(bundle.getString("add.managebutton"));
                 idColumn.setText(bundle.getString("id.managelabel.text"));
+                addButtonManage.setText(bundle.getString("add2.managebutton "));
+                gobackButton.setText(bundle.getString("goBack.managebutton"));
                 //MenuBar
                 homeManage.setText(bundle.getString("home.manageteacherlabel"));
                 manageButton.setText(bundle.getString("manage.manageteacherlabel"));
