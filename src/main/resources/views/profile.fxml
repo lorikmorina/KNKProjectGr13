@@ -15,8 +15,8 @@
 <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.profileController">
    <children>
       <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" layoutX="-3.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63a7e8" height="112.0" layoutX="197.0" layoutY="55.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1084.0" />
-      <Text fx:id="profileLabel" boundsType="VISUAL" fill="WHITE" layoutX="264.0" layoutY="122.0" strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="PROFILE" wrappingWidth="169.6328125">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63a7e8" height="112.0" layoutX="197.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1084.0" />
+      <Text fx:id="profileLabel" boundsType="VISUAL" fill="WHITE" layoutX="233.0" layoutY="68.0" strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="PROFILE" wrappingWidth="169.6328125">
          <font>
             <Font size="36.0" />
          </font>
@@ -26,18 +26,18 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <FontAwesomeIconView glyphName="USER" layoutX="248.0" layoutY="337.0" size="150" textAlignment="CENTER" wrappingWidth="162.0" />
-      <Text fx:id="fullName" layoutX="500.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Full Name:" textAlignment="RIGHT">
+      <FontAwesomeIconView glyphName="USER" layoutX="276.0" layoutY="280.0" size="150" textAlignment="CENTER" wrappingWidth="162.0" />
+      <Text fx:id="fullName" layoutX="507.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Full Name:" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="personalNr" layoutX="440.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personal Number:" textAlignment="RIGHT">
+      <Text fx:id="personalNr" layoutX="447.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personal Number:" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="numberOfChildren" layoutX="441.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nr. of your children enrolled:" textAlignment="RIGHT" wrappingWidth="150.0">
+      <Text fx:id="numberOfChildren" layoutX="448.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nr. of your children enrolled:" textAlignment="RIGHT" wrappingWidth="150.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -47,18 +47,18 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="myPersonalNr" layoutX="608.0" layoutY="245.0" prefHeight="17.0" prefWidth="150.0" text="Label">
+      <Label fx:id="myPersonalNr" layoutX="615.0" layoutY="199.0" prefHeight="17.0" prefWidth="150.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="nrChildren" layoutX="608.0" layoutY="312.0" prefHeight="17.0" prefWidth="150.0" text="Label">
+      <Label fx:id="nrChildren" layoutX="615.0" layoutY="266.0" prefHeight="17.0" prefWidth="150.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <PieChart fx:id="pieChart" layoutX="827.0" layoutY="199.0" prefHeight="307.0" prefWidth="379.0" style="-fx-font-weight: bold;" title="Attendance" />
-      <Label fx:id="myName" layoutX="608.0" layoutY="197.0" prefHeight="17.0" prefWidth="150.0" text="Label">
+      <Label fx:id="myName" layoutX="615.0" layoutY="151.0" prefHeight="17.0" prefWidth="150.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
@@ -69,7 +69,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="showValues" layoutX="273.0" layoutY="382.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #63a7e8;" text="Change Password">
+      <Button fx:id="showValues" layoutX="280.0" layoutY="336.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #63a7e8;" text="Change Password">
          <font>
             <Font size="18.0" />
          </font>

@@ -17,8 +17,8 @@
 <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.teacherManageController">
    <children>
       <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
-      <TextField fx:id="searchField" layoutX="328.0" layoutY="44.0" prefHeight="28.0" prefWidth="685.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <Text fill="WHITE" layoutX="56.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Çerdhe Xixëllonjat" textAlignment="CENTER">
+      <TextField fx:id="searchField" layoutX="328.0" layoutY="135.0" prefHeight="28.0" prefWidth="685.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+      <Text fill="WHITE" layoutX="53.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Çerdhe Xixëllonjat" textAlignment="CENTER">
          <font>
             <Font name="Raleway Black" size="15.0" />
          </font>
@@ -28,9 +28,9 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="233.0" layoutY="136.0" prefHeight="631.0" prefWidth="1008.0" style="-fx-border-color: GRAY; -fx-border-width: 0.5;">
+      <AnchorPane layoutX="233.0" layoutY="175.0" prefHeight="596.0" prefWidth="1010.0" style="-fx-border-color: GRAY; -fx-border-width: 0.5;">
          <children>
-            <AnchorPane layoutX="-1.0" prefHeight="319.0" prefWidth="1010.0" style="-fx-border-color: transparent;">
+            <AnchorPane layoutX="-1.0" layoutY="5.0" prefHeight="319.0" prefWidth="1010.0" style="-fx-border-color: transparent;">
                <children>
                   <TableView fx:id="userTable" layoutX="15.0" layoutY="21.0" prefHeight="279.0" prefWidth="982.0">
                     <columns>
@@ -112,13 +112,13 @@
             </TextField>
          </children>
       </AnchorPane>
-      <FontAwesomeIconView glyphName="SEARCH" layoutX="991.0" layoutY="62.0" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="991.0" layoutY="153.0" />
       <Button fx:id="logoutBtn" layoutX="50.0" layoutY="711.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: transparent;" text="Logout" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <VBox layoutX="30.0" layoutY="250.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+      <VBox layoutX="16.0" layoutY="251.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#goHome" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -135,7 +135,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="teacherManageBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Teacher Manage" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="teacherManageBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Manage Teachers" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -152,5 +152,15 @@
             </Button>
          </children>
       </VBox>
+      <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="29.0" layoutY="41.0" size="22" />
+      <Pane layoutX="200.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: #63a7e8;">
+         <children>
+            <Text fill="WHITE" layoutX="32.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Teachers" wrappingWidth="235.0">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
    </children>
 </Pane>
