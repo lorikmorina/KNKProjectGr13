@@ -18,20 +18,25 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class scheduleController {
+public class scheduleController implements Initializable {
 
     @FXML
     private Button addButton;
@@ -88,6 +93,8 @@ public class scheduleController {
     private TableView<Schedule> userTable;
 
     @FXML
+    private Button homeManage;
+    @FXML
     private Button scheduleBtn;
     @FXML
     private Button manageButton;
@@ -98,11 +105,67 @@ public class scheduleController {
     @FXML
     private VBox vBoxManage;
     private UserSession session;
+    @FXML
+    private RadioButton alButton;
+    @FXML
+    private RadioButton enButton;
+    @FXML
+    private Text Id,day,startTime,endTime,teacher,classroomNR;;
 
 
 
-   
 
+    public  void changeLanguage() {
+        ToggleGroup languageToggleGroup = new ToggleGroup();
+        alButton.setToggleGroup(languageToggleGroup);
+        enButton.setToggleGroup(languageToggleGroup);
+        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if(newToggle == alButton) {
+                Locale currentLocale = new Locale("sq", "AL");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                Id.setText(bundle.getString("id.text.schedule"));
+                day.setText(bundle.getString("day.text.schedule"));
+                startTime.setText(bundle.getString("start.time.text.schedule "));
+                endTime.setText(bundle.getString("end.time.text.schedule"));
+                teacher.setText(bundle.getString("teacher.text.schedule"));
+                classroomNR.setText(bundle.getString("classroom.text.schedule"));
+                //MenuBar
+                homeManage.setText(bundle.getString("home.schedule.label"));
+                manageButton.setText(bundle.getString("manage.schedule.label"));
+                profileBtn.setText(bundle.getString("profile.schedule.label"));
+                teacherManageBtn.setText(bundle.getString("teacher.schedule.label"));
+                scheduleBtn.setText(bundle.getString("schedule.schedule.label"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.schedule.label"));
+                logoutBtn.setText(bundle.getString("logout.button.schedule.text"));
+                searchField.setText(bundle.getString("search.placeholder.schedule = Search"));
+
+
+
+            }else if(newToggle == enButton)  {
+                Locale currentLocale = new Locale("en", "US");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                Id.setText(bundle.getString("id.text.schedule"));
+                day.setText(bundle.getString("day.text.schedule"));
+                startTime.setText(bundle.getString("start.time.text.schedule "));
+                endTime.setText(bundle.getString("end.time.text.schedule"));
+                teacher.setText(bundle.getString("teacher.text.schedule"));
+                classroomNR.setText(bundle.getString("classroom.text.schedule"));
+                //MenuBar
+                homeManage.setText(bundle.getString("home.schedule.label"));
+                manageButton.setText(bundle.getString("manage.schedule.label"));
+                profileBtn.setText(bundle.getString("profile.schedule.label"));
+                teacherManageBtn.setText(bundle.getString("teacher.schedule.label"));
+                scheduleBtn.setText(bundle.getString("schedule.schedule.label"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.schedule.label"));
+                logoutBtn.setText(bundle.getString("logout.button.schedule.text"));
+                searchField.setText(bundle.getString("search.placeholder.schedule = Search"));
+
+
+            }
+
+        });
+        languageToggleGroup.selectToggle(alButton);
+    }
 
     public void initialize(UserSession session) {
         this.session = session;
@@ -423,5 +486,10 @@ private void handleManageButton(ActionEvent event) {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        changeLanguage();
     }
 }
