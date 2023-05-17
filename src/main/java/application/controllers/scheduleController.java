@@ -137,7 +137,7 @@ public class scheduleController implements Initializable {
                 scheduleBtn.setText(bundle.getString("schedule.schedule.label"));
                 classScheduleBtn.setText(bundle.getString("classSchedule.schedule.label"));
                 logoutBtn.setText(bundle.getString("logout.button.schedule.text"));
-                searchField.setText(bundle.getString("search.placeholder.schedule = Search"));
+                searchField.setText(bundle.getString("search.placeholder.schedule"));
 
 
 
