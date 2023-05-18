@@ -186,6 +186,8 @@ public class scheduleController implements Initializable {
             deleteButton.setVisible(false);
             addButton.setManaged(false);
             deleteButton.setManaged(false);
+            updateButton.setManaged(false);
+            updateButton.setVisible(false);
         } else if (session.getAccessLevel() == 2) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
