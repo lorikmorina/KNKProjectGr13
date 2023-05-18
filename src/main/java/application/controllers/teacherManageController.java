@@ -12,25 +12,25 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class teacherManageController {
+public class teacherManageController implements Initializable {
 
     @FXML
     private Button addButton;
@@ -100,9 +100,81 @@ public class teacherManageController {
     @FXML
     private VBox vBoxManage;
     private UserSession session;
+    @FXML
+    private RadioButton alButton,enButton;
+    @FXML
+    private Button homeManageTeacher;
+
+
+    public  void changeLanguage() {
+        ToggleGroup languageToggleGroup = new ToggleGroup();
+        alButton.setToggleGroup(languageToggleGroup);
+        enButton.setToggleGroup(languageToggleGroup);
+        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if(newToggle == alButton) {
+                Locale currentLocale = new Locale("sq", "AL");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                searchField.setPromptText(bundle.getString("search.placeholderteacher"));
+                idColumn.setText(bundle.getString("id.labele.teacher.text"));
+                fullNameColumn.setText(bundle.getString("fullname.name.manageteacherlabel.text"));
+                emailId.setText(bundle.getString("email.manageteacherlabel.text"));
+                personalNrColumn.setText(bundle.getString("personalnumber.manageteacherlabel.text"));
+                deleteButton.setText(bundle.getString("delete.menageteacherbutton"));
+                addButton.setText(bundle.getString("add.manageteacherbutton"));
+                gobackButton.setText(bundle.getString("go.back.button.teacher "));
+                addButtonManage.setText(bundle.getString("add.manageteacherbutton"));
+                idField.setText(bundle.getString("id.manageteacherlabel.text"));
+                deleteID.setText(bundle.getString("id.manageteacherlabel.text"));
+                teachersNameField.setPromptText(bundle.getString("teacherNameDelete.manageteacher"));
+                emailField.setPromptText(bundle.getString("email.manageteacherlabel.text"));
+                personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text "));
+                passText.setPromptText(bundle.getString("passwordText.manageteacher"));
+
+                //MenuBar
+                homeManageTeacher.setText(bundle.getString("home.profile.label"));
+                manageButton.setText(bundle.getString("manage.profile.label.text"));
+                profileBtn.setText(bundle.getString("profile.profile.label.text"));
+                teacherManageBtn.setText(bundle.getString("teacher.profile.label.text"));
+                scheduleBtn.setText(bundle.getString("schedule.profile.label"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.profile.label"));
+                logoutBtn.setText(bundle.getString("logout.button.profile.text"));
+
+
+            }else if(newToggle == enButton)  {
+                Locale currentLocale = new Locale("en", "US");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                searchField.setPromptText(bundle.getString("search.placeholderteacher"));
+                idColumn.setText(bundle.getString("id.labele.teacher.text"));
+                fullNameColumn.setText(bundle.getString("fullname.name.manageteacherlabel.text"));
+                emailId.setText(bundle.getString("email.manageteacherlabel.text"));
+                personalNrColumn.setText(bundle.getString("personalnumber.manageteacherlabel.text"));
+                deleteButton.setText(bundle.getString("delete.menageteacherbutton"));
+                addButton.setText(bundle.getString("add.manageteacherbutton"));
+                gobackButton.setText(bundle.getString("go.back.button.teacher "));
+                addButtonManage.setText(bundle.getString("add.manageteacherbutton"));
+                idField.setText(bundle.getString("id.manageteacherlabel.text"));
+                deleteID.setText(bundle.getString("id.manageteacherlabel.text"));
+                teachersNameField.setPromptText(bundle.getString("teacherNameDelete.manageteacher"));
+                emailField.setPromptText(bundle.getString("email.manageteacherlabel.text"));
+                personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text "));
+                passText.setPromptText(bundle.getString("passwordText.manageteacher"));
+                //MenuBar
+                homeManageTeacher.setText(bundle.getString("home.profile.label"));
+                manageButton.setText(bundle.getString("manage.profile.label.text"));
+                profileBtn.setText(bundle.getString("profile.profile.label.text"));
+                teacherManageBtn.setText(bundle.getString("teacher.profile.label.text"));
+                scheduleBtn.setText(bundle.getString("schedule.profile.label"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.profile.label"));
+                logoutBtn.setText(bundle.getString("logout.button.profile.text"));
 
 
 
+
+            }
+
+        });
+        languageToggleGroup.selectToggle(alButton);
+    }
    
 
 
@@ -362,5 +434,9 @@ private void handleManageButton(ActionEvent event) {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        changeLanguage();
     }
 }

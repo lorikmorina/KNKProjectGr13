@@ -123,11 +123,11 @@ public class scheduleController implements Initializable {
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
-                Id.setText(bundle.getString("id.text.schedule"));
-                day.setText(bundle.getString("day.text.schedule"));
+                idColumn.setText(bundle.getString("id.text.schedule"));
+                dayColumn.setText(bundle.getString("day.text.schedule"));
                 startTime.setText(bundle.getString("start.time.text.schedule "));
-                endTime.setText(bundle.getString("end.time.text.schedule"));
-                teacher.setText(bundle.getString("teacher.text.schedule"));
+                endTime.setText(bundle.getString("end.time.text.schedule e"));
+                teacher.setText(bundle.getString("teacher.text.schedule "));
                 classroomNR.setText(bundle.getString("classroom.text.schedule"));
                 //MenuBar
                 homeManage.setText(bundle.getString("home.schedule.label"));
@@ -144,11 +144,11 @@ public class scheduleController implements Initializable {
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
-                Id.setText(bundle.getString("id.text.schedule"));
-                day.setText(bundle.getString("day.text.schedule"));
+                idColumn.setText(bundle.getString("id.text.schedule"));
+                dayColumn.setText(bundle.getString("day.text.schedule"));
                 startTime.setText(bundle.getString("start.time.text.schedule "));
-                endTime.setText(bundle.getString("end.time.text.schedule"));
-                teacher.setText(bundle.getString("teacher.text.schedule"));
+                endTime.setText(bundle.getString("end.time.text.schedule e"));
+                teacher.setText(bundle.getString("teacher.text.schedule "));
                 classroomNR.setText(bundle.getString("classroom.text.schedule"));
                 //MenuBar
                 homeManage.setText(bundle.getString("home.schedule.label"));
@@ -178,6 +178,10 @@ public class scheduleController implements Initializable {
             scheduleBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
+            addButton.setVisible(false);
+            deleteButton.setVisible(false);
+            addButton.setManaged(false);
+            deleteButton.setManaged(false);
         } else if (session.getAccessLevel() == 2) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
@@ -281,10 +285,7 @@ public class scheduleController implements Initializable {
                 stmt = connection.prepareStatement("");
                 stmt.setInt(1, session.getId());
             }
-            addButton.setVisible(false);
-            deleteButton.setVisible(false);
-            addButton.setManaged(false);
-            deleteButton.setManaged(false);
+
 
             ResultSet resultSet = stmt.executeQuery();
 
