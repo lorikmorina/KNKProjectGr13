@@ -70,13 +70,14 @@ public class profileController implements Initializable {
      private Admin admin;
      private Teacher teacher;
      @FXML
-     private Button homeManage,profileBtn;
+     private Button homeProfile,profileBtn;
      @FXML
      private Text profileLabel,fullName,personalNr,numberOfChildren;;
      @FXML
      private RadioButton alButton;
      @FXML
      private RadioButton enButton;
+
 
 
     public  void changeLanguage() {
@@ -87,40 +88,47 @@ public class profileController implements Initializable {
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
-                fullName.setText(bundle.getString("fullname.profilelabel"));
-                personalNr.setText(bundle.getString("personalnum.profilelabel"));
-                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel "));
-                showValues.setText(bundle.getString("changepassword.button"));
-                //MenuBar
-                homeManage.setText(bundle.getString("home.manageteacherlabel"));
-                manageButton.setText(bundle.getString("manage.manageteacherlabel"));
-                profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
-                teacherManageBtn.setText(bundle.getString("teacher.manage.manageteacherlabel"));
-                scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
-                classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
-                logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
-                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel"));
-                profileLabel.setText(bundle.getString("profile.profilelabel"));
+                fullName.setText(bundle.getString("full.name.profileLabel"));
+                personalNr.setText(bundle.getString("personal.num.profileLabel"));
+                showValues.setText(bundle.getString("change.password.profile.button"));
+                numberOfChildren.setText(bundle.getString("num.of.children.profileLabel"));
 
+                OldPassword.setPromptText(bundle.getString("oldPassword.profile.text"));
+                NewPassword.setPromptText(bundle.getString("newPassword.profile.text"));
+                cancel.setText(bundle.getString("cancel.profile.text"));
+                pieChart.setTitle(bundle.getString("Attendance.profile.text"));
+
+                //MenuBar
+                homeProfile.setText(bundle.getString("home.profile.label"));
+                manageButton.setText(bundle.getString("manage.profile.label.text"));
+                profileBtn.setText(bundle.getString("profile.profile.label.text"));
+                teacherManageBtn.setText(bundle.getString("teacher.profile.label.text"));
+                scheduleBtn.setText(bundle.getString("schedule.profile.label"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.profile.label"));
+                logoutBtn.setText(bundle.getString("logout.button.profile.text"));
 
 
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
-                fullName.setText(bundle.getString("fullname.profilelabel"));
-                personalNr.setText(bundle.getString("personalnum.profilelabel"));
-                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel "));
-                showValues.setText(bundle.getString("changepassword.button"));
+                fullName.setText(bundle.getString("full.name.profileLabel"));
+                personalNr.setText(bundle.getString("personal.num.profileLabel"));
+                showValues.setText(bundle.getString("change.password.profile.button"));
+                numberOfChildren.setText(bundle.getString("num.of.children.profileLabel"));
+                OldPassword.setPromptText(bundle.getString("oldPassword.profile.text"));
+                NewPassword.setPromptText(bundle.getString("newPassword.profile.text"));
+                cancel.setText(bundle.getString("cancel.profile.text"));
+                pieChart.setTitle(bundle.getString("Attendance.profile.text"));
                 //MenuBar
-                homeManage.setText(bundle.getString("home.manageteacherlabel"));
-                manageButton.setText(bundle.getString("manage.manageteacherlabel"));
-                profileBtn.setText(bundle.getString("profile.manageteacherlanel"));
-                teacherManageBtn.setText(bundle.getString("teacher.manage.manageteacherlabel"));
-                scheduleBtn.setText(bundle.getString("schedule.manageteaclabel"));
-                classScheduleBtn.setText(bundle.getString("classSchedule.manageteacherlabel"));
-                logoutBtn.setText(bundle.getString("logout.button.manageteachertext"));
-                numberOfChildren.setText(bundle.getString("numofchildren.profilelabel"));
-                profileLabel.setText(bundle.getString("profile.profilelabel"));
+                homeProfile.setText(bundle.getString("home.profile.label"));
+                manageButton.setText(bundle.getString("manage.profile.label.text"));
+                profileBtn.setText(bundle.getString("profile.profile.label.text"));
+                teacherManageBtn.setText(bundle.getString("teacher.profile.label.text"));
+                scheduleBtn.setText(bundle.getString("schedule.profile.label"));
+                classScheduleBtn.setText(bundle.getString("classSchedule.profile.label"));
+                logoutBtn.setText(bundle.getString("logout.button.profile.text"));
+
+
 
 
             }

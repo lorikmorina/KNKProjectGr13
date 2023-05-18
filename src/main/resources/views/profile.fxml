@@ -101,7 +101,7 @@
       </Button>
       <VBox layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleHomeButton" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="homeProfile" mnemonicParsing="false" onAction="#handleHomeButton" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
