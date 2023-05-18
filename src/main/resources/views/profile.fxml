@@ -111,7 +111,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="profileBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Profile" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="profileBtn" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: transparent;" text="Profile" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -121,7 +121,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="scheduleBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="scheduleBtn" mnemonicParsing="false" onAction="#handleScheduleButton" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>

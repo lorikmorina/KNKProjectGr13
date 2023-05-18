@@ -324,5 +324,40 @@ public class profileController implements Initializable {
         changeLanguage();
     }
 
+    @FXML
+    public void handleProfileButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/profile.fxml"));
+            Parent root = loader.load();
+            if (session != null) {
+                profileController profileC = loader.getController();
+                profileC.initialize(session);
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleScheduleButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/schedule.fxml"));
+            Parent root = loader.load();
+            if (session != null) {
+                scheduleController scheduleC = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                scheduleC.initialize(session);
+
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
