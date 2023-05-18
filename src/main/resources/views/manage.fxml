@@ -134,6 +134,16 @@
                   <Font size="17.0" />
                </font>
             </TextField>
+            <Button fx:id="updateButton" layoutX="14.0" layoutY="405.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="178.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff;" text="Update">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="updateManageButton" layoutX="576.0" layoutY="321.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="178.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff;" text="Update" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <FontAwesomeIconView glyphName="SEARCH" layoutX="991.0" layoutY="62.0" />

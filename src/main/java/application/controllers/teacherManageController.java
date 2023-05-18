@@ -105,6 +105,12 @@ public class teacherManageController implements Initializable {
     @FXML
     private Button homeManageTeacher;
 
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private Button updateManageButton;
+
 
     public  void changeLanguage() {
         ToggleGroup languageToggleGroup = new ToggleGroup();
@@ -212,6 +218,15 @@ public class teacherManageController implements Initializable {
         personalNrColumn.setCellValueFactory(new PropertyValueFactory<>("personalNr"));
         userTable.setItems(getUsers());
 
+        userTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                // Set the values of the selected item as default values in the input fields
+                teachersNameField.setText(newSelection.getFullName());
+                emailField.setText(String.valueOf(newSelection.getEmail()));
+                personalNumber.setText(newSelection.getPersonalNr());
+            }
+        });
+
         deleteButton.setOnAction(event -> {
             showManageView();
             teachersNameField.setVisible(false);
@@ -254,6 +269,33 @@ public class teacherManageController implements Initializable {
                 clearManage();
             });
         });
+
+        updateButton.setOnAction(event -> {
+            showManageView();
+            idField.setVisible(false);
+            addButtonManage.setVisible(false);
+            teachersNameField.setVisible(true);
+            emailField.setVisible(true);
+            personalNumber.setVisible(true);
+            passText.setVisible(false);
+            gobackButton.setVisible(true);
+            updateManageButton.setVisible(true);
+
+            updateManageButton.setOnAction(event1->{
+                String teachersName = teachersNameField.getText();
+                String email = emailField.getText();
+                String personalNr = personalNumber.getText();
+                int teacherId = idColumn.getCellData(userTable.getSelectionModel().getSelectedItem());
+
+                updateUser(teacherId,teachersName, email, personalNr);
+            });
+            gobackButton.setOnAction(event1 ->{
+                hideManageView();
+                clearManage();
+            });
+        });
+
+
         dynamicSearch();
     }
 
@@ -285,6 +327,7 @@ public class teacherManageController implements Initializable {
         }
         return teachers;
     }
+
     private void deleteUser(String id){
         Connection connection = null;
         try {
@@ -336,6 +379,43 @@ public class teacherManageController implements Initializable {
             e.printStackTrace();
         }
     }
+    private void updateUser(int teacherId,String fullname, String email, String personalNr) {
+        if (fullname.isEmpty() || email.isEmpty() || personalNr.isEmpty()) {
+            userManage.setText("Please fill in all fields");
+            timeLabel(userManage);
+            return;
+        }
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE teachers SET fullname = ?, email = ?, personalNr = ? where id = ?"
+            );
+            stmt.setString(1, fullname);
+            stmt.setString(2, email);
+            stmt.setString(3, personalNr);
+            stmt.setInt(4,teacherId);
+
+            int rowsUpdated = stmt.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                userManage.setText("User updated successfully");
+                timeLabel(userManage);
+                clearManage();
+                hideManageView();
+                ObservableList<Teacher> teacherList = getUsers(); // get updated list of users from database
+                userTable.setItems(FXCollections.observableArrayList(teacherList));
+            } else {
+                userManage.setText("Failed to update user");
+                timeLabel(userManage);
+            }
+            stmt.close();
+            connection.close();
+            getUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     private void showManageView() {
         vBoxManage.setVisible(true);
         userManage.setVisible(false);
@@ -343,6 +423,7 @@ public class teacherManageController implements Initializable {
         deleteButton.setVisible(false);
         addButton.setVisible(false);
         idField.setVisible(true);
+        updateButton.setVisible(false);
     }
     private void hideManageView() {
         vBoxManage.setVisible(false);
@@ -352,6 +433,8 @@ public class teacherManageController implements Initializable {
         gobackButton.setVisible(false);
         userManage.setVisible(false);
         deleteID.setVisible(false);
+        updateButton.setVisible(true);
+        updateManageButton.setVisible(false);
     }
     private void clearManage(){
         teachersNameField.clear();

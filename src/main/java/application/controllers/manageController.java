@@ -63,6 +63,12 @@ public class manageController implements Initializable {
     @FXML
     private Button homeManage;
 
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private Button updateManageButton;
+
 
 
     public  void changeLanguage() {
@@ -167,6 +173,18 @@ public class manageController implements Initializable {
         medicalInfo.setCellValueFactory(new PropertyValueFactory<>("medicalInfo"));
         userTable.setItems(getUsers());
 
+        userTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                // Set the values of the selected item as default values in the input fields
+                childsNameField.setText(newSelection.getChildsName());
+                ageField.setText(String.valueOf(newSelection.getChild_age()));
+                teacherField.setText(newSelection.getTeacher());
+                classroomNrField.setText(String.valueOf(newSelection.getClassNr()));
+                contactInfoField.setText(newSelection.getContactInfo());
+                medicalInfoField.setText(newSelection.getMedicalInfo());
+            }
+        });
+
         deleteButton.setOnAction(event -> {
             showManageView();
             childsNameField.setVisible(false);
@@ -199,6 +217,7 @@ public class manageController implements Initializable {
             classroomNrField.setVisible(true);
             contactInfoField.setVisible(true);
             medicalInfoField.setVisible(true);
+            updateManageButton.setVisible(false);
 
             addButtonManage.setOnAction(event1 -> {
                 String childsName = childsNameField.getText();
@@ -215,6 +234,39 @@ public class manageController implements Initializable {
                 clearManage();
             });
         });
+        updateButton.setOnAction(event -> {
+            //childsNameField,parentIdField, ageField, teacherField,classroomNrField, contactInfoField, medicalInfoField
+            showManageView();
+            idField.setVisible(false);
+            addButtonManage.setVisible(false);
+            addButtonManage.setManaged(false);
+            updateManageButton.setManaged(true);
+            childsNameField.setVisible(true);
+            ageField.setVisible(true);
+            teacherField.setVisible(true);
+            classroomNrField.setVisible(true);
+            contactInfoField.setVisible(true);
+            medicalInfoField.setVisible(true);
+            updateManageButton.setVisible(true);
+
+            updateManageButton.setOnAction(event1 -> {
+                String childsName = childsNameField.getText();
+                int age = Integer.parseInt(ageField.getText());
+                String teacher = teacherField.getText();
+                int classroomNr = Integer.parseInt(classroomNrField.getText());
+                String contactInfo = contactInfoField.getText();
+                String medicalInfo = medicalInfoField.getText();
+                int childId = idColumn.getCellData(userTable.getSelectionModel().getSelectedItem());
+
+
+                updateUser(childId,childsName, age, teacher, classroomNr, contactInfo, medicalInfo);
+            });
+            gobackButton.setOnAction(event1 -> {
+                hideManageView();
+                clearManage();
+            });
+        });
+
         dynamicSearch();
     }
 
@@ -249,6 +301,51 @@ public class manageController implements Initializable {
         }
         return children;
     }
+
+
+    private void updateUser(int childId,String childsName, int age, String teacher, int classroomNr, String contactInfo, String medicalInfo) {
+        if (childsName.isEmpty() || teacher.isEmpty() || contactInfo.isEmpty()) {
+            userManage.setText("Please fill in all fields");
+            timeLabel(userManage);
+            return;
+        }
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE children SET childsName = ?, age = ?, teacher = ?, classroomNr = ?, contactInfo = ?, medicalInfo = ?  WHERE child_id = ?"
+            );
+            stmt.setString(1, childsName);
+            stmt.setInt(2, age);
+            stmt.setString(3, teacher);
+            stmt.setInt(4, classroomNr);
+            stmt.setString(5, contactInfo);
+            stmt.setString(6, medicalInfo);
+            stmt.setInt(7,childId);
+
+
+
+            int rowsUpdated = stmt.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                userManage.setText("User updated successfully");
+                timeLabel(userManage);
+                clearManage();
+                hideManageView();
+                ObservableList<Child> childList = getUsers(); // get updated list of users from database
+                userTable.setItems(FXCollections.observableArrayList(childList));
+            } else {
+                userManage.setText("Failed to update user");
+                timeLabel(userManage);
+            }
+            stmt.close();
+            connection.close();
+            getUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void deleteUser(String id) {
         Connection connection = null;
@@ -324,6 +421,7 @@ public class manageController implements Initializable {
         deleteButton.setVisible(false);
         addButton.setVisible(false);
         idField.setVisible(true);
+        updateButton.setVisible(false);
     }
 
     private void hideManageView() {
@@ -334,6 +432,8 @@ public class manageController implements Initializable {
         gobackButton.setVisible(false);
         userManage.setVisible(false);
         deleteID.setVisible(false);
+        updateManageButton.setVisible(false);
+        updateButton.setVisible(true);
     }
 
     private void clearManage() {
