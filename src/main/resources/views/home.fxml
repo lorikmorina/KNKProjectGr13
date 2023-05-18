@@ -3,6 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -27,7 +28,7 @@
       </Label>
       <VBox layoutY="220.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="homeHome" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -74,7 +75,7 @@
       </Button>
       <AnchorPane layoutX="271.0" layoutY="209.0" prefHeight="200.0" prefWidth="228.0" style="-fx-background-color: #1e90ff; -fx-background-radius: 30px;">
          <children>
-            <Text fill="WHITE" layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Total children enrolled:" wrappingWidth="172.99999999999997">
+            <Text fx:id="totalChildrenEnrolled" fill="WHITE" layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Total children enrolled:" wrappingWidth="172.99999999999997">
                <font>
                   <Font size="24.0" />
                </font>
@@ -88,7 +89,7 @@
       </AnchorPane>
       <AnchorPane layoutX="575.0" layoutY="209.0" prefHeight="200.0" prefWidth="228.0" style="-fx-background-color: #1e90ff; -fx-background-radius: 30px;">
          <children>
-            <Text fill="WHITE" layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Total teachers employed:" wrappingWidth="200.0">
+            <Text fx:id="totalTeacherEmployed" fill="WHITE" layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Total teachers employed:" wrappingWidth="200.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -102,7 +103,7 @@
       </AnchorPane>
       <AnchorPane layoutX="883.0" layoutY="209.0" prefHeight="200.0" prefWidth="228.0" style="-fx-background-color: #1e90ff; -fx-background-radius: 30px;">
          <children>
-            <Text fill="WHITE" layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Total parents registered:" wrappingWidth="156.0">
+            <Text fx:id="totalParentsRegistered" fill="WHITE" layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Total parents registered:" wrappingWidth="156.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -114,5 +115,7 @@
             </Label>
          </children>
       </AnchorPane>
+      <RadioButton fx:id="alButton" layoutX="58.0" layoutY="757.0" mnemonicParsing="false" text="AL" />
+      <RadioButton fx:id="enButton" layoutX="106.0" layoutY="757.0" mnemonicParsing="false" text="EN" />
    </children>
 </Pane>
