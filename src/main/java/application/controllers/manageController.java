@@ -90,8 +90,19 @@ public class manageController implements Initializable {
                 deleteButton.setText(bundle.getString("delete.menagebutton"));
                 addButton.setText(bundle.getString("add.managebutton"));
                 idColumn.setText(bundle.getString("id.managelabel.text"));
-                addButtonManage.setText(bundle.getString("add2.managebutton "));
-                gobackButton.setText(bundle.getString("goBack.managebutton"));
+                childsNameField.setPromptText(bundle.getString("child.name.manage.label.text"));
+                ageField.setPromptText(bundle.getString("Age.manage.label.text"));
+
+                classroomNrField.setPromptText(bundle.getString("classroom.nr.manage.label.text"));
+                contactInfoField.setPromptText(bundle.getString("contact.info.manage.label.text"));
+                medicalInfoField.setPromptText(bundle.getString("medical.info.manage.label.text"));
+                teacherField.setPromptText(bundle.getString("teacher.manage.label.text"));
+
+                updateButton.setText(bundle.getString("uptade.manage.button"));
+                updateManageButton.setText(bundle.getString("uptade.manage.button"));
+                addButtonManage.setText(bundle.getString("add.manage.button"));
+                gobackButton.setText(bundle.getString("go.back.button"));
+
                 //MenuBar
                 homeManage.setText(bundle.getString("home.manageteacherlabel"));
                 manageButton.setText(bundle.getString("manage.manageteacherlabel"));
@@ -117,6 +128,18 @@ public class manageController implements Initializable {
                 deleteButton.setText(bundle.getString("delete.menagebutton"));
                 addButton.setText(bundle.getString("add.managebutton"));
                 idColumn.setText(bundle.getString("id.managelabel.text"));
+                childsNameField.setPromptText(bundle.getString("child.name.manage.label.text"));
+                ageField.setPromptText(bundle.getString("Age.manage.label.text"));
+
+                classroomNrField.setPromptText(bundle.getString("classroom.nr.manage.label.text"));
+                contactInfoField.setPromptText(bundle.getString("contact.info.manage.label.text"));
+                medicalInfoField.setPromptText(bundle.getString("medical.info.manage.label.text"));
+                teacherField.setPromptText(bundle.getString("teacher.manage.label.text"));
+
+                updateButton.setText(bundle.getString("uptade.manage.button"));
+                updateManageButton.setText(bundle.getString("uptade.manage.button"));
+                addButtonManage.setText(bundle.getString("add.manage.button"));
+                gobackButton.setText(bundle.getString("go.back.button"));
                 //MenuBar
                 homeManage.setText(bundle.getString("home.manageteacherlabel"));
                 manageButton.setText(bundle.getString("manage.manageteacherlabel"));

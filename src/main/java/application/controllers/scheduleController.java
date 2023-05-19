@@ -130,10 +130,11 @@ public class scheduleController implements Initializable {
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
                 idColumn.setText(bundle.getString("id.text.schedule"));
                 dayColumn.setText(bundle.getString("day.text.schedule"));
-                startTime.setText(bundle.getString("start.time.text.schedule "));
-                endTime.setText(bundle.getString("end.time.text.schedule e"));
-                teacher.setText(bundle.getString("teacher.text.schedule "));
+
+                endTime.setText(bundle.getString("end.time.text.schedule"));
+                teacher.setText(bundle.getString("teacher.text.schedule"));
                 classroomNR.setText(bundle.getString("classroom.text.schedule"));
+                startTime.setText(bundle.getString("start.time.text.schedule"));
                 //MenuBar
                 homeManage.setText(bundle.getString("home.schedule.label"));
                 manageButton.setText(bundle.getString("manage.schedule.label"));
@@ -150,10 +151,11 @@ public class scheduleController implements Initializable {
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
                 idColumn.setText(bundle.getString("id.text.schedule"));
                 dayColumn.setText(bundle.getString("day.text.schedule"));
-                startTime.setText(bundle.getString("start.time.text.schedule "));
-                endTime.setText(bundle.getString("end.time.text.schedule e"));
-                teacher.setText(bundle.getString("teacher.text.schedule "));
+
+                endTime.setText(bundle.getString("end.time.text.schedule"));
+                teacher.setText(bundle.getString("teacher.text.schedule"));
                 classroomNR.setText(bundle.getString("classroom.text.schedule"));
+                startTime.setText(bundle.getString("start.time.text.schedule"));
                 //MenuBar
                 homeManage.setText(bundle.getString("home.schedule.label"));
                 manageButton.setText(bundle.getString("manage.schedule.label"));

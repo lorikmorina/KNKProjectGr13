@@ -39,10 +39,10 @@
                       <TableColumn fx:id="fullNameColumn" prefWidth="202.0" text="Full Name" />
                         <TableColumn fx:id="parentId" prefWidth="74.5" text="Parent ID" />
                         <TableColumn fx:id="age" minWidth="9.3333740234375" prefWidth="74.0" text="Age" />
-                        <TableColumn fx:id="teacher" minWidth="9.3333740234375" prefWidth="222.0" text="Teacher" />
-                        <TableColumn fx:id="classroomNr" minWidth="9.3333740234375" prefWidth="105.0" text="Classroom Nr." />
-                        <TableColumn fx:id="contactInfo" minWidth="9.3333740234375" prefWidth="88.0" text="Contact Info" />
-                        <TableColumn fx:id="medicalInfo" minWidth="9.3333740234375" prefWidth="178.0" text="Medical Info" />
+                        <TableColumn fx:id="teacher" minWidth="9.3333740234375" prefWidth="211.0" text="Teacher" />
+                        <TableColumn fx:id="classroomNr" minWidth="9.3333740234375" prefWidth="94.0" text="Classroom Nr." />
+                        <TableColumn fx:id="contactInfo" minWidth="9.3333740234375" prefWidth="93.0" text="Contact Info" />
+                        <TableColumn fx:id="medicalInfo" minWidth="9.3333740234375" prefWidth="157.0" text="Medical Info" />
                     </columns>
                   </TableView>
                </children>
