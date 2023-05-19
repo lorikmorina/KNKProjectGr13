@@ -1,15 +1,14 @@
 use knk2023;
 CREATE TABLE parents (
                          id INT NOT NULL AUTO_INCREMENT,
-                         fullname VARCHAR(50) NOT NULL,
+                         fullname VARCHAR(50) NOT NULL unique,
                          email VARCHAR(50) NOT NULL,
                          personalNr VARCHAR(50) NOT NULL,
                          salted_hash VARCHAR(256) NOT NULL,
                          salt VARCHAR(256) NOT NULL,
+						 securityQuestion varchar(50) not null,
                          PRIMARY KEY (id)
 );
-Select * from parents;
-
 CREATE TABLE children (
                           child_id INT NOT NULL AUTO_INCREMENT,
                           childsName VARCHAR(50) NOT NULL,
@@ -22,33 +21,26 @@ CREATE TABLE children (
                           PRIMARY KEY (child_id),
                           foreign key(parent_id) references parents(id)
 );
-
-Select * from children;
-
 create table teachers (
-	id INT NOT NULL AUTO_INCREMENT,
-                         fullname VARCHAR(50) NOT NULL,
+						 id INT NOT NULL AUTO_INCREMENT,
+						 fullname VARCHAR(50) NOT NULL unique,
                          email VARCHAR(50) NOT NULL,
                          personalNr VARCHAR(50) NOT NULL,
                          salted_hash VARCHAR(256) NOT NULL,
                          salt VARCHAR(256) NOT NULL,
+                         securityQuestion varchar(50) not null,
                          PRIMARY KEY (id)
 );
-
-select * from teachers;
-
 create table admins (
                         id INT NOT NULL AUTO_INCREMENT,
-                        fullname VARCHAR(50) NOT NULL,
+                        fullname VARCHAR(50) NOT NULL unique,
                         email VARCHAR(50) NOT NULL,
                         personalNr VARCHAR(50) NOT NULL,
                         salted_hash VARCHAR(256) NOT NULL,
                         salt VARCHAR(256) NOT NULL,
+                        securityQuestion varchar(50) not null,
                         PRIMARY KEY (id)
 );
-
-select * from admins;
-
 create table schedules (
                            id INT NOT NULL AUTO_INCREMENT,
                            day VARCHAR(20) NOT NULL,
@@ -61,3 +53,6 @@ create table schedules (
 );
 
 select * from schedules;
+select * from parents;
+select * from teachers;
+select * from admins;
