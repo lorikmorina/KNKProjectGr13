@@ -20,7 +20,7 @@ import java.util.List;
 public class UserRepository implements UserRepositoryInterface {
 
     public  User insert(CreateUserDto user) throws SQLException {
-        String sql = "INSERT INTO parents (fullName, email, personalNr, salted_hash, salt) VALUES (?,?,?, ?, ?)";
+        String sql = "INSERT INTO parents (fullName, email, personalNr, salted_hash, salt,securityQuestion) VALUES (?,?,?,?, ?, ?)";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, user.getFullName());
@@ -28,6 +28,7 @@ public class UserRepository implements UserRepositoryInterface {
         statement.setString(3, user.getPersonalNr());
         statement.setString(4, user.getSaltedPassword());
         statement.setString(5, user.getSalt());
+        statement.setString(6, user.getSecQuestion());
         statement.executeUpdate();
 
         return UserRepository.getByEmail(user.getEmail());

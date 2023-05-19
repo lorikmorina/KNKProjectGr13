@@ -36,11 +36,11 @@ public class UserService implements UserServiceInterface {
         return null;
     }
 
-    public static User signUp(String fullName, String email, String personalNr, String password) throws SQLException{
+    public static User signUp(String fullName, String email, String personalNr, String password, String secQuestion) throws SQLException{
        userRepository = new UserRepository();
         String salt = PasswordHasher.generateSalt();
         String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
-        CreateUserDto user = new CreateUserDto(fullName, email, personalNr, saltedHash, salt);
+        CreateUserDto user = new CreateUserDto(fullName, email, personalNr, saltedHash, salt,secQuestion);
         userRepository.insert(user);
         return UserRepository.getByEmail(email);
     }

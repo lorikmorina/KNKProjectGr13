@@ -59,7 +59,10 @@ public class logInController implements Initializable {
     private CheckBox rememberMe;
     @FXML
     private Hyperlink dontHaveAcc;
-
+    @FXML
+    private Hyperlink forgotPassword;
+    @FXML
+    private Button signUpBtn;
 
 
 
@@ -147,15 +150,27 @@ public class logInController implements Initializable {
         }
     }
     @FXML
-    void signupBtn(ActionEvent event) throws IOException {
+    public void signupBtn(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/signup.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    public void handleForgotPasswordBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/forgotPassword.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeLanguage();
     }
+
+
 }

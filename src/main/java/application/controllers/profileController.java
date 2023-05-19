@@ -127,10 +127,6 @@ public class profileController implements Initializable {
                 scheduleBtn.setText(bundle.getString("schedule.profile.label"));
                 classScheduleBtn.setText(bundle.getString("classSchedule.profile.label"));
                 logoutBtn.setText(bundle.getString("logout.button.profile.text"));
-
-
-
-
             }
 
         });

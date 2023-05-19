@@ -40,6 +40,8 @@ public class signUpController implements Initializable {
     @FXML
     private TextField getTxtPersonalNr;
     @FXML
+    private TextField secQuestion;
+    @FXML
     private Button signUpBtn;
     @FXML
     private Hyperlink alrHaveAcc;
@@ -81,10 +83,10 @@ public class signUpController implements Initializable {
         String email = this.txtEmail.getText();
         String personalNr = this.txtPersonalNr.getText();
         String password = this.txtPassword.getText();
-
+        String secQuestion1 = this.secQuestion.getText();
         try{
             User user = UserService.signUp(
-                    fullName, email, personalNr, password
+                    fullName, email, personalNr, password,secQuestion1
             );
         }catch (SQLException sqlException){
 

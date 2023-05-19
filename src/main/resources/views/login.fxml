@@ -19,7 +19,7 @@
         <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="315.0" />
         <TextField fx:id="txtEmail" layoutX="373.0" layoutY="145.0" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
         <PasswordField fx:id="txtPassword" layoutX="373.0" layoutY="201.0" promptText="Password" style="-fx-background-color: none; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
-        <Button fx:id="loginBtn" layoutX="415.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnLoginClick" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #0589ff;" text="Login" textFill="WHITE" />
+        <Button fx:id="loginBtn" layoutX="409.0" layoutY="264.0" mnemonicParsing="false" onAction="#btnLoginClick" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #0589ff;" text="Login" textFill="WHITE" />
         <FontAwesomeIconView fill="#0589ff" glyphName="USERS" layoutX="446.0" layoutY="105.0" scaleX="3.0" scaleY="3.0" />
         <FontAwesomeIconView fill="#0589ff" glyphName="USER" layoutX="349.0" layoutY="164.0" text="" />
         <FontAwesomeIconView fill="#0589ff" glyphName="KEY" layoutX="347.0" layoutY="219.0" text="" />
@@ -29,11 +29,11 @@
                 <Font name="Raleway Black" size="29.0" />
             </font>
         </Text>
-        <CheckBox fx:id="rememberMe" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" text="Remember me">
+        <CheckBox fx:id="rememberMe" layoutX="377.0" layoutY="294.0" mnemonicParsing="false" text="Remember me">
             <font>
                 <Font size="12.0" />
             </font></CheckBox>
-        <Hyperlink fx:id="dontHaveAcc" layoutX="381.0" layoutY="293.0" onAction="#signupBtn" text="Don't have an account? Sign Up">
+        <Hyperlink fx:id="dontHaveAcc" layoutX="373.0" layoutY="317.0" onAction="#signupBtn" text="Don't have an account? Sign Up">
             <font>
                 <Font size="10.0" />
             </font>
@@ -42,5 +42,10 @@
       <Label fx:id="labelLogin" layoutX="351.0" layoutY="122.0" prefHeight="17.0" prefWidth="198.0" textFill="RED" />
       <RadioButton fx:id="alButton" layoutX="393.0" layoutY="358.0" mnemonicParsing="false" text="AL" />
       <RadioButton fx:id="enButton" layoutX="441.0" layoutY="358.0" mnemonicParsing="false" text="EN" />
+      <Hyperlink fx:id="forgotPassword" layoutX="434.0" layoutY="234.0" onAction="#handleForgotPasswordBtn" text="Forgot password?">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Hyperlink>
     </children>
 </Pane>

@@ -6,13 +6,15 @@ public class CreateUserDto {
     private String personalNr;
     private String saltedPassword;
     private String salt;
+    private String secQuestion;
 
-    public CreateUserDto(String fullName, String email, String personalNr, String saltedPassword, String salt) {
+    public CreateUserDto(String fullName, String email, String personalNr, String saltedPassword, String salt, String secQuestion) {
         this.fullName = fullName;
         this.email = email;
         this.personalNr = personalNr;
         this.saltedPassword = saltedPassword;
         this.salt = salt;
+        this.secQuestion = secQuestion;
     }
 
     public String getFullName() {
@@ -31,4 +33,5 @@ public class CreateUserDto {
     public String getSalt() {
         return salt;
     }
+    public String getSecQuestion() {return secQuestion;}
 }
