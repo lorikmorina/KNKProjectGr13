@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class TeacherRepository implements TeacherRepositoryInterface {
 
     public Teacher insert(CreateTeacherDto user) throws SQLException {
-        String sql = "INSERT INTO teachers (fullName, email, personalNr, salted_hash, salt) VALUES (?,?,?, ?, ?)";
+        String sql = "INSERT INTO teachers (fullName, email, personalNr, salted_hash, salt, securityQuestion) VALUES (?,?,?,?, ?, ?)";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, user.getFullName());
@@ -25,6 +25,7 @@ public class TeacherRepository implements TeacherRepositoryInterface {
         statement.setString(3, user.getPersonalNr());
         statement.setString(4, user.getSaltedPassword());
         statement.setString(5, user.getSalt());
+        statement.setString(6,user.getSecQuestion());
         statement.executeUpdate();
 
         return TeacherRepository.getByEmail(user.getEmail());

@@ -37,11 +37,11 @@ public class TeacherService implements TeacherServiceInterface {
         return null;
     }
 
-    public static Teacher signUp(String fullName, String email, String personalNr, String password) throws SQLException{
+    public static Teacher signUp(String fullName, String email, String personalNr, String password, String secQuestion) throws SQLException{
        userRepository = new TeacherRepository();
         String salt = PasswordHasher.generateSalt();
         String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
-        CreateTeacherDto user = new CreateTeacherDto(fullName, email, personalNr, saltedHash, salt);
+        CreateTeacherDto user = new CreateTeacherDto(fullName, email, personalNr, saltedHash, salt, secQuestion);
         userRepository.insert(user);
         return TeacherRepository.getByEmail(email);
     }

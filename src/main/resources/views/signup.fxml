@@ -18,9 +18,9 @@
       <TextField fx:id="txtEmail" layoutX="373.0" layoutY="103.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="secQuestion" layoutX="373.0" layoutY="150.0" promptText="Your teachers name?" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="txtPersonalNr" layoutX="373.0" layoutY="198.0" promptText="Personal Nr." style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <PasswordField fx:id="txtPassword" layoutX="376.0" layoutY="258.0" promptText="Password" style="-fx-background-color: none; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+      <PasswordField fx:id="txtPassword" layoutX="376.0" layoutY="251.0" promptText="Password" style="-fx-background-color: none; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
       <Button fx:id="signUpBtn" layoutX="409.0" layoutY="298.0" mnemonicParsing="false" onAction="#signUpBtn" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #0589ff;" text="Sign Up" textFill="WHITE" />
-      <FontAwesomeIconView fill="#0589ff" glyphName="KEY" layoutX="350.0" layoutY="275.0" />
+      <FontAwesomeIconView fill="#0589ff" glyphName="KEY" layoutX="351.0" layoutY="268.0" />
       <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="149.0" layoutY="122.0" scaleX="5.0" scaleY="5.0" />
       <Text fill="WHITE" layoutX="24.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Çerdhe Xixëllonjat">
          <font>

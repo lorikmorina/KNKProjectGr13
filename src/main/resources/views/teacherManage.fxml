@@ -39,18 +39,19 @@
                       <TableColumn fx:id="fullNameColumn" prefWidth="253.0" text="Full Name" />
                         <TableColumn fx:id="emailId" prefWidth="276.0" text="Email" />
                         <TableColumn fx:id="personalNrColumn" minWidth="9.3333740234375" prefWidth="201.0" text="Personal Number" />
+                        <TableColumn fx:id="securityQuestionColumn" minWidth="9.3333740234375" prefWidth="175.0" text="Securiy Question" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
-            <VBox fx:id="vBoxManage" layoutX="196.0" layoutY="309.0" prefHeight="209.0" prefWidth="367.0" visible="false">
+            <VBox fx:id="vBoxManage" layoutX="196.0" layoutY="309.0" prefHeight="248.0" prefWidth="367.0" visible="false">
                <children>
                   <TextField fx:id="teachersNameField" promptText="Teacher's Name">
                      <font>
                         <Font size="17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="emailField" promptText="Email">
@@ -58,7 +59,7 @@
                         <Font size="17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="personalNumber" promptText="Personal Number">
@@ -66,13 +67,24 @@
                         <Font size="17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="passText" layoutX="10.0" layoutY="116.0" promptText="Password">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="secQuestionA" promptText="secQuestion">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
                   </TextField>
                </children>
             </VBox>
@@ -121,6 +133,11 @@
                   <Font size="15.0" />
                </font>
             </Button>
+            <TextField fx:id="secQuestionB" layoutX="196.0" layoutY="443.0" prefHeight="38.0" prefWidth="367.0" promptText="secQuestionB" visible="false">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <FontAwesomeIconView glyphName="SEARCH" layoutX="991.0" layoutY="153.0" />

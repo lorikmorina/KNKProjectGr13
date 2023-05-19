@@ -7,7 +7,7 @@ public class Teacher {
     private String personalNr;
     private String saltedPassword;
     private String salt;
-
+    private String secQuestion;
 
     public Teacher(int id, String fullName, String email, String personalNr, String saltedPassword, String salt) {
         this.id = id;
@@ -18,11 +18,12 @@ public class Teacher {
         this.salt = salt;
     }
 
-    public Teacher(int id, String fullName, String email, String personalNr) {
+    public Teacher(int id, String fullName, String email, String personalNr, String secQuestion) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.personalNr = personalNr;
+        this.secQuestion = secQuestion;
     }
 
 
@@ -36,9 +37,8 @@ public class Teacher {
     public String getEmail() {
         return email;
     }
-    public String getPersonalNr() {
-        return personalNr;
-    }
+    public String getPersonalNr() {return personalNr;}
+    public String getSecQuestion(){return secQuestion;}
     public String getSaltedPassword() { return saltedPassword;}
     public String getSalt() { return salt; }
 

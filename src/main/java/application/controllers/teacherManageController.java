@@ -69,7 +69,7 @@ public class teacherManageController implements Initializable {
     private Label nameLabel;
 
     @FXML
-    private TableColumn<Teacher, String> emailId, personalNrColumn;
+    private TableColumn<Teacher, String> emailId, personalNrColumn, securityQuestionColumn;
 
     @FXML
     private TextField personalNumber;
@@ -79,6 +79,8 @@ public class teacherManageController implements Initializable {
 
     @FXML
     private TextField teachersNameField;
+    @FXML
+    private TextField secQuestionA,secQuestionB;
 
     @FXML
     private TextField passText;
@@ -191,7 +193,6 @@ public class teacherManageController implements Initializable {
         if(session.getAccessLevel() == 3){
             teacherManageBtn.setVisible(false);
             teacherManageBtn.setManaged(false);
-
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
         } else if (session.getAccessLevel() == 2) {
@@ -216,14 +217,16 @@ public class teacherManageController implements Initializable {
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         emailId.setCellValueFactory(new PropertyValueFactory<>("email"));
         personalNrColumn.setCellValueFactory(new PropertyValueFactory<>("personalNr"));
+        securityQuestionColumn.setCellValueFactory(new PropertyValueFactory<>("securityQuestion"));
         userTable.setItems(getUsers());
 
         userTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 // Set the values of the selected item as default values in the input fields
                 teachersNameField.setText(newSelection.getFullName());
-                emailField.setText(String.valueOf(newSelection.getEmail()));
+                emailField.setText(newSelection.getEmail());
                 personalNumber.setText(newSelection.getPersonalNr());
+                secQuestionB.setText(newSelection.getSecQuestion());
             }
         });
 
@@ -236,6 +239,8 @@ public class teacherManageController implements Initializable {
             userManage.setVisible(false);
             deleteID.setVisible(true);
             passText.setVisible(false);
+            secQuestionA.setVisible(false);
+            secQuestionB.setVisible(false);
             deleteID.setOnAction(event3 ->{
                 String id = idField.getText();
                 deleteUser(id);
@@ -255,16 +260,18 @@ public class teacherManageController implements Initializable {
             emailField.setVisible(true);
             personalNumber.setVisible(true);
             passText.setVisible(true);
-
+            secQuestionB.setVisible(false);
+            secQuestionA.setVisible(true);
             addButtonManage.setOnAction(event1->{
                 String teachersName = teachersNameField.getText();
                 String email = emailField.getText();
                 String personalNr = personalNumber.getText();
                 String setPassword = passText.getText();
-
-                addUser(teachersName, email, personalNr,setPassword);
+                String secQuestion1 = secQuestionA.getText();
+                addUser(teachersName, email, personalNr,setPassword,secQuestion1);
             });
             gobackButton.setOnAction(event1 ->{
+                secQuestionB.setVisible(false);
                 hideManageView();
                 clearManage();
             });
@@ -279,17 +286,20 @@ public class teacherManageController implements Initializable {
             personalNumber.setVisible(true);
             passText.setVisible(false);
             gobackButton.setVisible(true);
+            secQuestionB.setVisible(true);
+            secQuestionA.setVisible(false);
             updateManageButton.setVisible(true);
 
             updateManageButton.setOnAction(event1->{
                 String teachersName = teachersNameField.getText();
                 String email = emailField.getText();
                 String personalNr = personalNumber.getText();
+                String secQuestion2 = secQuestionB.getText();
                 int teacherId = idColumn.getCellData(userTable.getSelectionModel().getSelectedItem());
-
-                updateUser(teacherId,teachersName, email, personalNr);
+                updateUser(teacherId,teachersName, email, personalNr, secQuestion2);
             });
             gobackButton.setOnAction(event1 ->{
+                secQuestionB.setVisible(false);
                 hideManageView();
                 clearManage();
             });
@@ -315,9 +325,9 @@ public class teacherManageController implements Initializable {
                 String fullName = resultSet.getString("fullname");
                 String email = resultSet.getString("email");
                 String personalNr = resultSet.getString("personalNr");
+                String securityQuestion = resultSet.getString("securityQuestion");
 
-
-                Teacher teacher = new Teacher(id, fullName, email, personalNr);
+                Teacher teacher = new Teacher(id, fullName, email, personalNr,securityQuestion);
                 teachers.add(teacher);
             }
             stmt.close();
@@ -353,14 +363,14 @@ public class teacherManageController implements Initializable {
             e.printStackTrace();
         }
     }
-    private void addUser(String fullname, String email, String personalNr, String setPassword) {
-        if (fullname.isEmpty() || email.isEmpty() || personalNr.isEmpty() || setPassword.isEmpty()) {
+    private void addUser(String fullname, String email, String personalNr, String setPassword,String secQuestion1) {
+        if (fullname.isEmpty() || email.isEmpty() || personalNr.isEmpty() || setPassword.isEmpty() || secQuestion1.isEmpty()) {
             userManage.setText("Please fill in all fields");
             timeLabel(userManage);
             return;
         }
         try {
-            Teacher teacherInserted = TeacherService.signUp(fullname,email,personalNr,setPassword);
+            Teacher teacherInserted = TeacherService.signUp(fullname,email,personalNr,setPassword,secQuestion1);
 
 
             if (teacherInserted != null) {
@@ -379,7 +389,7 @@ public class teacherManageController implements Initializable {
             e.printStackTrace();
         }
     }
-    private void updateUser(int teacherId,String fullname, String email, String personalNr) {
+    private void updateUser(int teacherId,String fullname, String email, String personalNr, String secQuestion1) {
         if (fullname.isEmpty() || email.isEmpty() || personalNr.isEmpty()) {
             userManage.setText("Please fill in all fields");
             timeLabel(userManage);
@@ -389,12 +399,13 @@ public class teacherManageController implements Initializable {
         try {
             connection = ConnectionUtil.getConnection();
             PreparedStatement stmt = connection.prepareStatement(
-                    "UPDATE teachers SET fullname = ?, email = ?, personalNr = ? where id = ?"
+                    "UPDATE teachers SET fullname = ?, email = ?, personalNr = ?, securityQuestion = ? where id = ?"
             );
             stmt.setString(1, fullname);
             stmt.setString(2, email);
             stmt.setString(3, personalNr);
-            stmt.setInt(4,teacherId);
+            stmt.setString(4,secQuestion1);
+            stmt.setInt(5,teacherId);
 
             int rowsUpdated = stmt.executeUpdate();
 
@@ -435,6 +446,7 @@ public class teacherManageController implements Initializable {
         deleteID.setVisible(false);
         updateButton.setVisible(true);
         updateManageButton.setVisible(false);
+
     }
     private void clearManage(){
         teachersNameField.clear();
