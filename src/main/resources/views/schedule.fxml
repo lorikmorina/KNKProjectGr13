@@ -167,7 +167,7 @@
       </VBox>
       <Pane layoutX="200.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: #63a7e8;">
          <children>
-            <Text fill="WHITE" layoutX="37.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule" wrappingWidth="234.0390625">
+            <Text fx:id="scheduleTitle" fill="WHITE" layoutX="37.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule" wrappingWidth="234.0390625">
                <font>
                   <Font size="28.0" />
                </font>

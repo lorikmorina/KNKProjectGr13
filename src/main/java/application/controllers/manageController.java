@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -68,6 +69,9 @@ public class manageController implements Initializable {
 
     @FXML
     private Button updateManageButton;
+    @FXML
+    private Text manageTitle;
+
 
 
 
@@ -102,6 +106,7 @@ public class manageController implements Initializable {
                 updateManageButton.setText(bundle.getString("uptade.manage.button"));
                 addButtonManage.setText(bundle.getString("add.manage.button"));
                 gobackButton.setText(bundle.getString("go.back.button"));
+                manageTitle.setText(bundle.getString("manage.button.text"));
 
                 //MenuBar
                 homeManage.setText(bundle.getString("home.manageteacherlabel"));
@@ -140,6 +145,7 @@ public class manageController implements Initializable {
                 updateManageButton.setText(bundle.getString("uptade.manage.button"));
                 addButtonManage.setText(bundle.getString("add.manage.button"));
                 gobackButton.setText(bundle.getString("go.back.button"));
+                manageTitle.setText(bundle.getString("manage.button.text"));
                 //MenuBar
                 homeManage.setText(bundle.getString("home.manageteacherlabel"));
                 manageButton.setText(bundle.getString("manage.manageteacherlabel"));

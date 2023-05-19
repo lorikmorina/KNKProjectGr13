@@ -183,7 +183,7 @@
       <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="29.0" layoutY="41.0" size="22" />
       <Pane layoutX="200.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: #63a7e8;">
          <children>
-            <Text fill="WHITE" layoutX="32.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Teachers" wrappingWidth="235.0">
+            <Text fx:id="manageTeacherTitle" fill="WHITE" layoutX="32.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Teachers" wrappingWidth="235.0">
                <font>
                   <Font size="28.0" />
                </font>

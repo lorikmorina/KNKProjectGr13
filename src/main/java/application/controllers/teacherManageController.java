@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -112,6 +113,8 @@ public class teacherManageController implements Initializable {
 
     @FXML
     private Button updateManageButton;
+    @FXML
+    private Text manageTeacherTitle;
 
 
     public  void changeLanguage() {
@@ -129,16 +132,20 @@ public class teacherManageController implements Initializable {
                 personalNrColumn.setText(bundle.getString("personalnumber.manageteacherlabel.text"));
                 deleteButton.setText(bundle.getString("delete.menageteacherbutton"));
                 addButton.setText(bundle.getString("add.manageteacherbutton"));
-                gobackButton.setText(bundle.getString("go.back.button.teacher "));
+                gobackButton.setText(bundle.getString("go.back.button.teacher"));
                 addButtonManage.setText(bundle.getString("add.manageteacherbutton"));
                 idField.setText(bundle.getString("id.manageteacherlabel.text"));
                 deleteID.setText(bundle.getString("id.manageteacherlabel.text"));
                 teachersNameField.setPromptText(bundle.getString("teacherNameDelete.manageteacher"));
                 emailField.setPromptText(bundle.getString("email.manageteacherlabel.text"));
-                personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text "));
+                personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text"));
                 passText.setPromptText(bundle.getString("passwordText.manageteacher"));
+                secQuestionB.setPromptText(bundle.getString("security.question.managetextField"));
+                updateButton.setText(bundle.getString("uptade.manage.button"));
+
 
                 //MenuBar
+                manageTeacherTitle.setText(bundle.getString("teacher.manage.manageteacherlabel"));
                 homeManageTeacher.setText(bundle.getString("home.profile.label"));
                 manageButton.setText(bundle.getString("manage.profile.label.text"));
                 profileBtn.setText(bundle.getString("profile.profile.label.text"));
@@ -158,15 +165,20 @@ public class teacherManageController implements Initializable {
                 personalNrColumn.setText(bundle.getString("personalnumber.manageteacherlabel.text"));
                 deleteButton.setText(bundle.getString("delete.menageteacherbutton"));
                 addButton.setText(bundle.getString("add.manageteacherbutton"));
-                gobackButton.setText(bundle.getString("go.back.button.teacher "));
+                gobackButton.setText(bundle.getString("go.back.button.teacher"));
                 addButtonManage.setText(bundle.getString("add.manageteacherbutton"));
                 idField.setText(bundle.getString("id.manageteacherlabel.text"));
                 deleteID.setText(bundle.getString("id.manageteacherlabel.text"));
                 teachersNameField.setPromptText(bundle.getString("teacherNameDelete.manageteacher"));
                 emailField.setPromptText(bundle.getString("email.manageteacherlabel.text"));
-                personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text "));
+                personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text"));
                 passText.setPromptText(bundle.getString("passwordText.manageteacher"));
+                secQuestionB.setPromptText(bundle.getString("security.question.managetextField"));
+                updateButton.setText(bundle.getString("uptade.manage.button"));
+
                 //MenuBar
+                manageTeacherTitle.setText(bundle.getString("teacher.manage.manageteacherlabel"));
+
                 homeManageTeacher.setText(bundle.getString("home.profile.label"));
                 manageButton.setText(bundle.getString("manage.profile.label.text"));
                 profileBtn.setText(bundle.getString("profile.profile.label.text"));
@@ -174,7 +186,6 @@ public class teacherManageController implements Initializable {
                 scheduleBtn.setText(bundle.getString("schedule.profile.label"));
                 classScheduleBtn.setText(bundle.getString("classSchedule.profile.label"));
                 logoutBtn.setText(bundle.getString("logout.button.profile.text"));
-
 
 
 

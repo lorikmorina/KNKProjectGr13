@@ -58,7 +58,7 @@ public class homeController implements Initializable {
     @FXML
     private Button homeHome;
     @FXML
-    private Text totalChildrenEnrolled,totalTeacherEmployed,totalParentsRegistered;
+    private Text totalChildrenEnrolled,totalTeacherEmployed,totalParentsRegistered,homeTitle;
     @FXML
     private RadioButton alButton,enButton;
 
@@ -80,6 +80,7 @@ public class homeController implements Initializable {
                 totalTeacherEmployed.setText(bundle.getString("total.teachers.label"));
 
                 //MenuBar
+                homeTitle.setText(bundle.getString("home.homelabel"));
                 homeHome.setText(bundle.getString("home.profile.label"));
                 manageButton.setText(bundle.getString("manage.profile.label.text"));
                 profileBtn.setText(bundle.getString("profile.profile.label.text"));
@@ -97,6 +98,7 @@ public class homeController implements Initializable {
                 totalTeacherEmployed.setText(bundle.getString("total.teachers.label"));
                 childrenEnrolled.setPadding(new Insets(0,0,0,0));
                 //MenuBar
+                homeTitle.setText(bundle.getString("home.homelabel"));
                 homeHome.setText(bundle.getString("home.profile.label"));
                 manageButton.setText(bundle.getString("manage.profile.label.text"));
                 profileBtn.setText(bundle.getString("profile.profile.label.text"));

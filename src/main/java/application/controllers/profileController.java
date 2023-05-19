@@ -97,6 +97,7 @@ public class profileController implements Initializable {
                 NewPassword.setPromptText(bundle.getString("newPassword.profile.text"));
                 cancel.setText(bundle.getString("cancel.profile.text"));
                 pieChart.setTitle(bundle.getString("Attendance.profile.text"));
+                profileLabel.setText(bundle.getString("profile.profile.label.text"));
 
                 //MenuBar
                 homeProfile.setText(bundle.getString("home.profile.label"));
@@ -119,6 +120,8 @@ public class profileController implements Initializable {
                 NewPassword.setPromptText(bundle.getString("newPassword.profile.text"));
                 cancel.setText(bundle.getString("cancel.profile.text"));
                 pieChart.setTitle(bundle.getString("Attendance.profile.text"));
+                profileLabel.setText(bundle.getString("profile.profile.label.text"));
+
                 //MenuBar
                 homeProfile.setText(bundle.getString("home.profile.label"));
                 manageButton.setText(bundle.getString("manage.profile.label.text"));

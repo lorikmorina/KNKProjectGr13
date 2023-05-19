@@ -60,6 +60,7 @@ public class signUpController implements Initializable {
                 txtFullName.setPromptText(bundle.getString("fullname.signup.text"));
                 txtPersonalNr.setPromptText(bundle.getString("personal.signup.text"));
                 alrHaveAcc.setText(bundle.getString("already.have.an.account.link"));
+                secQuestion.setPromptText(bundle.getString("your.teacher.name.text"));
 
 
             }else if(newToggle == enButton)  {
@@ -71,6 +72,8 @@ public class signUpController implements Initializable {
                 txtFullName.setPromptText(bundle.getString("fullname.signup.text"));
                 txtPersonalNr.setPromptText(bundle.getString("personal.signup.text"));
                 alrHaveAcc.setText(bundle.getString("already.have.an.account.link"));
+                secQuestion.setPromptText(bundle.getString("your.teacher.name.text"));
+
             }
 
         });

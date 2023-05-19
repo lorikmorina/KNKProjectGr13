@@ -190,7 +190,7 @@
       <RadioButton fx:id="enButton" layoutX="100.0" layoutY="759.0" mnemonicParsing="false" text="EN" />
       <Pane layoutX="200.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: #63a7e8;">
          <children>
-            <Text fill="WHITE" layoutX="34.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage" wrappingWidth="106.0390625">
+            <Text fx:id="manageTitle" fill="WHITE" layoutX="28.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage" wrappingWidth="122.0390625">
                <font>
                   <Font size="28.0" />
                </font>

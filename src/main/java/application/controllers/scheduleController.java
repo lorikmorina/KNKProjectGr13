@@ -118,6 +118,8 @@ public class scheduleController implements Initializable {
 
     @FXML
     private Button updateManageButton;
+    @FXML
+    private Text homeTitle,scheduleTitle;
 
 
     public void changeLanguage() {
@@ -131,11 +133,13 @@ public class scheduleController implements Initializable {
                 idColumn.setText(bundle.getString("id.text.schedule"));
                 dayColumn.setText(bundle.getString("day.text.schedule"));
 
-                endTime.setText(bundle.getString("end.time.text.schedule"));
-                teacher.setText(bundle.getString("teacher.text.schedule"));
-                classroomNR.setText(bundle.getString("classroom.text.schedule"));
-                startTime.setText(bundle.getString("start.time.text.schedule"));
+
+                teacherColumn.setText(bundle.getString("teacher.text.schedule"));
+                classroomNr.setText(bundle.getString("classroom.text.schedule"));
+                startTimeColumn.setText(bundle.getString("start.time.text.schedule"));
+                endTimeColumn.setText(bundle.getString("end.time.text.schedule"));
                 //MenuBar
+                scheduleTitle.setText(bundle.getString("schedule.schedule.label"));
                 homeManage.setText(bundle.getString("home.schedule.label"));
                 manageButton.setText(bundle.getString("manage.schedule.label"));
                 profileBtn.setText(bundle.getString("profile.schedule.label"));
@@ -143,7 +147,7 @@ public class scheduleController implements Initializable {
                 scheduleBtn.setText(bundle.getString("schedule.schedule.label"));
                 classScheduleBtn.setText(bundle.getString("classSchedule.schedule.label"));
                 logoutBtn.setText(bundle.getString("logout.button.schedule.text"));
-                searchField.setText(bundle.getString("search.placeholder.schedule"));
+                searchField.setPromptText(bundle.getString("search.placeholder.schedule"));
 
 
             } else if (newToggle == enButton) {
@@ -152,11 +156,13 @@ public class scheduleController implements Initializable {
                 idColumn.setText(bundle.getString("id.text.schedule"));
                 dayColumn.setText(bundle.getString("day.text.schedule"));
 
-                endTime.setText(bundle.getString("end.time.text.schedule"));
-                teacher.setText(bundle.getString("teacher.text.schedule"));
-                classroomNR.setText(bundle.getString("classroom.text.schedule"));
-                startTime.setText(bundle.getString("start.time.text.schedule"));
+
+                teacherColumn.setText(bundle.getString("teacher.text.schedule"));
+                classroomNr.setText(bundle.getString("classroom.text.schedule"));
+                startTimeColumn.setText(bundle.getString("start.time.text.schedule"));
+                endTimeColumn.setText(bundle.getString("end.time.text.schedule"));
                 //MenuBar
+                scheduleTitle.setText(bundle.getString("schedule.schedule.label"));
                 homeManage.setText(bundle.getString("home.schedule.label"));
                 manageButton.setText(bundle.getString("manage.schedule.label"));
                 profileBtn.setText(bundle.getString("profile.schedule.label"));
@@ -164,7 +170,7 @@ public class scheduleController implements Initializable {
                 scheduleBtn.setText(bundle.getString("schedule.schedule.label"));
                 classScheduleBtn.setText(bundle.getString("classSchedule.schedule.label"));
                 logoutBtn.setText(bundle.getString("logout.button.schedule.text"));
-                searchField.setText(bundle.getString("search.placeholder.schedule = Search"));
+                searchField.setPromptText(bundle.getString("search.placeholder.schedule = Search"));
 
 
             }
