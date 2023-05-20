@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.models.Admin;
+import application.models.LanguageManager;
 import application.models.Teacher;
 import application.models.User;
 import application.service.AdminService;
@@ -74,6 +75,7 @@ public class logInController implements Initializable {
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 loginBtn.setText(bundle.getString("login.button.text"));
                 txtEmail.setPromptText(bundle.getString("email.placeholder"));
                 txtPassword.setPromptText(bundle.getString("password.placeholder"));
@@ -83,6 +85,7 @@ public class logInController implements Initializable {
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("en_US");
                 loginBtn.setText(bundle.getString("login.button.text"));
                 txtEmail.setPromptText(bundle.getString("email.placeholder"));
                 txtPassword.setPromptText(bundle.getString("password.placeholder"));

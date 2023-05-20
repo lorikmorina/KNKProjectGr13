@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.models.LanguageManager;
 import application.models.User;
 import application.service.UserService;
 import javafx.event.ActionEvent;
@@ -77,7 +78,12 @@ public class signUpController implements Initializable {
             }
 
         });
-        languageToggleGroup.selectToggle(alButton);
+        String selectedLanguage = LanguageManager.getInstance().getSelectedLanguage();
+        if (selectedLanguage.equals("sq_AL")) {
+            languageToggleGroup.selectToggle(alButton);
+        } else if (selectedLanguage.equals("en_US")) {
+            languageToggleGroup.selectToggle(enButton);
+        }
     }
 
     @FXML

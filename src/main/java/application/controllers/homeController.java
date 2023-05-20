@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.database.ConnectionUtil;
 import application.models.Admin;
+import application.models.LanguageManager;
 import application.models.Teacher;
 import application.models.User;
 import application.service.UserSession;
@@ -107,13 +108,16 @@ public class homeController implements Initializable {
                 classScheduleBtn.setText(bundle.getString("classSchedule.profile.label"));
                 logoutBtn.setText(bundle.getString("logout.button.profile.text"));
 
-
-
-
             }
 
         });
-        languageToggleGroup.selectToggle(alButton);
+        String selectedLanguage = LanguageManager.getInstance().getSelectedLanguage();
+        if (selectedLanguage.equals("sq_AL")) {
+            languageToggleGroup.selectToggle(alButton);
+        } else if (selectedLanguage.equals("en_US")) {
+            languageToggleGroup.selectToggle(enButton);
+        }
+
     }
 
     public void initialize(UserSession session) throws SQLException {

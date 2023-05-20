@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.database.ConnectionUtil;
 import application.models.Admin;
+import application.models.LanguageManager;
 import application.models.Teacher;
 import application.models.User;
 import application.repository.AdminRepository;
@@ -133,7 +134,12 @@ public class profileController implements Initializable {
             }
 
         });
-        languageToggleGroup.selectToggle(alButton);
+        String selectedLanguage = LanguageManager.getInstance().getSelectedLanguage();
+        if (selectedLanguage.equals("sq_AL")) {
+            languageToggleGroup.selectToggle(alButton);
+        } else if (selectedLanguage.equals("en_US")) {
+            languageToggleGroup.selectToggle(enButton);
+        }
     }
     public void initialize(UserSession session) throws SQLException {
              this.session = session;

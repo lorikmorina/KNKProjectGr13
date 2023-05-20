@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.database.ConnectionUtil;
 import application.models.Child;
+import application.models.LanguageManager;
 import application.models.Schedule;
 import application.models.Teacher;
 import application.models.dto.CreateScheduleDto;
@@ -176,7 +177,12 @@ public class scheduleController implements Initializable {
             }
 
         });
-        languageToggleGroup.selectToggle(alButton);
+        String selectedLanguage = LanguageManager.getInstance().getSelectedLanguage();
+        if (selectedLanguage.equals("sq_AL")) {
+            languageToggleGroup.selectToggle(alButton);
+        } else if (selectedLanguage.equals("en_US")) {
+            languageToggleGroup.selectToggle(enButton);
+        }
     }
 
     public void initialize(UserSession session) {

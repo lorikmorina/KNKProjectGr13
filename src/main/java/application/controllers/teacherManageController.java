@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.database.ConnectionUtil;
+import application.models.LanguageManager;
 import application.models.Teacher;
 import application.service.PasswordHasher;
 import application.service.TeacherService;
@@ -197,7 +198,12 @@ public class teacherManageController implements Initializable {
             }
 
         });
-        languageToggleGroup.selectToggle(alButton);
+        String selectedLanguage = LanguageManager.getInstance().getSelectedLanguage();
+        if (selectedLanguage.equals("sq_AL")) {
+            languageToggleGroup.selectToggle(alButton);
+        } else if (selectedLanguage.equals("en_US")) {
+            languageToggleGroup.selectToggle(enButton);
+        }
     }
    
 

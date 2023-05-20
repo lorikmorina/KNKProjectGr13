@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.models.Child;
+import application.models.LanguageManager;
 import application.models.Teacher;
 import application.service.PasswordHasher;
 import application.models.User;
@@ -159,7 +160,12 @@ public class manageController implements Initializable {
             }
 
         });
-        languageToggleGroup.selectToggle(alButton);
+        String selectedLanguage = LanguageManager.getInstance().getSelectedLanguage();
+        if (selectedLanguage.equals("sq_AL")) {
+            languageToggleGroup.selectToggle(alButton);
+        } else if (selectedLanguage.equals("en_US")) {
+            languageToggleGroup.selectToggle(enButton);
+        }
     }
 
 
