@@ -134,15 +134,16 @@ public class teacherManageController implements Initializable {
                 addButton.setText(bundle.getString("add.manageteacherbutton"));
                 gobackButton.setText(bundle.getString("go.back.button.teacher"));
                 addButtonManage.setText(bundle.getString("add.manageteacherbutton"));
-                idField.setText(bundle.getString("id.manageteacherlabel.text"));
+                idField.setPromptText(bundle.getString("id.manageteacherlabel.text"));
                 deleteID.setText(bundle.getString("id.manageteacherlabel.text"));
                 teachersNameField.setPromptText(bundle.getString("teacherNameDelete.manageteacher"));
                 emailField.setPromptText(bundle.getString("email.manageteacherlabel.text"));
                 personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text"));
                 passText.setPromptText(bundle.getString("passwordText.manageteacher"));
                 secQuestionB.setPromptText(bundle.getString("security.question.managetextField"));
-                updateButton.setText(bundle.getString("uptade.manage.button"));
-
+                updateButton.setText(bundle.getString("updade.manage.button"));
+                securityQuestionColumn.setText(bundle.getString("security.question.managetextField"));
+                updateManageButton.setText(bundle.getString("updade.manage.button"));
 
                 //MenuBar
                 manageTeacherTitle.setText(bundle.getString("teacher.manage.manageteacherlabel"));
@@ -167,14 +168,18 @@ public class teacherManageController implements Initializable {
                 addButton.setText(bundle.getString("add.manageteacherbutton"));
                 gobackButton.setText(bundle.getString("go.back.button.teacher"));
                 addButtonManage.setText(bundle.getString("add.manageteacherbutton"));
-                idField.setText(bundle.getString("id.manageteacherlabel.text"));
+                idField.setPromptText(bundle.getString("id.manageteacherlabel.text"));
                 deleteID.setText(bundle.getString("id.manageteacherlabel.text"));
                 teachersNameField.setPromptText(bundle.getString("teacherNameDelete.manageteacher"));
                 emailField.setPromptText(bundle.getString("email.manageteacherlabel.text"));
                 personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text"));
                 passText.setPromptText(bundle.getString("passwordText.manageteacher"));
                 secQuestionB.setPromptText(bundle.getString("security.question.managetextField"));
-                updateButton.setText(bundle.getString("uptade.manage.button"));
+                updateButton.setText(bundle.getString("updade.manage.button"));
+                securityQuestionColumn.setText(bundle.getString("security.question.managetextField"));
+                updateManageButton.setText(bundle.getString("updade.manage.button"));
+
+
 
                 //MenuBar
                 manageTeacherTitle.setText(bundle.getString("teacher.manage.manageteacherlabel"));
