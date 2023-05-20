@@ -115,7 +115,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <RadioButton fx:id="alButton" layoutX="58.0" layoutY="757.0" mnemonicParsing="false" text="AL" />
-      <RadioButton fx:id="enButton" layoutX="106.0" layoutY="757.0" mnemonicParsing="false" text="EN" />
+      <RadioButton fx:id="alButton" layoutX="73.0" layoutY="63.0" mnemonicParsing="false" text="AL" />
+      <RadioButton fx:id="enButton" layoutX="121.0" layoutY="63.0" mnemonicParsing="false" text="EN" />
    </children>
 </Pane>

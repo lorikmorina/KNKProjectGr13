@@ -136,7 +136,7 @@ public class teacherManageController implements Initializable {
                 gobackButton.setText(bundle.getString("go.back.button.teacher"));
                 addButtonManage.setText(bundle.getString("add.manageteacherbutton"));
                 idField.setPromptText(bundle.getString("id.manageteacherlabel.text"));
-                deleteID.setText(bundle.getString("id.manageteacherlabel.text"));
+                deleteID.setText(bundle.getString("delete.menagebutton"));
                 teachersNameField.setPromptText(bundle.getString("teacherNameDelete.manageteacher"));
                 emailField.setPromptText(bundle.getString("email.manageteacherlabel.text"));
                 personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text"));
@@ -145,6 +145,9 @@ public class teacherManageController implements Initializable {
                 updateButton.setText(bundle.getString("updade.manage.button"));
                 securityQuestionColumn.setText(bundle.getString("security.question.managetextField"));
                 updateManageButton.setText(bundle.getString("updade.manage.button"));
+                secQuestionA.setPromptText(bundle.getString("securityquesion.txt"));
+                secQuestionB.setPromptText(bundle.getString("securityquesion.txt"));
+
 
                 //MenuBar
                 manageTeacherTitle.setText(bundle.getString("teacher.manage.manageteacherlabel"));
@@ -170,7 +173,7 @@ public class teacherManageController implements Initializable {
                 gobackButton.setText(bundle.getString("go.back.button.teacher"));
                 addButtonManage.setText(bundle.getString("add.manageteacherbutton"));
                 idField.setPromptText(bundle.getString("id.manageteacherlabel.text"));
-                deleteID.setText(bundle.getString("id.manageteacherlabel.text"));
+                deleteID.setText(bundle.getString("delete.menagebutton"));
                 teachersNameField.setPromptText(bundle.getString("teacherNameDelete.manageteacher"));
                 emailField.setPromptText(bundle.getString("email.manageteacherlabel.text"));
                 personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text"));
@@ -179,11 +182,10 @@ public class teacherManageController implements Initializable {
                 updateButton.setText(bundle.getString("updade.manage.button"));
                 securityQuestionColumn.setText(bundle.getString("security.question.managetextField"));
                 updateManageButton.setText(bundle.getString("updade.manage.button"));
-
-
-
                 //MenuBar
                 manageTeacherTitle.setText(bundle.getString("teacher.manage.manageteacherlabel"));
+                secQuestionA.setPromptText(bundle.getString("securityquesion.txt"));
+                secQuestionB.setPromptText(bundle.getString("securityquesion.txt"));
 
                 homeManageTeacher.setText(bundle.getString("home.profile.label"));
                 manageButton.setText(bundle.getString("manage.profile.label.text"));
@@ -192,9 +194,6 @@ public class teacherManageController implements Initializable {
                 scheduleBtn.setText(bundle.getString("schedule.profile.label"));
                 classScheduleBtn.setText(bundle.getString("classSchedule.profile.label"));
                 logoutBtn.setText(bundle.getString("logout.button.profile.text"));
-
-
-
             }
 
         });
@@ -347,9 +346,9 @@ public class teacherManageController implements Initializable {
                 String fullName = resultSet.getString("fullname");
                 String email = resultSet.getString("email");
                 String personalNr = resultSet.getString("personalNr");
-                String securityQuestion = resultSet.getString("securityQuestion");
+                String securityQuestion1 = resultSet.getString("securityQuestion");
 
-                Teacher teacher = new Teacher(id, fullName, email, personalNr,securityQuestion);
+                Teacher teacher = new Teacher(id, fullName, email, personalNr,securityQuestion1);
                 teachers.add(teacher);
             }
             stmt.close();

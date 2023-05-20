@@ -52,7 +52,7 @@
                         <Font size="17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="startTimeField" promptText="Start Time">
@@ -60,7 +60,7 @@
                         <Font size="17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="endTimeField" promptText="End Time">
@@ -68,13 +68,16 @@
                         <Font size="17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="classroomNrField" layoutX="10.0" layoutY="116.0" promptText="Classroom Nr">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
                   </TextField>
                </children>
             </VBox>
@@ -175,7 +178,7 @@
          </children>
       </Pane>
       <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="28.0" layoutY="42.0" size="22" wrappingWidth="19.142857551574707" />
-      <RadioButton fx:id="alButton" layoutX="56.0" layoutY="754.0" mnemonicParsing="false" text="AL" />
-      <RadioButton fx:id="enButton" layoutX="100.0" layoutY="754.0" mnemonicParsing="false" text="EN" />
+      <RadioButton fx:id="alButton" layoutX="58.0" layoutY="55.0" mnemonicParsing="false" text="AL" />
+      <RadioButton fx:id="enButton" layoutX="102.0" layoutY="55.0" mnemonicParsing="false" text="EN" />
    </children>
 </Pane>

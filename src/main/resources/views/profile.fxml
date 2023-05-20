@@ -133,8 +133,8 @@
             </Button>
          </children>
       </VBox>
-      <RadioButton fx:id="alButton" layoutX="55.0" layoutY="767.0" mnemonicParsing="false" text="AL" />
-      <RadioButton fx:id="enButton" layoutX="103.0" layoutY="767.0" mnemonicParsing="false" text="EN" />
+      <RadioButton fx:id="alButton" layoutX="46.0" layoutY="53.0" mnemonicParsing="false" text="AL" />
+      <RadioButton fx:id="enButton" layoutX="94.0" layoutY="53.0" mnemonicParsing="false" text="EN" />
    </children>
 
 </Pane>

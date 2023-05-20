@@ -151,6 +151,11 @@ public class scheduleController implements Initializable {
                 searchField.setPromptText(bundle.getString("search.placeholder.schedule"));
 
 
+                dayField.setPromptText(bundle.getString("day.text.schedule"));
+                startTimeField.setPromptText(bundle.getString("start.time.text.schedule"));
+                endTimeField.setPromptText(bundle.getString("end.time.text.schedule"));
+                classroomNrField.setPromptText(bundle.getString("classroom.text.schedule"));
+
             } else if (newToggle == enButton) {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
@@ -174,6 +179,10 @@ public class scheduleController implements Initializable {
                 searchField.setPromptText(bundle.getString("search.placeholder.schedule = Search"));
 
 
+                dayField.setPromptText(bundle.getString("day.text.schedule"));
+                startTimeField.setPromptText(bundle.getString("start.time.text.schedule"));
+                endTimeField.setPromptText(bundle.getString("end.time.text.schedule"));
+                classroomNrField.setPromptText(bundle.getString("classroom.text.schedule"));
             }
 
         });

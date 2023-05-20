@@ -17,7 +17,7 @@
 
 <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.teacherManageController">
    <children>
-      <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" layoutY="-7.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
       <TextField fx:id="searchField" layoutX="328.0" layoutY="135.0" prefHeight="28.0" prefWidth="685.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
       <Text fill="WHITE" layoutX="53.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Çerdhe Xixëllonjat" textAlignment="CENTER">
          <font>
@@ -190,7 +190,7 @@
             </Text>
          </children>
       </Pane>
-      <RadioButton fx:id="alButton" layoutX="52.0" layoutY="755.0" mnemonicParsing="false" text="AL" />
-      <RadioButton fx:id="enButton" layoutX="100.0" layoutY="755.0" mnemonicParsing="false" text="EN" />
+      <RadioButton fx:id="alButton" layoutX="58.0" layoutY="55.0" mnemonicParsing="false" text="AL" />
+      <RadioButton fx:id="enButton" layoutX="106.0" layoutY="55.0" mnemonicParsing="false" text="EN" />
    </children>
 </Pane>
