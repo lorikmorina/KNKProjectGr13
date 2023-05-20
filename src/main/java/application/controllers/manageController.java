@@ -1,10 +1,7 @@
 package application.controllers;
 
-import application.models.Child;
-import application.models.LanguageManager;
-import application.models.Teacher;
+import application.models.*;
 import application.service.PasswordHasher;
-import application.models.User;
 import application.database.ConnectionUtil;
 import application.service.UserSession;
 import javafx.animation.KeyFrame;
@@ -560,6 +557,7 @@ public class manageController implements Initializable {
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {
+            RememberMeConfig.clearSavedCredentials();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
             Parent root = loader.load();
             Scene manageScene = new Scene(root);

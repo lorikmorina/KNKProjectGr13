@@ -1,10 +1,7 @@
 package application.controllers;
 
 import application.database.ConnectionUtil;
-import application.models.Admin;
-import application.models.LanguageManager;
-import application.models.Teacher;
-import application.models.User;
+import application.models.*;
 import application.repository.AdminRepository;
 import application.repository.TeacherRepository;
 import application.repository.UserRepository;
@@ -239,6 +236,7 @@ public class profileController implements Initializable {
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {
+            RememberMeConfig.clearSavedCredentials();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
             Parent root = loader.load();
             Scene manageScene = new Scene(root);

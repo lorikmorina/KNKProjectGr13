@@ -1,10 +1,7 @@
 package application.controllers;
 
 import application.database.ConnectionUtil;
-import application.models.Child;
-import application.models.LanguageManager;
-import application.models.Schedule;
-import application.models.Teacher;
+import application.models.*;
 import application.models.dto.CreateScheduleDto;
 import application.models.dto.CreateTeacherDto;
 import application.repository.SchedulesRepository;
@@ -595,6 +592,7 @@ public class scheduleController implements Initializable {
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {
+            RememberMeConfig.clearSavedCredentials();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
             Parent root = loader.load();
             Scene manageScene = new Scene(root);

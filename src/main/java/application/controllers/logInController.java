@@ -1,9 +1,6 @@
 package application.controllers;
 
-import application.models.Admin;
-import application.models.LanguageManager;
-import application.models.Teacher;
-import application.models.User;
+import application.models.*;
 import application.service.AdminService;
 import application.service.TeacherService;
 import application.service.UserService;
@@ -21,11 +18,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
+
+import static application.models.RememberMeConfig.*;
 
 public class logInController implements Initializable {
 
@@ -65,7 +65,7 @@ public class logInController implements Initializable {
     @FXML
     private Button signUpBtn;
 
-
+    private static final String CONFIG_FILE = "config.properties";
 
     public  void changeLanguage() {
         ToggleGroup languageToggleGroup = new ToggleGroup();
@@ -138,7 +138,11 @@ public class logInController implements Initializable {
 //            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //            stage.setScene(scene);
 //            stage.show();
-
+            if (rememberMe.isSelected()) {
+                saveCredentials(email, password);
+            } else {
+                clearSavedCredentials();
+            }
 
 
             System.out.println("test");
@@ -150,6 +154,35 @@ public class logInController implements Initializable {
             System.out.println("Gabim ne baze te te dhenave!");
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void saveCredentials(String email, String password) {
+        Properties properties = new Properties();
+        properties.setProperty("email", email);
+        properties.setProperty("password", password);
+
+        try (OutputStream outputStream = new FileOutputStream(CONFIG_FILE)) {
+            properties.store(outputStream, "Remember Me Configuration");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadSavedCredentials() {
+        try (InputStream inputStream = new FileInputStream(CONFIG_FILE)) {
+            Properties properties = new Properties();
+            properties.load(inputStream);
+
+            String email = properties.getProperty("email");
+            String password = properties.getProperty("password");
+
+            if (email != null && password != null) {
+                txtEmail.setText(email);
+                txtPassword.setText(password);
+                rememberMe.setSelected(true);
+            }
+        } catch (IOException e) {
+            // Configuration file doesn't exist or couldn't be loaded
         }
     }
     @FXML
@@ -173,6 +206,7 @@ public class logInController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeLanguage();
+        loadSavedCredentials();
     }
 
 

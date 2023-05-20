@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.database.ConnectionUtil;
 import application.models.LanguageManager;
+import application.models.RememberMeConfig;
 import application.models.Teacher;
 import application.service.PasswordHasher;
 import application.service.TeacherService;
@@ -542,6 +543,7 @@ private void handleManageButton(ActionEvent event) {
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {
+            RememberMeConfig.clearSavedCredentials();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
             Parent root = loader.load();
             Scene manageScene = new Scene(root);
