@@ -9,13 +9,14 @@ public class Teacher {
     private String salt;
     private String secQuestion;
 
-    public Teacher(int id, String fullName, String email, String personalNr, String saltedPassword, String salt) {
+    public Teacher(int id, String fullName, String email, String personalNr, String saltedPassword, String salt, String secQuestion) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.personalNr = personalNr;
         this.saltedPassword = saltedPassword;
         this.salt = salt;
+        this.secQuestion = secQuestion;
     }
 
     public Teacher(int id, String fullName, String email, String personalNr, String secQuestion) {
