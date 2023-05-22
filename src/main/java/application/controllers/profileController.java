@@ -157,14 +157,7 @@ public class profileController implements Initializable {
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
-        } else if(session.getAccessLevel() == 1) {
-            manageButton.setVisible(false);
-            manageButton.setManaged(false);
-            scheduleBtn.setVisible(false);
-            scheduleBtn.setManaged(false);
-            classScheduleBtn.setVisible(false);
-            classScheduleBtn.setManaged(false);
-        } else {
+        }else {
             System.out.println("There is a problem in session passing");
         }
         // set all the labels using the User object
