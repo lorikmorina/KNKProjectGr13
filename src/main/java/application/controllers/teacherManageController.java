@@ -143,9 +143,9 @@ public class teacherManageController implements Initializable {
                 personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text"));
                 passText.setPromptText(bundle.getString("passwordText.manageteacher"));
                 secQuestionB.setPromptText(bundle.getString("security.question.managetextField"));
-                updateButton.setText(bundle.getString("updade.manage.button"));
+                updateButton.setText(bundle.getString("update.manage.button"));
                 securityQuestionColumn.setText(bundle.getString("security.question.managetextField"));
-                updateManageButton.setText(bundle.getString("updade.manage.button"));
+                updateManageButton.setText(bundle.getString("update.manage.button"));
                 secQuestionA.setPromptText(bundle.getString("securityquesion.txt"));
                 secQuestionB.setPromptText(bundle.getString("securityquesion.txt"));
 
@@ -180,9 +180,9 @@ public class teacherManageController implements Initializable {
                 personalNumber.setPromptText(bundle.getString("personalnumber.manageteacherlabel.text"));
                 passText.setPromptText(bundle.getString("passwordText.manageteacher"));
                 secQuestionB.setPromptText(bundle.getString("security.question.managetextField"));
-                updateButton.setText(bundle.getString("updade.manage.button"));
+                updateButton.setText(bundle.getString("update.manage.button"));
                 securityQuestionColumn.setText(bundle.getString("security.question.managetextField"));
-                updateManageButton.setText(bundle.getString("updade.manage.button"));
+                updateManageButton.setText(bundle.getString("update.manage.button"));
                 //MenuBar
                 manageTeacherTitle.setText(bundle.getString("teacher.manage.manageteacherlabel"));
                 secQuestionA.setPromptText(bundle.getString("securityquesion.txt"));
@@ -239,7 +239,7 @@ public class teacherManageController implements Initializable {
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         emailId.setCellValueFactory(new PropertyValueFactory<>("email"));
         personalNrColumn.setCellValueFactory(new PropertyValueFactory<>("personalNr"));
-        securityQuestionColumn.setCellValueFactory(new PropertyValueFactory<>("securityQuestion"));
+        securityQuestionColumn.setCellValueFactory(new PropertyValueFactory<>("secQuestion"));
         userTable.setItems(getUsers());
 
         userTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
