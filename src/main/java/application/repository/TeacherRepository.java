@@ -54,7 +54,8 @@ public class TeacherRepository implements TeacherRepositoryInterface {
                 String personalNr = resultSet.getString("personalNr");
                 String saltedHash = resultSet.getString("salted_hash");
                 String salt = resultSet.getString("salt");
-                return new Teacher(id,fullName, email,personalNr , saltedHash, salt);
+                String secQuesion = resultSet.getString("securityQuestion");
+                return new Teacher(id,fullName, email,personalNr , saltedHash, salt,secQuesion);
             } else {
                 return null;
             }
@@ -73,7 +74,8 @@ public class TeacherRepository implements TeacherRepositoryInterface {
                 String personalNr = resultSet.getString("personalNr");
                 String saltedHash = resultSet.getString("salted_hash");
                 String salt = resultSet.getString("salt");
-                return new Teacher(id,fullName, email,personalNr , saltedHash, salt);
+                String secQuesion = resultSet.getString("securityQuestion");
+                return new Teacher(id,fullName, email,personalNr , saltedHash, salt,secQuesion);
             } else {
                 return null;
             }
