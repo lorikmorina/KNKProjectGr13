@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserSession {
-    private int id;
+    private static int id;
     private String fullName;
     private String email;
     private String personalNr;
@@ -25,7 +25,7 @@ public class UserSession {
     }
 
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 

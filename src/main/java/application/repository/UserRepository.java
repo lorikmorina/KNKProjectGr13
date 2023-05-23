@@ -57,7 +57,8 @@ public class UserRepository implements UserRepositoryInterface {
                 String personalNr = resultSet.getString("personalNr");
                 String saltedHash = resultSet.getString("salted_hash");
                 String salt = resultSet.getString("salt");
-                return new User(id,fullName, email,personalNr , saltedHash, salt);
+                String secQuestion = resultSet.getString("securityQuestion");
+                return new User(id,fullName, email,personalNr , saltedHash, salt,secQuestion);
             } else {
                 return null;
             }
@@ -77,7 +78,8 @@ public class UserRepository implements UserRepositoryInterface {
                 String personalNr = resultSet.getString("personalNr");
                 String saltedHash = resultSet.getString("salted_hash");
                 String salt = resultSet.getString("salt");
-                return new User(id,fullName, email,personalNr , saltedHash, salt);
+                String secQuestion = resultSet.getString("securityQuestion");
+                return new User(id,fullName, email,personalNr , saltedHash, salt,secQuestion);
             } else {
                 return null;
             }

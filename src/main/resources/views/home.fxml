@@ -58,6 +58,11 @@
                   <Font size="20.0" />
                </font>
             </Button>
+            <Button fx:id="parentsManage" mnemonicParsing="false" onAction="#handleParentsButton" style="-fx-background-color: transparent;" text="Parents Manage" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <Pane layoutX="200.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: #63a7e8;">

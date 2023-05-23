@@ -36,7 +36,7 @@ public class homeController implements Initializable {
     private Label childrenEnrolled, parentsRegistered, teachersEmployed;
 
     @FXML
-    private Button loginBtn, logoutBtn, profileBtn;
+    private Button loginBtn, logoutBtn, profileBtn,parentsManage;
     @FXML
     private Label nameLabel;
     @FXML
@@ -291,6 +291,22 @@ public class homeController implements Initializable {
                 // teacherManageController.setUser(loggedInUser);
                 scheduleC.initialize(session);
 
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleParentsButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/parentManage.fxml"));
+            Parent root = loader.load();
+            if (session != null) {
+                parentController profileC = loader.getController();
+                profileC.initialize(session);
             }
             Scene profileScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

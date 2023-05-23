@@ -7,22 +7,25 @@ public class User {
     private String personalNr;
     private String saltedPassword;
     private String salt;
+    private String secQuestion;
 
 
-    public User(int id, String fullName, String email, String personalNr, String saltedPassword, String salt) {
+    public User(int id, String fullName, String email, String personalNr, String saltedPassword, String salt, String secQuestion) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.personalNr = personalNr;
         this.saltedPassword = saltedPassword;
         this.salt = salt;
+        this.secQuestion = secQuestion;
     }
 
-    public User(int id, String fullName, String email, String personalNr) {
+    public User(int id, String fullName, String email, String personalNr, String secQuestion) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.personalNr = personalNr;
+        this.secQuestion = secQuestion;
     }
 
 
@@ -61,4 +64,7 @@ public class User {
     public void setSalt(String salt) {
         this.salt = salt;
     }
+    public void setSecQuestion(String secQuestion){this.secQuestion= secQuestion;}
+
+    public String getSecQuestion() {return secQuestion;}
 }
