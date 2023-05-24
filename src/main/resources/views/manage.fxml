@@ -195,6 +195,7 @@
                   <Font size="28.0" />
                </font>
             </Text>
+            <Button fx:id="helpButton" layoutX="997.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleHelpButton" style="-fx-border-radius: 100; -fx-background-color: transparent; -fx-border-color: white; -fx-label-padding: 2px;" text="?" textFill="WHITE" />
          </children>
       </Pane>
       <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="20.0" layoutY="41.0" size="22" />

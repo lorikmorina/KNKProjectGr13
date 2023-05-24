@@ -62,25 +62,4 @@ public class UserSession {
                 '}';
     }
 
-    public int getNrChildren(int parent_id) throws SQLException {
-        Connection connection = null;
-        int nrChildren = 0;
-        try {
-            connection = ConnectionUtil.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT COUNT(*) FROM children WHERE parent_id = ?"
-            );
-            stmt.setInt(1, parent_id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                nrChildren = rs.getInt(1);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            connection.close();
-        }
-        return nrChildren;
-    }
-
 }

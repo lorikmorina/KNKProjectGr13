@@ -58,11 +58,6 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="parentsManage" mnemonicParsing="false" onAction="#handleParentsButton" style="-fx-background-color: transparent;" text="Parents Manage" textFill="WHITE">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
       <Pane layoutX="200.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: #63a7e8;">
@@ -72,8 +67,9 @@
                   <Font size="28.0" />
                </font>
             </Text>
+            <Button fx:id="helpButton" layoutX="1008.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleHelpButton" style="-fx-border-radius: 100; -fx-background-color: transparent; -fx-border-color: white; -fx-label-padding: 2px;" text="?" textFill="WHITE" />
          </children></Pane>
-      <Button fx:id="logoutBtn" layoutX="57.0" layoutY="706.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: transparent;" text="Logout" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="logoutBtn" layoutX="46.0" layoutY="159.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: transparent;" text="Logout" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

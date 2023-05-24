@@ -35,7 +35,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class scheduleController implements Initializable {
-
+    @FXML
+    private Button helpButton;
     @FXML
     private Button addButton;
 
@@ -128,6 +129,7 @@ public class scheduleController implements Initializable {
             if (newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 idColumn.setText(bundle.getString("id.text.schedule"));
                 dayColumn.setText(bundle.getString("day.text.schedule"));
 
@@ -156,6 +158,8 @@ public class scheduleController implements Initializable {
             } else if (newToggle == enButton) {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("en_US");
+
                 idColumn.setText(bundle.getString("id.text.schedule"));
                 dayColumn.setText(bundle.getString("day.text.schedule"));
 
@@ -584,6 +588,24 @@ public class scheduleController implements Initializable {
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleHelpButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/help.fxml"));
+            Parent root = loader.load();
+            if (session != null) {
+                helpController helpController = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                helpController.initialize(session);
+
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
         } catch (Exception e) {
             e.printStackTrace();
         }

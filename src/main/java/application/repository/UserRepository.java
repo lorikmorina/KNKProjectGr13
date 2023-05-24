@@ -2,20 +2,12 @@ package application.repository;
 
 
 
-import application.models.Pagination;
 import application.models.dto.CreateUserDto;
-import application.models.dto.UpdateUserDto;
-import application.models.dto.UserFilter;
-import application.repository.interfaces.BaseInterface;
 import application.repository.interfaces.UserRepositoryInterface;
 import application.database.ConnectionUtil;
 import application.models.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserRepository implements UserRepositoryInterface {
 

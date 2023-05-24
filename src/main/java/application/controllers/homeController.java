@@ -44,7 +44,8 @@ public class homeController implements Initializable {
 
     @FXML
     private Button profileButton;
-
+    @FXML
+    private Button helpButton;
     @FXML
     private Button teacherManageBtn;
     @FXML
@@ -60,6 +61,8 @@ public class homeController implements Initializable {
     @FXML
     private RadioButton alButton,enButton;
 
+
+
     @FXML
     void btnLoginClick(ActionEvent event) {
 
@@ -72,6 +75,7 @@ public class homeController implements Initializable {
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 totalChildrenEnrolled.setText(bundle.getString("total.children.label"));
                 childrenEnrolled.setPadding(new Insets(0,0,0,20));
                 totalParentsRegistered.setText(bundle.getString("total.parents.label"));
@@ -91,6 +95,8 @@ public class homeController implements Initializable {
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("en_US");
+
                 totalChildrenEnrolled.setText(bundle.getString("total.children.label"));
                 totalParentsRegistered.setText(bundle.getString("total.parents.label"));
                 totalTeacherEmployed.setText(bundle.getString("total.teachers.label"));
@@ -299,14 +305,17 @@ public class homeController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
-    private void handleParentsButton(ActionEvent event) {
+    void handleHelpButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/parentManage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/help.fxml"));
             Parent root = loader.load();
             if (session != null) {
-                parentController profileC = loader.getController();
-                profileC.initialize(session);
+                helpController helpController = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                helpController.initialize(session);
+
             }
             Scene profileScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -64,6 +64,7 @@ public class forgotPasswordController implements Initializable{
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 forgotName.setPromptText(bundle.getString("fullname.txt"));
                 forgotEmail.setPromptText(bundle.getString("email.text"));
                 forgotPersonalNr.setPromptText(bundle.getString("personalNr.txt"));
@@ -75,6 +76,7 @@ public class forgotPasswordController implements Initializable{
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("en_US");
                 forgotName.setPromptText(bundle.getString("fullname.txt"));
                 forgotEmail.setPromptText(bundle.getString("email.text"));
                 forgotPersonalNr.setPromptText(bundle.getString("personalNr.txt"));

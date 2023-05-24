@@ -55,6 +55,7 @@ public class signUpController implements Initializable {
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 signUpBtn.setText(bundle.getString("signup.button"));
                 txtEmail.setPromptText(bundle.getString("email.signup.text"));
                 txtPassword.setPromptText(bundle.getString("password.signup.text"));
@@ -67,6 +68,8 @@ public class signUpController implements Initializable {
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("en_US");
+
                 signUpBtn.setText(bundle.getString("signup.button"));
                 txtEmail.setPromptText(bundle.getString("email.signup.text"));
                 txtPassword.setPromptText(bundle.getString("password.signup.text"));

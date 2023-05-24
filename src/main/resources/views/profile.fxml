@@ -135,6 +135,7 @@
       </VBox>
       <RadioButton fx:id="alButton" layoutX="46.0" layoutY="53.0" mnemonicParsing="false" text="AL" />
       <RadioButton fx:id="enButton" layoutX="94.0" layoutY="53.0" mnemonicParsing="false" text="EN" />
+      <Button fx:id="helpButton" layoutX="1206.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleHelpButton" style="-fx-border-radius: 100; -fx-background-color: transparent; -fx-border-color: white; -fx-label-padding: 2px;" text="?" textFill="WHITE" />
    </children>
 
 </Pane>

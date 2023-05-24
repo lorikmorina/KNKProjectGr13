@@ -34,7 +34,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class teacherManageController implements Initializable {
-
+    @FXML
+    private Button helpButton;
     @FXML
     private Button addButton;
 
@@ -83,7 +84,7 @@ public class teacherManageController implements Initializable {
     @FXML
     private TextField teachersNameField;
     @FXML
-    private TextField secQuestionA,secQuestionB;
+    private TextField secQuestionA, secQuestionB;
 
     @FXML
     private TextField passText;
@@ -106,7 +107,7 @@ public class teacherManageController implements Initializable {
     private VBox vBoxManage;
     private UserSession session;
     @FXML
-    private RadioButton alButton,enButton;
+    private RadioButton alButton, enButton;
     @FXML
     private Button homeManageTeacher;
 
@@ -119,14 +120,15 @@ public class teacherManageController implements Initializable {
     private Text manageTeacherTitle;
 
 
-    public  void changeLanguage() {
+    public void changeLanguage() {
         ToggleGroup languageToggleGroup = new ToggleGroup();
         alButton.setToggleGroup(languageToggleGroup);
         enButton.setToggleGroup(languageToggleGroup);
         languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
-            if(newToggle == alButton) {
+            if (newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 searchField.setPromptText(bundle.getString("search.placeholderteacher"));
                 idColumn.setText(bundle.getString("id.labele.teacher.text"));
                 fullNameColumn.setText(bundle.getString("fullname.name.manageteacherlabel.text"));
@@ -161,9 +163,10 @@ public class teacherManageController implements Initializable {
                 logoutBtn.setText(bundle.getString("logout.button.profile.text"));
 
 
-            }else if(newToggle == enButton)  {
+            } else if (newToggle == enButton) {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("en_US");
                 searchField.setPromptText(bundle.getString("search.placeholderteacher"));
                 idColumn.setText(bundle.getString("id.labele.teacher.text"));
                 fullNameColumn.setText(bundle.getString("fullname.name.manageteacherlabel.text"));
@@ -205,14 +208,13 @@ public class teacherManageController implements Initializable {
             languageToggleGroup.selectToggle(enButton);
         }
     }
-   
 
 
     public void initialize(UserSession session) {
         this.session = session;
         nameLabel.setText(session.getFullName());
 
-        if(session.getAccessLevel() == 3){
+        if (session.getAccessLevel() == 3) {
             teacherManageBtn.setVisible(false);
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
@@ -224,7 +226,7 @@ public class teacherManageController implements Initializable {
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
-        } else if(session.getAccessLevel() == 1) {
+        } else if (session.getAccessLevel() == 1) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
             scheduleBtn.setVisible(false);
@@ -263,17 +265,17 @@ public class teacherManageController implements Initializable {
             passText.setVisible(false);
             secQuestionA.setVisible(false);
             secQuestionB.setVisible(false);
-            deleteID.setOnAction(event3 ->{
+            deleteID.setOnAction(event3 -> {
                 String id = idField.getText();
                 deleteUser(id);
             });
-            gobackButton.setOnAction(event1 ->{
+            gobackButton.setOnAction(event1 -> {
                 idField.setVisible(false);
                 hideManageView();
                 clearManage();
             });
         });
-        addButton.setOnAction(event ->{
+        addButton.setOnAction(event -> {
             //childsNameField,parentIdField, ageField, teacherField,classroomNrField, contactInfoField, medicalInfoField
             showManageView();
             idField.setVisible(false);
@@ -284,15 +286,15 @@ public class teacherManageController implements Initializable {
             passText.setVisible(true);
             secQuestionB.setVisible(false);
             secQuestionA.setVisible(true);
-            addButtonManage.setOnAction(event1->{
+            addButtonManage.setOnAction(event1 -> {
                 String teachersName = teachersNameField.getText();
                 String email = emailField.getText();
                 String personalNr = personalNumber.getText();
                 String setPassword = passText.getText();
                 String secQuestion1 = secQuestionA.getText();
-                addUser(teachersName, email, personalNr,setPassword,secQuestion1);
+                addUser(teachersName, email, personalNr, setPassword, secQuestion1);
             });
-            gobackButton.setOnAction(event1 ->{
+            gobackButton.setOnAction(event1 -> {
                 secQuestionB.setVisible(false);
                 hideManageView();
                 clearManage();
@@ -312,15 +314,15 @@ public class teacherManageController implements Initializable {
             secQuestionA.setVisible(false);
             updateManageButton.setVisible(true);
 
-            updateManageButton.setOnAction(event1->{
+            updateManageButton.setOnAction(event1 -> {
                 String teachersName = teachersNameField.getText();
                 String email = emailField.getText();
                 String personalNr = personalNumber.getText();
                 String secQuestion2 = secQuestionB.getText();
                 int teacherId = idColumn.getCellData(userTable.getSelectionModel().getSelectedItem());
-                updateUser(teacherId,teachersName, email, personalNr, secQuestion2);
+                updateUser(teacherId, teachersName, email, personalNr, secQuestion2);
             });
-            gobackButton.setOnAction(event1 ->{
+            gobackButton.setOnAction(event1 -> {
                 secQuestionB.setVisible(false);
                 hideManageView();
                 clearManage();
@@ -349,7 +351,7 @@ public class teacherManageController implements Initializable {
                 String personalNr = resultSet.getString("personalNr");
                 String securityQuestion1 = resultSet.getString("securityQuestion");
 
-                Teacher teacher = new Teacher(id, fullName, email, personalNr,securityQuestion1);
+                Teacher teacher = new Teacher(id, fullName, email, personalNr, securityQuestion1);
                 teachers.add(teacher);
             }
             stmt.close();
@@ -360,7 +362,7 @@ public class teacherManageController implements Initializable {
         return teachers;
     }
 
-    private void deleteUser(String id){
+    private void deleteUser(String id) {
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
@@ -385,14 +387,15 @@ public class teacherManageController implements Initializable {
             e.printStackTrace();
         }
     }
-    private void addUser(String fullname, String email, String personalNr, String setPassword,String secQuestion1) {
+
+    private void addUser(String fullname, String email, String personalNr, String setPassword, String secQuestion1) {
         if (fullname.isEmpty() || email.isEmpty() || personalNr.isEmpty() || setPassword.isEmpty() || secQuestion1.isEmpty()) {
             userManage.setText("Please fill in all fields");
             timeLabel(userManage);
             return;
         }
         try {
-            Teacher teacherInserted = TeacherService.signUp(fullname,email,personalNr,setPassword,secQuestion1);
+            Teacher teacherInserted = TeacherService.signUp(fullname, email, personalNr, setPassword, secQuestion1);
 
 
             if (teacherInserted != null) {
@@ -411,7 +414,8 @@ public class teacherManageController implements Initializable {
             e.printStackTrace();
         }
     }
-    private void updateUser(int teacherId,String fullname, String email, String personalNr, String secQuestion1) {
+
+    private void updateUser(int teacherId, String fullname, String email, String personalNr, String secQuestion1) {
         if (fullname.isEmpty() || email.isEmpty() || personalNr.isEmpty()) {
             userManage.setText("Please fill in all fields");
             timeLabel(userManage);
@@ -426,8 +430,8 @@ public class teacherManageController implements Initializable {
             stmt.setString(1, fullname);
             stmt.setString(2, email);
             stmt.setString(3, personalNr);
-            stmt.setString(4,secQuestion1);
-            stmt.setInt(5,teacherId);
+            stmt.setString(4, secQuestion1);
+            stmt.setInt(5, teacherId);
 
             int rowsUpdated = stmt.executeUpdate();
 
@@ -449,6 +453,7 @@ public class teacherManageController implements Initializable {
             e.printStackTrace();
         }
     }
+
     private void showManageView() {
         vBoxManage.setVisible(true);
         userManage.setVisible(false);
@@ -458,6 +463,7 @@ public class teacherManageController implements Initializable {
         idField.setVisible(true);
         updateButton.setVisible(false);
     }
+
     private void hideManageView() {
         vBoxManage.setVisible(false);
         addButtonManage.setVisible(false);
@@ -469,14 +475,17 @@ public class teacherManageController implements Initializable {
         updateButton.setVisible(true);
         updateManageButton.setVisible(false);
 
+
     }
-    private void clearManage(){
+
+    private void clearManage() {
         teachersNameField.clear();
         emailField.clear();
         personalNumber.clear();
         passText.clear();
     }
-    private void dynamicSearch(){
+
+    private void dynamicSearch() {
         ObservableList<Teacher> teachers = getUsers();
         userTable.setItems(teachers);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -485,6 +494,7 @@ public class teacherManageController implements Initializable {
             userTable.setItems(filteredUsers);
         });
     }
+
     private void timeLabel(Label label) {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, event -> {
@@ -498,20 +508,22 @@ public class teacherManageController implements Initializable {
         );
         timeline.play();
     }
+
     @FXML
-    private void goHome(ActionEvent event){
+    private void goHome(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent root = loader.load();
             homeController homeController = loader.getController();
             homeController.initialize(session);
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void handleProfileButton(ActionEvent event) {
         try {
@@ -520,26 +532,48 @@ public class teacherManageController implements Initializable {
             profileController profileController = loader.getController();
             profileController.initialize(session);
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-@FXML
-private void handleManageButton(ActionEvent event) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/manage.fxml"));
-        Parent root = loader.load();
-        manageController manageController = loader.getController();
-        manageController.initialize(session);
-        Scene manageScene = new Scene(root);
-        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        primaryStage.setScene(manageScene);
-    } catch (Exception e) {
-        e.printStackTrace();
+
+    @FXML
+    private void handleManageButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/manage.fxml"));
+            Parent root = loader.load();
+            manageController manageController = loader.getController();
+            manageController.initialize(session);
+            Scene manageScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
-}
+
+    @FXML
+    void handleHelpButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/help.fxml"));
+            Parent root = loader.load();
+            if (session != null) {
+                helpController helpController = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                helpController.initialize(session);
+
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void logOutBtn(ActionEvent event) {
         try {
@@ -547,12 +581,13 @@ private void handleManageButton(ActionEvent event) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
             Parent root = loader.load();
             Scene manageScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeLanguage();

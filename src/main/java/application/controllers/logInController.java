@@ -46,6 +46,9 @@ public class logInController implements Initializable {
     private Label welcomeText;
     @FXML
     private Button loginBtn;
+
+    @FXML
+    private Button helpButton;
     @FXML
     private Label labelLogin;
     @FXML
@@ -141,7 +144,7 @@ public class logInController implements Initializable {
             if (rememberMe.isSelected()) {
                 saveCredentials(email, password);
             } else {
-                clearSavedCredentials();
+                //
             }
 
 
@@ -201,7 +204,20 @@ public class logInController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    @FXML
+    void handleHelpButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/help.fxml"));
+            Parent root = loader.load();
+            helpController helpC = loader.getController();
+            helpC.setLogIn(true);
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

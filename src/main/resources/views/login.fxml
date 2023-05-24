@@ -47,5 +47,6 @@
             <Font size="10.0" />
          </font>
       </Hyperlink>
+      <Button fx:id="helpButton" layoutX="555.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleHelpButton" style="-fx-border-radius: 100; -fx-background-color: transparent; -fx-border-color: #1e90ff; -fx-label-padding: 2px;" text="?" textFill="DODGERBLUE" />
     </children>
 </Pane>

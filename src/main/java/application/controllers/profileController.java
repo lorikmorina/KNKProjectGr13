@@ -34,7 +34,8 @@ public class profileController implements Initializable {
 
     @FXML
     private Label myName;
-
+    @FXML
+    private Button helpButton;
     @FXML
     private Label myPersonalNr;
 
@@ -86,6 +87,7 @@ public class profileController implements Initializable {
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 fullName.setText(bundle.getString("full.name.profileLabel"));
                 personalNr.setText(bundle.getString("personal.num.profileLabel"));
                 showValues.setText(bundle.getString("change.password.profile.button"));
@@ -110,6 +112,7 @@ public class profileController implements Initializable {
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("en_US");
                 fullName.setText(bundle.getString("full.name.profileLabel"));
                 personalNr.setText(bundle.getString("personal.num.profileLabel"));
                 showValues.setText(bundle.getString("change.password.profile.button"));
@@ -143,13 +146,13 @@ public class profileController implements Initializable {
             myName.setText(session.getFullName());
             myPersonalNr.setText(session.getPersonalNr());
             userName.setText(session.getFullName());
-            nrChildren.setText(Integer.toString(session.getNrChildren(session.getId())));
-        if(session.getAccessLevel() == 3){
+        if (session.getAccessLevel() == 3) {
             teacherManageBtn.setVisible(false);
             teacherManageBtn.setManaged(false);
-
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
+            nrChildren.setText(Integer.toString(getNrChildren(session.getId())));
+
         } else if (session.getAccessLevel() == 2) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
@@ -157,7 +160,14 @@ public class profileController implements Initializable {
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
-        }else {
+        } else if (session.getAccessLevel() == 1) {
+            manageButton.setVisible(false);
+            manageButton.setManaged(false);
+            scheduleBtn.setVisible(false);
+            scheduleBtn.setManaged(false);
+            classScheduleBtn.setVisible(false);
+            classScheduleBtn.setManaged(false);
+        } else {
             System.out.println("There is a problem in session passing");
         }
         // set all the labels using the User object
@@ -240,6 +250,27 @@ public class profileController implements Initializable {
         }
     }
 
+    public int getNrChildren(int parent_id) throws SQLException {
+        Connection connection = null;
+        int nrChildren = 0;
+        try {
+            connection = ConnectionUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM children WHERE parent_id = ?"
+            );
+            stmt.setInt(1, parent_id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                nrChildren = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            connection.close();
+        }
+        return nrChildren;
+    }
+
     @FXML
     private void handleManageButton(ActionEvent event) {
         try {
@@ -267,6 +298,24 @@ public class profileController implements Initializable {
                 teacherManageController teacherM = loader.getController();
                 // teacherManageController.setUser(loggedInUser);
                 teacherM.initialize(session);
+
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleHelpButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/help.fxml"));
+            Parent root = loader.load();
+            if (session != null) {
+                helpController helpController = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                helpController.initialize(session);
 
             }
             Scene profileScene = new Scene(root);

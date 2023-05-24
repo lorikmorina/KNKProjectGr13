@@ -31,7 +31,8 @@ import static java.sql.Types.NULL;
 
 public class manageController implements Initializable {
     private UserSession session;
-
+    @FXML
+    private Button helpButton;
     @FXML
     private Label nameLabel;
     @FXML
@@ -81,6 +82,7 @@ public class manageController implements Initializable {
             if(newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 searchField.setPromptText(bundle.getString("search.placeholder"));
                 fullNameColumn.setText(bundle.getString("fullname.name.managelabel.text"));
                 parentId.setText(bundle.getString("parentid.managelabel.text"));
@@ -120,6 +122,7 @@ public class manageController implements Initializable {
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                LanguageManager.getInstance().setSelectedLanguage("en_US");
                 searchField.setPromptText(bundle.getString("search.placeholder"));
                 fullNameColumn.setText(bundle.getString("fullname.name.managelabel.text"));
                 parentId.setText(bundle.getString("parentid.managelabel.text"));
@@ -563,6 +566,24 @@ public class manageController implements Initializable {
             Scene manageScene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleHelpButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/help.fxml"));
+            Parent root = loader.load();
+            if (session != null) {
+                helpController helpController = loader.getController();
+                // teacherManageController.setUser(loggedInUser);
+                helpController.initialize(session);
+
+            }
+            Scene profileScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
         } catch (Exception e) {
             e.printStackTrace();
         }

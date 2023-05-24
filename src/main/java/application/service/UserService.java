@@ -1,16 +1,12 @@
 package application.service;
 
-import application.models.Pagination;
 import application.models.User;
 import application.models.dto.CreateUserDto;
-import application.models.dto.UpdateUserDto;
-import application.models.dto.UserFilter;
 import application.repository.UserRepository;
 import application.repository.interfaces.UserRepositoryInterface;
 import application.service.interfaces.UserServiceInterface;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class UserService implements UserServiceInterface {
 //    Repositories

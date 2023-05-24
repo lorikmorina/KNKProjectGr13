@@ -188,6 +188,7 @@
                   <Font size="28.0" />
                </font>
             </Text>
+            <Button fx:id="helpButton" layoutX="995.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleHelpButton" style="-fx-border-radius: 100; -fx-background-color: transparent; -fx-border-color: white; -fx-label-padding: 2px;" text="?" textFill="WHITE" />
          </children>
       </Pane>
       <RadioButton fx:id="alButton" layoutX="58.0" layoutY="55.0" mnemonicParsing="false" text="AL" />
