@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.helpController">
+   <children>
+      <Rectangle arcWidth="5.0" fill="DODGERBLUE" height="800.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+      <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="25.0" layoutY="40.0" scaleX="3.0" scaleY="3.0" />
+      <Text fill="WHITE" layoutX="56.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Çerdhe Xixëllonjat" textAlignment="CENTER">
+         <font>
+            <Font name="Raleway Black" size="15.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="200.0" layoutY="181.0" prefHeight="132.0" prefWidth="172.0" visible="false" />
+      <Label fx:id="nameLabel" layoutX="50.0" layoutY="92.0" text="" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <VBox layoutY="220.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button fx:id="homeHome" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Home" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="manageButton" mnemonicParsing="false" onAction="#handleManageButton" style="-fx-background-color: transparent;" text="Manage" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="profileBtn" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: transparent;" text="Profile" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="teacherManageBtn" mnemonicParsing="false" onAction="#handleTeacherManageButton" style="-fx-background-color: transparent;" text="Teacher Manage" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="scheduleBtn" mnemonicParsing="false" onAction="#handleScheduleButton" style="-fx-background-color: transparent;" text="Schedule" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="classScheduleBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Class Schedule" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="200.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: #63a7e8;">
+         <children>
+            <Text fx:id="helpTitle" fill="WHITE" layoutX="34.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP" wrappingWidth="106.0390625">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+            <Button fx:id="helpButton" layoutX="1008.0" layoutY="48.0" mnemonicParsing="false" style="-fx-border-radius: 100; -fx-background-color: transparent; -fx-border-color: white; -fx-label-padding: 2px;" text="?" textFill="WHITE" />
+         </children></Pane>
+      <Button fx:id="logoutBtn" layoutX="57.0" layoutY="706.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: transparent;" text="Logout" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <RadioButton fx:id="alButton" layoutX="55.0" layoutY="63.0" mnemonicParsing="false" text="AL" />
+      <RadioButton fx:id="enButton" layoutX="103.0" layoutY="63.0" mnemonicParsing="false" text="EN" />
+      <Text fx:id="intro" layoutX="231.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The app provides a secure and user-friendly platform for administrators, teachers, and parents to access and manage kindergarten-related information. To get started, you can either log in to your existing account or sign up for a new one." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="logHelp" layoutX="229.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in:" textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="logUse" layoutX="229.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 - Launch the app. 2 - On the login screen, enter your credentials (username and password) in the designated fields. 3 - Click on the &quot;Login&quot; button to access your account. If you encounter any issues during the login process, please ensure that you have entered the correct username and password. If you have forgotten your password, you can use the &quot;Forgot Password&quot; option to recover it." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="signHelp" layoutX="230.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up:" textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="signUse" layoutX="229.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 - Launch the app. 2 - On the login screen, enter your credentials (username and password) in the designated fields. 3 - Click on the &quot;Login&quot; button to access your account. If you encounter any issues during the login process, please ensure that you have entered the correct username and password. If you have forgotten your password, you can use the &quot;Forgot Password&quot; option to recover it." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="accountRoles" layoutX="755.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The &quot;Çerdhe Xixëllonja&quot; App supports three types of user roles: administrators, teachers, and parents. Each role has different levels of access and functionality within the application." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="adminHelp" layoutX="753.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrators" textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="adminExplain" layoutX="753.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrators have the highest level of access and control over the app. They can manage user accounts, update kindergarten information, handle administrative tasks, and oversee the overall operation of the app." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="teachersHelp" layoutX="754.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teachers" textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="teacherExplain" layoutX="753.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teachers have access to features specifically designed to assist them in managing their classrooms. They can record attendance, update lesson plans, and perform other classroom-related activities." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="parentExplain" layoutX="755.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parents can log in to the app to stay connected with their child's kindergarten experience. They can access information about their child's attendance, view updates from teachers, and add or delete their children from the database." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="parentHelp" layoutX="754.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parents" textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Text fx:id="hopeHelp" layoutX="495.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We hope this information helps you understand the login and sign-up process for the &quot;Çerdhe Xixëllonja&quot; app. If you have any further questions or need assistance, please refer to the app's documentation or contact our support team." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+   </children>
+</Pane>
