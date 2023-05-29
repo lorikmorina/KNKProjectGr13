@@ -3,6 +3,8 @@ package application.controllers;
 import application.database.ConnectionUtil;
 import application.models.*;
 import application.service.UserSession;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +13,12 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+
 
 import java.net.URL;
 import java.sql.Connection;
@@ -36,7 +40,7 @@ public class homeController implements Initializable {
     private Label childrenEnrolled, parentsRegistered, teachersEmployed;
 
     @FXML
-    private Button loginBtn, logoutBtn, profileBtn,parentsManage;
+    private Button loginBtn, logoutBtn, profileBtn, parentsManage;
     @FXML
     private Label nameLabel;
     @FXML
@@ -46,6 +50,8 @@ public class homeController implements Initializable {
     private Button profileButton;
     @FXML
     private Button helpButton;
+    @FXML
+    private PieChart pieChart;
     @FXML
     private Button teacherManageBtn;
     @FXML
@@ -57,27 +63,30 @@ public class homeController implements Initializable {
     @FXML
     private Button homeHome;
     @FXML
-    private Text totalChildrenEnrolled,totalTeacherEmployed,totalParentsRegistered,homeTitle;
+    private Text totalChildrenEnrolled, totalTeacherEmployed, totalParentsRegistered, homeTitle;
     @FXML
-    private RadioButton alButton,enButton;
+    private RadioButton alButton, enButton;
 
+    public homeController() throws SQLException {
+    }
 
 
     @FXML
     void btnLoginClick(ActionEvent event) {
 
     }
-    public  void changeLanguage() {
+
+    public void changeLanguage() {
         ToggleGroup languageToggleGroup = new ToggleGroup();
         alButton.setToggleGroup(languageToggleGroup);
         enButton.setToggleGroup(languageToggleGroup);
         languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
-            if(newToggle == alButton) {
+            if (newToggle == alButton) {
                 Locale currentLocale = new Locale("sq", "AL");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
                 LanguageManager.getInstance().setSelectedLanguage("sq_AL");
                 totalChildrenEnrolled.setText(bundle.getString("total.children.label"));
-                childrenEnrolled.setPadding(new Insets(0,0,0,20));
+                childrenEnrolled.setPadding(new Insets(0, 0, 0, 20));
                 totalParentsRegistered.setText(bundle.getString("total.parents.label"));
                 totalTeacherEmployed.setText(bundle.getString("total.teachers.label"));
 
@@ -92,7 +101,7 @@ public class homeController implements Initializable {
                 logoutBtn.setText(bundle.getString("logout.button.profile.text"));
 
 
-            }else if(newToggle == enButton)  {
+            } else if (newToggle == enButton) {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
                 LanguageManager.getInstance().setSelectedLanguage("en_US");
@@ -100,7 +109,7 @@ public class homeController implements Initializable {
                 totalChildrenEnrolled.setText(bundle.getString("total.children.label"));
                 totalParentsRegistered.setText(bundle.getString("total.parents.label"));
                 totalTeacherEmployed.setText(bundle.getString("total.teachers.label"));
-                childrenEnrolled.setPadding(new Insets(0,0,0,0));
+                childrenEnrolled.setPadding(new Insets(0, 0, 0, 0));
                 //MenuBar
                 homeTitle.setText(bundle.getString("home.homelabel"));
                 homeHome.setText(bundle.getString("home.profile.label"));
@@ -152,7 +161,18 @@ public class homeController implements Initializable {
         } else {
             System.out.println("There is a problem in session passing");
         }
+        ObservableList<PieChart.Data> pieChartData1 = FXCollections.observableArrayList(
+                new PieChart.Data("Children", getChildren()),
+                new PieChart.Data("Teachers", getNrTeachers()),
+                new PieChart.Data("Parents", getNrParents())
+        );
+        pieChart.setData(pieChartData1);
+        pieChart.setLegendVisible(true);
+
     }
+
+
+
 
     private int getChildren() throws SQLException {
         Connection connection = null;
@@ -324,6 +344,7 @@ public class homeController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeLanguage();

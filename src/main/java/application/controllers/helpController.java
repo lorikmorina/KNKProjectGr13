@@ -51,6 +51,9 @@ public class helpController implements Initializable {
     private Button homeHome;
 
     @FXML
+    private Button goBackLogin;
+
+    @FXML
     private Text hopeHelp;
 
     @FXML
@@ -123,6 +126,7 @@ public class helpController implements Initializable {
                 parentExplain.setText(bundle.getString("parentExplain.text"));
                 hopeHelp.setText(bundle.getString("hopeHelp.text"));
 
+                homeHome.setText(bundle.getString("home.profile.label"));
                 manageButton.setText(bundle.getString("manage.profile.label.text"));
                 profileBtn.setText(bundle.getString("profile.profile.label.text"));
                 teacherManageBtn.setText(bundle.getString("teacher.profile.label.text"));
@@ -150,6 +154,8 @@ public class helpController implements Initializable {
                 parentHelp.setText(bundle.getString("parentHelp.text"));
                 parentExplain.setText(bundle.getString("parentExplain.text"));
                 hopeHelp.setText(bundle.getString("hopeHelp.text"));
+
+                homeHome.setText(bundle.getString("home.profile.label"));
                 profileBtn.setText(bundle.getString("home.profile.label"));
                 manageButton.setText(bundle.getString("manage.profile.label.text"));
                 profileBtn.setText(bundle.getString("profile.profile.label.text"));
@@ -175,6 +181,7 @@ public class helpController implements Initializable {
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
+            goBackLogin.setVisible(false);
         } else if (session.getAccessLevel() == 2) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
@@ -182,6 +189,7 @@ public class helpController implements Initializable {
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
+            goBackLogin.setVisible(false);
         } else if (session.getAccessLevel() == 1) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
@@ -189,6 +197,7 @@ public class helpController implements Initializable {
             scheduleBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
+            goBackLogin.setVisible(false);
         }
 
         else {
@@ -298,6 +307,20 @@ public class helpController implements Initializable {
         }
         else {
 
+        }
+    }
+
+    @FXML
+    void goBackLogin(ActionEvent event) {
+        try {
+            RememberMeConfig.clearSavedCredentials();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
+            Parent root = loader.load();
+            Scene manageScene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(manageScene);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     @Override

@@ -89,5 +89,10 @@
       <Text fx:id="parentExplain" layoutX="755.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parents can log in to the app to stay connected with their child's kindergarten experience. They can access information about their child's attendance, view updates from teachers, and add or delete their children from the database." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
       <Text fx:id="parentHelp" layoutX="754.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parents" textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
       <Text fx:id="hopeHelp" layoutX="495.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We hope this information helps you understand the login and sign-up process for the &quot;Çerdhe Xixëllonja&quot; app. If you have any further questions or need assistance, please refer to the app's documentation or contact our support team." textAlignment="JUSTIFY" wrappingWidth="384.9999694824219" />
+      <Button fx:id="goBackLogin" layoutX="56.0" layoutY="662.0" mnemonicParsing="false" onAction="#goBackLogin" style="-fx-background-color: transparent;" text="Go Back" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

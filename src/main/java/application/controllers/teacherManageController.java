@@ -474,6 +474,8 @@ public class teacherManageController implements Initializable {
         deleteID.setVisible(false);
         updateButton.setVisible(true);
         updateManageButton.setVisible(false);
+        secQuestionB.setVisible(false);
+        secQuestionA.setVisible(false);
 
 
     }
@@ -483,6 +485,8 @@ public class teacherManageController implements Initializable {
         emailField.clear();
         personalNumber.clear();
         passText.clear();
+        secQuestionA.clear();
+        secQuestionB.clear();
     }
 
     private void dynamicSearch() {

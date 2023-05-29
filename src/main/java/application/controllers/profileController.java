@@ -160,6 +160,8 @@ public class profileController implements Initializable {
             teacherManageBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
+            nrChildren.setVisible(false);
+            numberOfChildren.setVisible(false);
         } else if (session.getAccessLevel() == 1) {
             manageButton.setVisible(false);
             manageButton.setManaged(false);
@@ -167,6 +169,8 @@ public class profileController implements Initializable {
             scheduleBtn.setManaged(false);
             classScheduleBtn.setVisible(false);
             classScheduleBtn.setManaged(false);
+            nrChildren.setVisible(false);
+            numberOfChildren.setVisible(false);
         } else {
             System.out.println("There is a problem in session passing");
         }
